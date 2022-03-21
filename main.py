@@ -3,7 +3,7 @@ import pydicom
 import numpy as np
 from PIL import Image
 import time
-# from skimage.morphology import skeletonize_3d
+from skimage.morphology import skeletonize_3d
 
 import skeletonization3D
 
@@ -36,7 +36,7 @@ def reduce_RGB_to_binary(image):
     return image
 
 
-def plot_3D_from_3D_binary_image(image, save_to_file_from_diff_view=False):
+def plot_3D_from_3D_binary_image(image, name_photo, save_to_file_from_diff_view=False):
 
     plt.rcParams["figure.figsize"] = [7.00, 3.50]
     plt.rcParams["figure.autolayout"] = True
@@ -46,8 +46,8 @@ def plot_3D_from_3D_binary_image(image, save_to_file_from_diff_view=False):
     ax.scatter(y, z, x, c="black", alpha=1, s=0.3)
     if save_to_file_from_diff_view:
         for angle in range(0, 360, 20):
-            ax.view_init(elev=50., azim=angle)
-            plt.savefig(f"angle{angle}.png")
+            ax.view_init(elev=20., azim=angle)
+            plt.savefig(f"{name_photo}angle{angle}.png")
     plt.show()
 
 
@@ -64,13 +64,23 @@ def main():
     print('\r', "Into Binary...", sep="", end="")
     data_with_black_panel_start_end = np.zeros(shape=(data.shape[0] + 2, data.shape[1], data.shape[2]), dtype=np.uint8)
     data_with_black_panel_start_end[1:data_with_black_panel_start_end.shape[0]-1] = reduce_RGB_to_binary(data)
+    save_2D_binary_image(data_with_black_panel_start_end[1], "binary1")
+    save_2D_binary_image(data_with_black_panel_start_end[2], "binary2")
+    save_2D_binary_image(data_with_black_panel_start_end[3], "binary3")
     print('\r', "Skeletonization...", sep="", end="")
     # check exec time
     start_time = time.time()
-    data = skeletonization3D.make_3D_skeleton(data_with_black_panel_start_end)
+    data1 = skeletonization3D.make_3D_skeleton(data_with_black_panel_start_end)
     end_time = time.time() - start_time
-    print('\r', f"[Skeletonization] Exec time {end_time}", sep="", end="")
+    print('\n', f"[skeletonization3D.make_3D_skeleton] Exec time {end_time}", sep="", end="")
+    start_time = time.time()
+    data2 = skeletonize_3d(data_with_black_panel_start_end)
+    end_time = time.time() - start_time
+    for i in range(data2.shape[0]):
+        save_2D_binary_image(data2[i], f"skeleton{i}")
 
+    print('\n', f"[skeletonize_3d] Exec time {end_time}", sep="", end="")
+    plot_3D_from_3D_binary_image(data2, "afterSkeleton", True)
 
 main()
 
