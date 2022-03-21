@@ -1250,7 +1250,7 @@ typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
  * from cpython cimport array
  * ctypedef numpy.uint8_t IMAGE3D_UINT8_t             # <<<<<<<<<<<<<<
  * ctypedef numpy.int32_t BORDERPOINTS_INT32_t
- * # from PIL import Image
+ * 
  */
 typedef __pyx_t_5numpy_uint8_t __pyx_t_17skeletonization3D_IMAGE3D_UINT8_t;
 
@@ -1258,8 +1258,8 @@ typedef __pyx_t_5numpy_uint8_t __pyx_t_17skeletonization3D_IMAGE3D_UINT8_t;
  * from cpython cimport array
  * ctypedef numpy.uint8_t IMAGE3D_UINT8_t
  * ctypedef numpy.int32_t BORDERPOINTS_INT32_t             # <<<<<<<<<<<<<<
- * # from PIL import Image
- * # import matplotlib.pyplot as plt
+ * 
+ * cdef array.array a = array.array('i', [0, 0, 0, 0, 0, 1, 0, 0, 2,
  */
 typedef __pyx_t_5numpy_int32_t __pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t;
 /* Declarations.proto */
@@ -2864,12 +2864,12 @@ static PyObject *__pyx_codeobj__32;
 static PyObject *__pyx_codeobj__39;
 /* Late includes */
 
-/* "skeletonization3D.pyx":78
+/* "skeletonization3D.pyx":26
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):             # <<<<<<<<<<<<<<
- * 
  *     cdef int base_maks, i, j
+ *     cdef int flaga = 0
  */
 
 /* Python wrapper */
@@ -2882,7 +2882,7 @@ static PyObject *__pyx_pw_17skeletonization3D_1is_match_mask(PyObject *__pyx_sel
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("is_match_mask (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_arr), __pyx_ptype_5numpy_ndarray, 1, "arr", 0))) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_arr), __pyx_ptype_5numpy_ndarray, 1, "arr", 0))) __PYX_ERR(0, 26, __pyx_L1_error)
   __pyx_r = __pyx_pf_17skeletonization3D_is_match_mask(__pyx_self, ((PyArrayObject *)__pyx_v_arr));
 
   /* function exit code */
@@ -2952,12 +2952,12 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
   __pyx_pybuffernd_arr.rcbuffer = &__pyx_pybuffer_arr;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 78, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 26, __pyx_L1_error)
   }
   __pyx_pybuffernd_arr.diminfo[0].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_arr.diminfo[0].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_arr.diminfo[1].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_arr.diminfo[1].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_arr.diminfo[2].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_arr.diminfo[2].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[2];
 
-  /* "skeletonization3D.pyx":81
- * 
+  /* "skeletonization3D.pyx":28
+ * def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):
  *     cdef int base_maks, i, j
  *     cdef int flaga = 0             # <<<<<<<<<<<<<<
  *     cdef int panel
@@ -2965,33 +2965,33 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
   __pyx_v_flaga = 0;
 
-  /* "skeletonization3D.pyx":90
+  /* "skeletonization3D.pyx":37
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=1] ones
  * 
  *     zeros = numpy.zeros(shape=(81), dtype=numpy.int32)             # <<<<<<<<<<<<<<
  *     ones = numpy.zeros(shape=(81), dtype=numpy.int32)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_int_81) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_int_81) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 37, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -3008,39 +3008,39 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
       __pyx_t_7 = __pyx_t_8 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_zeros.diminfo[0].strides = __pyx_pybuffernd_zeros.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_zeros.diminfo[0].shape = __pyx_pybuffernd_zeros.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 90, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
   }
   __pyx_t_5 = 0;
   __pyx_v_zeros = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "skeletonization3D.pyx":91
+  /* "skeletonization3D.pyx":38
  * 
  *     zeros = numpy.zeros(shape=(81), dtype=numpy.int32)
  *     ones = numpy.zeros(shape=(81), dtype=numpy.int32)             # <<<<<<<<<<<<<<
  * 
  *     for panel in range(3):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_shape, __pyx_int_81) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_shape, __pyx_int_81) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 38, __pyx_L1_error)
   __pyx_t_10 = ((PyArrayObject *)__pyx_t_3);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -3057,13 +3057,13 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
       __pyx_t_9 = __pyx_t_8 = __pyx_t_7 = 0;
     }
     __pyx_pybuffernd_ones.diminfo[0].strides = __pyx_pybuffernd_ones.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ones.diminfo[0].shape = __pyx_pybuffernd_ones.rcbuffer->pybuffer.shape[0];
-    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
   }
   __pyx_t_10 = 0;
   __pyx_v_ones = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "skeletonization3D.pyx":93
+  /* "skeletonization3D.pyx":40
  *     ones = numpy.zeros(shape=(81), dtype=numpy.int32)
  * 
  *     for panel in range(3):             # <<<<<<<<<<<<<<
@@ -3073,7 +3073,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
   for (__pyx_t_6 = 0; __pyx_t_6 < 3; __pyx_t_6+=1) {
     __pyx_v_panel = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":94
+    /* "skeletonization3D.pyx":41
  * 
  *     for panel in range(3):
  *         for row in range(3):             # <<<<<<<<<<<<<<
@@ -3083,7 +3083,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     for (__pyx_t_11 = 0; __pyx_t_11 < 3; __pyx_t_11+=1) {
       __pyx_v_row = __pyx_t_11;
 
-      /* "skeletonization3D.pyx":95
+      /* "skeletonization3D.pyx":42
  *     for panel in range(3):
  *         for row in range(3):
  *             for col in range(3):             # <<<<<<<<<<<<<<
@@ -3093,7 +3093,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
       for (__pyx_t_12 = 0; __pyx_t_12 < 3; __pyx_t_12+=1) {
         __pyx_v_col = __pyx_t_12;
 
-        /* "skeletonization3D.pyx":96
+        /* "skeletonization3D.pyx":43
  *         for row in range(3):
  *             for col in range(3):
  *                 if arr[panel, row, col] == 1:             # <<<<<<<<<<<<<<
@@ -3106,7 +3106,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         __pyx_t_16 = (((*__Pyx_BufPtrStrided3d(__pyx_t_17skeletonization3D_IMAGE3D_UINT8_t *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_13, __pyx_pybuffernd_arr.diminfo[0].strides, __pyx_t_14, __pyx_pybuffernd_arr.diminfo[1].strides, __pyx_t_15, __pyx_pybuffernd_arr.diminfo[2].strides)) == 1) != 0);
         if (__pyx_t_16) {
 
-          /* "skeletonization3D.pyx":97
+          /* "skeletonization3D.pyx":44
  *             for col in range(3):
  *                 if arr[panel, row, col] == 1:
  *                     zeros[size_zeros] = panel             # <<<<<<<<<<<<<<
@@ -3116,7 +3116,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = __pyx_v_size_zeros;
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_zeros.diminfo[0].strides) = __pyx_v_panel;
 
-          /* "skeletonization3D.pyx":98
+          /* "skeletonization3D.pyx":45
  *                 if arr[panel, row, col] == 1:
  *                     zeros[size_zeros] = panel
  *                     zeros[size_zeros + 1] = row             # <<<<<<<<<<<<<<
@@ -3126,7 +3126,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = (__pyx_v_size_zeros + 1);
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_zeros.diminfo[0].strides) = __pyx_v_row;
 
-          /* "skeletonization3D.pyx":99
+          /* "skeletonization3D.pyx":46
  *                     zeros[size_zeros] = panel
  *                     zeros[size_zeros + 1] = row
  *                     zeros[size_zeros + 2] = col             # <<<<<<<<<<<<<<
@@ -3136,7 +3136,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = (__pyx_v_size_zeros + 2);
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_zeros.diminfo[0].strides) = __pyx_v_col;
 
-          /* "skeletonization3D.pyx":100
+          /* "skeletonization3D.pyx":47
  *                     zeros[size_zeros + 1] = row
  *                     zeros[size_zeros + 2] = col
  *                     size_zeros = size_zeros + 3             # <<<<<<<<<<<<<<
@@ -3145,7 +3145,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
           __pyx_v_size_zeros = (__pyx_v_size_zeros + 3);
 
-          /* "skeletonization3D.pyx":96
+          /* "skeletonization3D.pyx":43
  *         for row in range(3):
  *             for col in range(3):
  *                 if arr[panel, row, col] == 1:             # <<<<<<<<<<<<<<
@@ -3155,7 +3155,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           goto __pyx_L9;
         }
 
-        /* "skeletonization3D.pyx":102
+        /* "skeletonization3D.pyx":49
  *                     size_zeros = size_zeros + 3
  *                 else:
  *                     ones[size_ones] = panel             # <<<<<<<<<<<<<<
@@ -3166,7 +3166,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = __pyx_v_size_ones;
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides) = __pyx_v_panel;
 
-          /* "skeletonization3D.pyx":103
+          /* "skeletonization3D.pyx":50
  *                 else:
  *                     ones[size_ones] = panel
  *                     ones[size_ones + 1] = row             # <<<<<<<<<<<<<<
@@ -3176,7 +3176,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = (__pyx_v_size_ones + 1);
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides) = __pyx_v_row;
 
-          /* "skeletonization3D.pyx":104
+          /* "skeletonization3D.pyx":51
  *                     ones[size_ones] = panel
  *                     ones[size_ones + 1] = row
  *                     ones[size_ones + 2] = col             # <<<<<<<<<<<<<<
@@ -3186,7 +3186,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
           __pyx_t_15 = (__pyx_v_size_ones + 2);
           *__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides) = __pyx_v_col;
 
-          /* "skeletonization3D.pyx":105
+          /* "skeletonization3D.pyx":52
  *                     ones[size_ones + 1] = row
  *                     ones[size_ones + 2] = col
  *                     size_ones = size_ones + 3             # <<<<<<<<<<<<<<
@@ -3200,20 +3200,20 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "skeletonization3D.pyx":107
+  /* "skeletonization3D.pyx":54
  *                     size_ones = size_ones + 3
  * 
  *     for i in range(0, len(ZEROS), 3):             # <<<<<<<<<<<<<<
  *         flaga = 0
  *         for j in range(0, len(zeros), 3):
  */
-  if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 107, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 54, __pyx_L1_error) }
   __pyx_t_17 = __Pyx_MemoryView_Len(__pyx_v_17skeletonization3D_ZEROS); 
   __pyx_t_18 = __pyx_t_17;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_18; __pyx_t_6+=3) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":108
+    /* "skeletonization3D.pyx":55
  * 
  *     for i in range(0, len(ZEROS), 3):
  *         flaga = 0             # <<<<<<<<<<<<<<
@@ -3222,19 +3222,19 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
     __pyx_v_flaga = 0;
 
-    /* "skeletonization3D.pyx":109
+    /* "skeletonization3D.pyx":56
  *     for i in range(0, len(ZEROS), 3):
  *         flaga = 0
  *         for j in range(0, len(zeros), 3):             # <<<<<<<<<<<<<<
  *             if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:
  *                 flaga = 1
  */
-    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_zeros)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_zeros)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 56, __pyx_L1_error)
     __pyx_t_20 = __pyx_t_19;
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_20; __pyx_t_11+=3) {
       __pyx_v_j = __pyx_t_11;
 
-      /* "skeletonization3D.pyx":110
+      /* "skeletonization3D.pyx":57
  *         flaga = 0
  *         for j in range(0, len(zeros), 3):
  *             if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:             # <<<<<<<<<<<<<<
@@ -3242,7 +3242,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  *                 break
  */
       __pyx_t_15 = __pyx_v_j;
-      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 110, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 57, __pyx_L1_error) }
       __pyx_t_14 = __pyx_v_i;
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_zeros.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ZEROS.data + __pyx_t_14 * __pyx_v_17skeletonization3D_ZEROS.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3251,7 +3251,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L15_bool_binop_done;
       }
       __pyx_t_14 = (__pyx_v_j + 1);
-      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 110, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 57, __pyx_L1_error) }
       __pyx_t_15 = (__pyx_v_i + 1);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_zeros.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ZEROS.data + __pyx_t_15 * __pyx_v_17skeletonization3D_ZEROS.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3260,14 +3260,14 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L15_bool_binop_done;
       }
       __pyx_t_15 = (__pyx_v_j + 2);
-      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 110, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ZEROS.memview)) { __Pyx_RaiseUnboundLocalError("ZEROS"); __PYX_ERR(0, 57, __pyx_L1_error) }
       __pyx_t_14 = (__pyx_v_i + 2);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_zeros.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_zeros.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ZEROS.data + __pyx_t_14 * __pyx_v_17skeletonization3D_ZEROS.strides[0]) )))) != 0);
       __pyx_t_16 = __pyx_t_21;
       __pyx_L15_bool_binop_done:;
       if (__pyx_t_16) {
 
-        /* "skeletonization3D.pyx":111
+        /* "skeletonization3D.pyx":58
  *         for j in range(0, len(zeros), 3):
  *             if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:
  *                 flaga = 1             # <<<<<<<<<<<<<<
@@ -3276,7 +3276,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
         __pyx_v_flaga = 1;
 
-        /* "skeletonization3D.pyx":112
+        /* "skeletonization3D.pyx":59
  *             if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:
  *                 flaga = 1
  *                 break             # <<<<<<<<<<<<<<
@@ -3285,7 +3285,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
         goto __pyx_L13_break;
 
-        /* "skeletonization3D.pyx":110
+        /* "skeletonization3D.pyx":57
  *         flaga = 0
  *         for j in range(0, len(zeros), 3):
  *             if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:             # <<<<<<<<<<<<<<
@@ -3296,7 +3296,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
     __pyx_L13_break:;
 
-    /* "skeletonization3D.pyx":113
+    /* "skeletonization3D.pyx":60
  *                 flaga = 1
  *                 break
  *         if flaga == 0:             # <<<<<<<<<<<<<<
@@ -3306,7 +3306,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     __pyx_t_16 = ((__pyx_v_flaga == 0) != 0);
     if (__pyx_t_16) {
 
-      /* "skeletonization3D.pyx":114
+      /* "skeletonization3D.pyx":61
  *                 break
  *         if flaga == 0:
  *             return False             # <<<<<<<<<<<<<<
@@ -3318,7 +3318,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
       __pyx_r = Py_False;
       goto __pyx_L0;
 
-      /* "skeletonization3D.pyx":113
+      /* "skeletonization3D.pyx":60
  *                 flaga = 1
  *                 break
  *         if flaga == 0:             # <<<<<<<<<<<<<<
@@ -3328,20 +3328,20 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "skeletonization3D.pyx":116
+  /* "skeletonization3D.pyx":63
  *             return False
  * 
  *     for i in range(0, len(ONES), 3):             # <<<<<<<<<<<<<<
  *         flaga = 0
  *         for j in range(0, len(ones), 3):
  */
-  if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 116, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 63, __pyx_L1_error) }
   __pyx_t_17 = __Pyx_MemoryView_Len(__pyx_v_17skeletonization3D_ONES); 
   __pyx_t_18 = __pyx_t_17;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_18; __pyx_t_6+=3) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":117
+    /* "skeletonization3D.pyx":64
  * 
  *     for i in range(0, len(ONES), 3):
  *         flaga = 0             # <<<<<<<<<<<<<<
@@ -3350,19 +3350,19 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
     __pyx_v_flaga = 0;
 
-    /* "skeletonization3D.pyx":118
+    /* "skeletonization3D.pyx":65
  *     for i in range(0, len(ONES), 3):
  *         flaga = 0
  *         for j in range(0, len(ones), 3):             # <<<<<<<<<<<<<<
  *             if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:
  *                 flaga = 1
  */
-    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_ones)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 118, __pyx_L1_error)
+    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_ones)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
     __pyx_t_20 = __pyx_t_19;
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_20; __pyx_t_11+=3) {
       __pyx_v_j = __pyx_t_11;
 
-      /* "skeletonization3D.pyx":119
+      /* "skeletonization3D.pyx":66
  *         flaga = 0
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:             # <<<<<<<<<<<<<<
@@ -3370,7 +3370,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  *                 break
  */
       __pyx_t_14 = __pyx_v_j;
-      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 119, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 66, __pyx_L1_error) }
       __pyx_t_15 = __pyx_v_i;
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ONES.data + __pyx_t_15 * __pyx_v_17skeletonization3D_ONES.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3379,7 +3379,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L24_bool_binop_done;
       }
       __pyx_t_15 = (__pyx_v_j + 1);
-      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 119, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 66, __pyx_L1_error) }
       __pyx_t_14 = (__pyx_v_i + 1);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ONES.data + __pyx_t_14 * __pyx_v_17skeletonization3D_ONES.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3388,14 +3388,14 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L24_bool_binop_done;
       }
       __pyx_t_14 = (__pyx_v_j + 2);
-      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 119, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_ONES.memview)) { __Pyx_RaiseUnboundLocalError("ONES"); __PYX_ERR(0, 66, __pyx_L1_error) }
       __pyx_t_15 = (__pyx_v_i + 2);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_ONES.data + __pyx_t_15 * __pyx_v_17skeletonization3D_ONES.strides[0]) )))) != 0);
       __pyx_t_16 = __pyx_t_21;
       __pyx_L24_bool_binop_done:;
       if (__pyx_t_16) {
 
-        /* "skeletonization3D.pyx":120
+        /* "skeletonization3D.pyx":67
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:
  *                 flaga = 1             # <<<<<<<<<<<<<<
@@ -3404,7 +3404,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
         __pyx_v_flaga = 1;
 
-        /* "skeletonization3D.pyx":121
+        /* "skeletonization3D.pyx":68
  *             if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:
  *                 flaga = 1
  *                 break             # <<<<<<<<<<<<<<
@@ -3413,7 +3413,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  */
         goto __pyx_L22_break;
 
-        /* "skeletonization3D.pyx":119
+        /* "skeletonization3D.pyx":66
  *         flaga = 0
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:             # <<<<<<<<<<<<<<
@@ -3424,7 +3424,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
     __pyx_L22_break:;
 
-    /* "skeletonization3D.pyx":122
+    /* "skeletonization3D.pyx":69
  *                 flaga = 1
  *                 break
  *         if flaga == 0:             # <<<<<<<<<<<<<<
@@ -3434,7 +3434,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     __pyx_t_16 = ((__pyx_v_flaga == 0) != 0);
     if (__pyx_t_16) {
 
-      /* "skeletonization3D.pyx":123
+      /* "skeletonization3D.pyx":70
  *                 break
  *         if flaga == 0:
  *             return False             # <<<<<<<<<<<<<<
@@ -3446,7 +3446,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
       __pyx_r = Py_False;
       goto __pyx_L0;
 
-      /* "skeletonization3D.pyx":122
+      /* "skeletonization3D.pyx":69
  *                 flaga = 1
  *                 break
  *         if flaga == 0:             # <<<<<<<<<<<<<<
@@ -3456,32 +3456,32 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "skeletonization3D.pyx":125
+  /* "skeletonization3D.pyx":72
  *             return False
  * 
  *     for i in range(0, len(X), 3):             # <<<<<<<<<<<<<<
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:
  */
-  if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 125, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 72, __pyx_L1_error) }
   __pyx_t_17 = __Pyx_MemoryView_Len(__pyx_v_17skeletonization3D_X); 
   __pyx_t_18 = __pyx_t_17;
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_18; __pyx_t_6+=3) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":126
+    /* "skeletonization3D.pyx":73
  * 
  *     for i in range(0, len(X), 3):
  *         for j in range(0, len(ones), 3):             # <<<<<<<<<<<<<<
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:
  *                 return True
  */
-    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_ones)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_19 = PyObject_Length(((PyObject *)__pyx_v_ones)); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 73, __pyx_L1_error)
     __pyx_t_20 = __pyx_t_19;
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_20; __pyx_t_11+=3) {
       __pyx_v_j = __pyx_t_11;
 
-      /* "skeletonization3D.pyx":127
+      /* "skeletonization3D.pyx":74
  *     for i in range(0, len(X), 3):
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:             # <<<<<<<<<<<<<<
@@ -3489,7 +3489,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
  *     return False
  */
       __pyx_t_15 = __pyx_v_j;
-      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 127, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 74, __pyx_L1_error) }
       __pyx_t_14 = __pyx_v_i;
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_X.data + __pyx_t_14 * __pyx_v_17skeletonization3D_X.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3498,7 +3498,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L33_bool_binop_done;
       }
       __pyx_t_14 = (__pyx_v_j + 1);
-      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 127, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 74, __pyx_L1_error) }
       __pyx_t_15 = (__pyx_v_i + 1);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_14, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_X.data + __pyx_t_15 * __pyx_v_17skeletonization3D_X.strides[0]) )))) != 0);
       if (__pyx_t_21) {
@@ -3507,14 +3507,14 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         goto __pyx_L33_bool_binop_done;
       }
       __pyx_t_15 = (__pyx_v_j + 2);
-      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 127, __pyx_L1_error) }
+      if (unlikely(!__pyx_v_17skeletonization3D_X.memview)) { __Pyx_RaiseUnboundLocalError("X"); __PYX_ERR(0, 74, __pyx_L1_error) }
       __pyx_t_14 = (__pyx_v_i + 2);
       __pyx_t_21 = (((*__Pyx_BufPtrStrided1d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_ones.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_ones.diminfo[0].strides)) == (*((int *) ( /* dim=0 */ (__pyx_v_17skeletonization3D_X.data + __pyx_t_14 * __pyx_v_17skeletonization3D_X.strides[0]) )))) != 0);
       __pyx_t_16 = __pyx_t_21;
       __pyx_L33_bool_binop_done:;
       if (__pyx_t_16) {
 
-        /* "skeletonization3D.pyx":128
+        /* "skeletonization3D.pyx":75
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:
  *                 return True             # <<<<<<<<<<<<<<
@@ -3526,7 +3526,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
         __pyx_r = Py_True;
         goto __pyx_L0;
 
-        /* "skeletonization3D.pyx":127
+        /* "skeletonization3D.pyx":74
  *     for i in range(0, len(X), 3):
  *         for j in range(0, len(ones), 3):
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:             # <<<<<<<<<<<<<<
@@ -3537,7 +3537,7 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "skeletonization3D.pyx":129
+  /* "skeletonization3D.pyx":76
  *             if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:
  *                 return True
  *     return False             # <<<<<<<<<<<<<<
@@ -3549,12 +3549,12 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "skeletonization3D.pyx":78
+  /* "skeletonization3D.pyx":26
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):             # <<<<<<<<<<<<<<
- * 
  *     cdef int base_maks, i, j
+ *     cdef int flaga = 0
  */
 
   /* function exit code */
@@ -3586,12 +3586,12 @@ static PyObject *__pyx_pf_17skeletonization3D_is_match_mask(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "skeletonization3D.pyx":152
+/* "skeletonization3D.pyx":81
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points,             # <<<<<<<<<<<<<<
  *                          numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
+ *     cdef int z
  */
 
 /* Python wrapper */
@@ -3632,17 +3632,17 @@ static PyObject *__pyx_pw_17skeletonization3D_3delete_border_points(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_border_points)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, 1); __PYX_ERR(0, 152, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_image3D)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, 2); __PYX_ERR(0, 152, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "delete_border_points") < 0)) __PYX_ERR(0, 152, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "delete_border_points") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3651,20 +3651,20 @@ static PyObject *__pyx_pw_17skeletonization3D_3delete_border_points(PyObject *__
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_which_side = __Pyx_PyInt_As_char(values[0]); if (unlikely((__pyx_v_which_side == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L3_error)
+    __pyx_v_which_side = __Pyx_PyInt_As_char(values[0]); if (unlikely((__pyx_v_which_side == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 81, __pyx_L3_error)
     __pyx_v_border_points = ((PyArrayObject *)values[1]);
     __pyx_v_image3D = ((PyArrayObject *)values[2]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 152, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("delete_border_points", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("skeletonization3D.delete_border_points", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_border_points), __pyx_ptype_5numpy_ndarray, 1, "border_points", 0))) __PYX_ERR(0, 152, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_border_points), __pyx_ptype_5numpy_ndarray, 1, "border_points", 0))) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 82, __pyx_L1_error)
   __pyx_r = __pyx_pf_17skeletonization3D_2delete_border_points(__pyx_self, __pyx_v_which_side, __pyx_v_border_points, __pyx_v_image3D);
 
   /* function exit code */
@@ -3725,16 +3725,16 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
   __pyx_pybuffernd_image3D.rcbuffer = &__pyx_pybuffer_image3D;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_border_points.rcbuffer->pybuffer, (PyObject*)__pyx_v_border_points, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 152, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_border_points.rcbuffer->pybuffer, (PyObject*)__pyx_v_border_points, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
   }
   __pyx_pybuffernd_border_points.diminfo[0].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_border_points.diminfo[0].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_border_points.diminfo[1].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_border_points.diminfo[1].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 152, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
   }
   __pyx_pybuffernd_image3D.diminfo[0].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image3D.diminfo[0].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image3D.diminfo[1].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image3D.diminfo[1].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image3D.diminfo[2].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image3D.diminfo[2].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[2];
 
-  /* "skeletonization3D.pyx":161
+  /* "skeletonization3D.pyx":89
  *     cdef int i
  * 
  *     for i in range(border_points.shape[0]):             # <<<<<<<<<<<<<<
@@ -3746,86 +3746,86 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "skeletonization3D.pyx":162
+    /* "skeletonization3D.pyx":90
  * 
  *     for i in range(border_points.shape[0]):
  *         z = border_points[i][0]             # <<<<<<<<<<<<<<
  *         y = border_points[i][1]
  *         x = border_points[i][2]
  */
-    __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_z = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":163
+    /* "skeletonization3D.pyx":91
  *     for i in range(border_points.shape[0]):
  *         z = border_points[i][0]
  *         y = border_points[i][1]             # <<<<<<<<<<<<<<
  *         x = border_points[i][2]
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
  */
-    __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_y = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":164
+    /* "skeletonization3D.pyx":92
  *         z = border_points[i][0]
  *         y = border_points[i][1]
  *         x = border_points[i][2]             # <<<<<<<<<<<<<<
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
  *         if is_match_mask(border_point_and_neighborhood_3x3x3):
  */
-    __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_border_points), __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_v_x = __pyx_t_6;
 
-    /* "skeletonization3D.pyx":165
+    /* "skeletonization3D.pyx":93
  *         y = border_points[i][1]
  *         x = border_points[i][2]
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]             # <<<<<<<<<<<<<<
  *         if is_match_mask(border_point_and_neighborhood_3x3x3):
  *             image3D[z, y, x] = 0
  */
-    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_z - 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_z - 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_z + 2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_z + 2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = PySlice_New(__pyx_t_5, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_7 = PySlice_New(__pyx_t_5, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_y - 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_y - 1)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_y + 2)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_y + 2)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_8 = PySlice_New(__pyx_t_4, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_8 = PySlice_New(__pyx_t_4, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_x - 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_x - 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_x + 2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_From_long((__pyx_v_x + 2)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_9 = PySlice_New(__pyx_t_5, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_9 = PySlice_New(__pyx_t_5, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_7);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7);
@@ -3836,10 +3836,10 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
     __pyx_t_7 = 0;
     __pyx_t_8 = 0;
     __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_image3D), __pyx_t_4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_image3D), __pyx_t_4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 165, __pyx_L1_error)
+    if (!(likely(((__pyx_t_9) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_9, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 93, __pyx_L1_error)
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_9);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -3856,20 +3856,20 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
         __pyx_t_11 = __pyx_t_12 = __pyx_t_13 = 0;
       }
       __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[0].strides = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[0].shape = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[1].strides = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[1].shape = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[2].strides = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.diminfo[2].shape = __pyx_pybuffernd_border_point_and_neighborhood_3x3x3.rcbuffer->pybuffer.shape[2];
-      if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 165, __pyx_L1_error)
+      if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
     }
     __pyx_t_10 = 0;
     __Pyx_XDECREF_SET(__pyx_v_border_point_and_neighborhood_3x3x3, ((PyArrayObject *)__pyx_t_9));
     __pyx_t_9 = 0;
 
-    /* "skeletonization3D.pyx":166
+    /* "skeletonization3D.pyx":94
  *         x = border_points[i][2]
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
  *         if is_match_mask(border_point_and_neighborhood_3x3x3):             # <<<<<<<<<<<<<<
  *             image3D[z, y, x] = 0
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_is_match_mask); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_is_match_mask); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -3883,14 +3883,14 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
     }
     __pyx_t_9 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_8, ((PyObject *)__pyx_v_border_point_and_neighborhood_3x3x3)) : __Pyx_PyObject_CallOneArg(__pyx_t_4, ((PyObject *)__pyx_v_border_point_and_neighborhood_3x3x3));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 166, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 166, __pyx_L1_error)
+    __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     if (__pyx_t_14) {
 
-      /* "skeletonization3D.pyx":167
+      /* "skeletonization3D.pyx":95
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
  *         if is_match_mask(border_point_and_neighborhood_3x3x3):
  *             image3D[z, y, x] = 0             # <<<<<<<<<<<<<<
@@ -3902,7 +3902,7 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
       __pyx_t_17 = __pyx_v_x;
       *__Pyx_BufPtrStrided3d(__pyx_t_17skeletonization3D_IMAGE3D_UINT8_t *, __pyx_pybuffernd_image3D.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_image3D.diminfo[0].strides, __pyx_t_16, __pyx_pybuffernd_image3D.diminfo[1].strides, __pyx_t_17, __pyx_pybuffernd_image3D.diminfo[2].strides) = 0;
 
-      /* "skeletonization3D.pyx":166
+      /* "skeletonization3D.pyx":94
  *         x = border_points[i][2]
  *         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
  *         if is_match_mask(border_point_and_neighborhood_3x3x3):             # <<<<<<<<<<<<<<
@@ -3912,12 +3912,12 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
     }
   }
 
-  /* "skeletonization3D.pyx":152
+  /* "skeletonization3D.pyx":81
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points,             # <<<<<<<<<<<<<<
  *                          numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
+ *     cdef int z
  */
 
   /* function exit code */
@@ -3951,12 +3951,12 @@ static PyObject *__pyx_pf_17skeletonization3D_2delete_border_points(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "skeletonization3D.pyx":172
+/* "skeletonization3D.pyx":100
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
+ *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  */
 
 /* Python wrapper */
@@ -4000,23 +4000,23 @@ static PyObject *__pyx_pw_17skeletonization3D_5is_border_point(PyObject *__pyx_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 1); __PYX_ERR(0, 172, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 1); __PYX_ERR(0, 100, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 2); __PYX_ERR(0, 172, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 2); __PYX_ERR(0, 100, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_image3D)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 3); __PYX_ERR(0, 172, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, 3); __PYX_ERR(0, 100, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_border_point") < 0)) __PYX_ERR(0, 172, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_border_point") < 0)) __PYX_ERR(0, 100, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -4026,20 +4026,20 @@ static PyObject *__pyx_pw_17skeletonization3D_5is_border_point(PyObject *__pyx_s
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v_z = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
-    __pyx_v_y = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
-    __pyx_v_x = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
+    __pyx_v_z = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_z == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_y = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_y == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_x = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
     __pyx_v_image3D = ((PyArrayObject *)values[3]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 172, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("is_border_point", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("skeletonization3D.is_border_point", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 172, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
   __pyx_r = __pyx_pf_17skeletonization3D_4is_border_point(__pyx_self, __pyx_v_z, __pyx_v_y, __pyx_v_x, __pyx_v_image3D);
 
   /* function exit code */
@@ -4071,13 +4071,13 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   __pyx_pybuffernd_image3D.rcbuffer = &__pyx_pybuffer_image3D;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 172, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 100, __pyx_L1_error)
   }
   __pyx_pybuffernd_image3D.diminfo[0].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image3D.diminfo[0].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image3D.diminfo[1].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image3D.diminfo[1].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image3D.diminfo[2].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image3D.diminfo[2].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[2];
 
-  /* "skeletonization3D.pyx":174
+  /* "skeletonization3D.pyx":101
+ * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
@@ -4092,8 +4092,8 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "skeletonization3D.pyx":175
- * 
+  /* "skeletonization3D.pyx":102
+ * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
@@ -4103,9 +4103,9 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   __pyx_t_3 = __pyx_v_y;
   __pyx_t_2 = (__pyx_v_x + 1);
 
-  /* "skeletonization3D.pyx":174
+  /* "skeletonization3D.pyx":101
+ * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
@@ -4117,8 +4117,8 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "skeletonization3D.pyx":175
- * 
+  /* "skeletonization3D.pyx":102
+ * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
@@ -4134,7 +4134,7 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "skeletonization3D.pyx":176
+  /* "skeletonization3D.pyx":103
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:             # <<<<<<<<<<<<<<
@@ -4145,8 +4145,8 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   __pyx_t_3 = (__pyx_v_y + 1);
   __pyx_t_2 = __pyx_v_x;
 
-  /* "skeletonization3D.pyx":175
- * 
+  /* "skeletonization3D.pyx":102
+ * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
@@ -4159,7 +4159,7 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
     goto __pyx_L4_bool_binop_done;
   }
 
-  /* "skeletonization3D.pyx":176
+  /* "skeletonization3D.pyx":103
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:             # <<<<<<<<<<<<<<
@@ -4182,16 +4182,16 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
 
-  /* "skeletonization3D.pyx":174
+  /* "skeletonization3D.pyx":101
+ * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
  */
   if (__pyx_t_1) {
 
-    /* "skeletonization3D.pyx":178
+    /* "skeletonization3D.pyx":105
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
  * 
  *         return True             # <<<<<<<<<<<<<<
@@ -4203,16 +4203,16 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
     __pyx_r = Py_True;
     goto __pyx_L0;
 
-    /* "skeletonization3D.pyx":174
+    /* "skeletonization3D.pyx":101
+ * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \             # <<<<<<<<<<<<<<
  *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  *        or image3D[z - 1, y, x] == 0 or image3D[z + 1, y, x] == 0:
  */
   }
 
-  /* "skeletonization3D.pyx":180
+  /* "skeletonization3D.pyx":107
  *         return True
  * 
  *     return False             # <<<<<<<<<<<<<<
@@ -4224,12 +4224,12 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "skeletonization3D.pyx":172
+  /* "skeletonization3D.pyx":100
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
+ *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  */
 
   /* function exit code */
@@ -4251,18 +4251,17 @@ static PyObject *__pyx_pf_17skeletonization3D_4is_border_point(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "skeletonization3D.pyx":185
+/* "skeletonization3D.pyx":112
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     """
- *     Retrun a indexes of border points
+ *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef int number_of_foreground_points
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_17skeletonization3D_7determine_border_points(PyObject *__pyx_self, PyObject *__pyx_v_image3D); /*proto*/
-static char __pyx_doc_17skeletonization3D_6determine_border_points[] = "\n    Retrun a indexes of border points\n    :param image:\n    :return: list of tuples List[tuples()]\n    ";
-static PyMethodDef __pyx_mdef_17skeletonization3D_7determine_border_points = {"determine_border_points", (PyCFunction)__pyx_pw_17skeletonization3D_7determine_border_points, METH_O, __pyx_doc_17skeletonization3D_6determine_border_points};
+static PyMethodDef __pyx_mdef_17skeletonization3D_7determine_border_points = {"determine_border_points", (PyCFunction)__pyx_pw_17skeletonization3D_7determine_border_points, METH_O, 0};
 static PyObject *__pyx_pw_17skeletonization3D_7determine_border_points(PyObject *__pyx_self, PyObject *__pyx_v_image3D) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -4270,7 +4269,7 @@ static PyObject *__pyx_pw_17skeletonization3D_7determine_border_points(PyObject 
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("determine_border_points (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 112, __pyx_L1_error)
   __pyx_r = __pyx_pf_17skeletonization3D_6determine_border_points(__pyx_self, ((PyArrayObject *)__pyx_v_image3D));
 
   /* function exit code */
@@ -4336,11 +4335,11 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
   __pyx_pybuffernd_image3D.rcbuffer = &__pyx_pybuffer_image3D;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 185, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 112, __pyx_L1_error)
   }
   __pyx_pybuffernd_image3D.diminfo[0].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image3D.diminfo[0].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image3D.diminfo[1].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image3D.diminfo[1].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image3D.diminfo[2].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image3D.diminfo[2].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[2];
 
-  /* "skeletonization3D.pyx":196
+  /* "skeletonization3D.pyx":117
  *     cdef int number_of_border_points
  *     cdef int i
  *     cdef int p = image3D.shape[0]             # <<<<<<<<<<<<<<
@@ -4349,7 +4348,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  */
   __pyx_v_p = (__pyx_v_image3D->dimensions[0]);
 
-  /* "skeletonization3D.pyx":197
+  /* "skeletonization3D.pyx":118
  *     cdef int i
  *     cdef int p = image3D.shape[0]
  *     cdef int r = image3D.shape[1]             # <<<<<<<<<<<<<<
@@ -4358,7 +4357,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  */
   __pyx_v_r = (__pyx_v_image3D->dimensions[1]);
 
-  /* "skeletonization3D.pyx":198
+  /* "skeletonization3D.pyx":119
  *     cdef int p = image3D.shape[0]
  *     cdef int r = image3D.shape[1]
  *     cdef int c = image3D.shape[2]             # <<<<<<<<<<<<<<
@@ -4367,33 +4366,33 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  */
   __pyx_v_c = (__pyx_v_image3D->dimensions[2]);
 
-  /* "skeletonization3D.pyx":201
+  /* "skeletonization3D.pyx":122
  *     cdef int panel, row, col
  * 
  *     border_points = numpy.zeros(shape=(2_000_000, 3), dtype=numpy.int32)             # <<<<<<<<<<<<<<
  * 
  *     for panel in range(p):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_tuple_) < 0) __PYX_ERR(0, 201, __pyx_L1_error)
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_tuple_) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 201, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 201, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 122, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_4);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -4410,13 +4409,13 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
       __pyx_t_7 = __pyx_t_8 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_border_points.diminfo[0].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_border_points.diminfo[0].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_border_points.diminfo[1].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_border_points.diminfo[1].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[1];
-    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 201, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
   }
   __pyx_t_5 = 0;
   __pyx_v_border_points = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "skeletonization3D.pyx":203
+  /* "skeletonization3D.pyx":124
  *     border_points = numpy.zeros(shape=(2_000_000, 3), dtype=numpy.int32)
  * 
  *     for panel in range(p):             # <<<<<<<<<<<<<<
@@ -4428,7 +4427,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_panel = __pyx_t_11;
 
-    /* "skeletonization3D.pyx":204
+    /* "skeletonization3D.pyx":125
  * 
  *     for panel in range(p):
  *         for row in range(r):             # <<<<<<<<<<<<<<
@@ -4440,7 +4439,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
     for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
       __pyx_v_row = __pyx_t_14;
 
-      /* "skeletonization3D.pyx":205
+      /* "skeletonization3D.pyx":126
  *     for panel in range(p):
  *         for row in range(r):
  *             for col in range(c):             # <<<<<<<<<<<<<<
@@ -4452,7 +4451,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
       for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
         __pyx_v_col = __pyx_t_17;
 
-        /* "skeletonization3D.pyx":206
+        /* "skeletonization3D.pyx":127
  *         for row in range(r):
  *             for col in range(c):
  *                 if image3D[panel, row, col] == 1:             # <<<<<<<<<<<<<<
@@ -4465,20 +4464,20 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
         __pyx_t_21 = (((*__Pyx_BufPtrStrided3d(__pyx_t_17skeletonization3D_IMAGE3D_UINT8_t *, __pyx_pybuffernd_image3D.rcbuffer->pybuffer.buf, __pyx_t_18, __pyx_pybuffernd_image3D.diminfo[0].strides, __pyx_t_19, __pyx_pybuffernd_image3D.diminfo[1].strides, __pyx_t_20, __pyx_pybuffernd_image3D.diminfo[2].strides)) == 1) != 0);
         if (__pyx_t_21) {
 
-          /* "skeletonization3D.pyx":207
+          /* "skeletonization3D.pyx":128
  *             for col in range(c):
  *                 if image3D[panel, row, col] == 1:
  *                     if is_border_point(panel, row, col, image3D):             # <<<<<<<<<<<<<<
  *                         border_points[number_of_border_points, 0] = panel
  *                         border_points[number_of_border_points, 1] = row
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_is_border_point); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_is_border_point); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_panel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_panel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_row); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 207, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_row); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_22 = __Pyx_PyInt_From_int(__pyx_v_col); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 207, __pyx_L1_error)
+          __pyx_t_22 = __Pyx_PyInt_From_int(__pyx_v_col); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 128, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_22);
           __pyx_t_23 = NULL;
           __pyx_t_24 = 0;
@@ -4495,7 +4494,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
           #if CYTHON_FAST_PYCALL
           if (PyFunction_Check(__pyx_t_1)) {
             PyObject *__pyx_temp[5] = {__pyx_t_23, __pyx_t_2, __pyx_t_3, __pyx_t_22, ((PyObject *)__pyx_v_image3D)};
-            __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_24, 4+__pyx_t_24); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_24, 4+__pyx_t_24); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_23); __pyx_t_23 = 0;
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4506,7 +4505,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
           #if CYTHON_FAST_PYCCALL
           if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
             PyObject *__pyx_temp[5] = {__pyx_t_23, __pyx_t_2, __pyx_t_3, __pyx_t_22, ((PyObject *)__pyx_v_image3D)};
-            __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_24, 4+__pyx_t_24); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_24, 4+__pyx_t_24); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_XDECREF(__pyx_t_23); __pyx_t_23 = 0;
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4515,7 +4514,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
           } else
           #endif
           {
-            __pyx_t_25 = PyTuple_New(4+__pyx_t_24); if (unlikely(!__pyx_t_25)) __PYX_ERR(0, 207, __pyx_L1_error)
+            __pyx_t_25 = PyTuple_New(4+__pyx_t_24); if (unlikely(!__pyx_t_25)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_25);
             if (__pyx_t_23) {
               __Pyx_GIVEREF(__pyx_t_23); PyTuple_SET_ITEM(__pyx_t_25, 0, __pyx_t_23); __pyx_t_23 = NULL;
@@ -4532,16 +4531,16 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
             __pyx_t_2 = 0;
             __pyx_t_3 = 0;
             __pyx_t_22 = 0;
-            __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_25, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_25, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_25); __pyx_t_25 = 0;
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_21 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_21 < 0)) __PYX_ERR(0, 207, __pyx_L1_error)
+          __pyx_t_21 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_21 < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           if (__pyx_t_21) {
 
-            /* "skeletonization3D.pyx":208
+            /* "skeletonization3D.pyx":129
  *                 if image3D[panel, row, col] == 1:
  *                     if is_border_point(panel, row, col, image3D):
  *                         border_points[number_of_border_points, 0] = panel             # <<<<<<<<<<<<<<
@@ -4552,7 +4551,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
             __pyx_t_19 = 0;
             *__Pyx_BufPtrStrided2d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_border_points.rcbuffer->pybuffer.buf, __pyx_t_20, __pyx_pybuffernd_border_points.diminfo[0].strides, __pyx_t_19, __pyx_pybuffernd_border_points.diminfo[1].strides) = __pyx_v_panel;
 
-            /* "skeletonization3D.pyx":209
+            /* "skeletonization3D.pyx":130
  *                     if is_border_point(panel, row, col, image3D):
  *                         border_points[number_of_border_points, 0] = panel
  *                         border_points[number_of_border_points, 1] = row             # <<<<<<<<<<<<<<
@@ -4563,7 +4562,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
             __pyx_t_20 = 1;
             *__Pyx_BufPtrStrided2d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_border_points.rcbuffer->pybuffer.buf, __pyx_t_19, __pyx_pybuffernd_border_points.diminfo[0].strides, __pyx_t_20, __pyx_pybuffernd_border_points.diminfo[1].strides) = __pyx_v_row;
 
-            /* "skeletonization3D.pyx":210
+            /* "skeletonization3D.pyx":131
  *                         border_points[number_of_border_points, 0] = panel
  *                         border_points[number_of_border_points, 1] = row
  *                         border_points[number_of_border_points, 2] = col             # <<<<<<<<<<<<<<
@@ -4574,7 +4573,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
             __pyx_t_19 = 2;
             *__Pyx_BufPtrStrided2d(__pyx_t_17skeletonization3D_BORDERPOINTS_INT32_t *, __pyx_pybuffernd_border_points.rcbuffer->pybuffer.buf, __pyx_t_20, __pyx_pybuffernd_border_points.diminfo[0].strides, __pyx_t_19, __pyx_pybuffernd_border_points.diminfo[1].strides) = __pyx_v_col;
 
-            /* "skeletonization3D.pyx":211
+            /* "skeletonization3D.pyx":132
  *                         border_points[number_of_border_points, 1] = row
  *                         border_points[number_of_border_points, 2] = col
  *                         number_of_border_points = number_of_border_points + 1             # <<<<<<<<<<<<<<
@@ -4583,7 +4582,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  */
             __pyx_v_number_of_border_points = (__pyx_v_number_of_border_points + 1);
 
-            /* "skeletonization3D.pyx":207
+            /* "skeletonization3D.pyx":128
  *             for col in range(c):
  *                 if image3D[panel, row, col] == 1:
  *                     if is_border_point(panel, row, col, image3D):             # <<<<<<<<<<<<<<
@@ -4592,7 +4591,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  */
           }
 
-          /* "skeletonization3D.pyx":206
+          /* "skeletonization3D.pyx":127
  *         for row in range(r):
  *             for col in range(c):
  *                 if image3D[panel, row, col] == 1:             # <<<<<<<<<<<<<<
@@ -4604,7 +4603,7 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
     }
   }
 
-  /* "skeletonization3D.pyx":213
+  /* "skeletonization3D.pyx":134
  *                         number_of_border_points = number_of_border_points + 1
  * 
  *     return border_points[:number_of_border_points]             # <<<<<<<<<<<<<<
@@ -4612,24 +4611,24 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_number_of_border_points); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_number_of_border_points); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PySlice_New(Py_None, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = PySlice_New(Py_None, __pyx_t_4, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_border_points), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_border_points), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "skeletonization3D.pyx":185
+  /* "skeletonization3D.pyx":112
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     """
- *     Retrun a indexes of border points
+ *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef int number_of_foreground_points
  */
 
   /* function exit code */
@@ -4661,12 +4660,12 @@ static PyObject *__pyx_pf_17skeletonization3D_6determine_border_points(CYTHON_UN
   return __pyx_r;
 }
 
-/* "skeletonization3D.pyx":218
+/* "skeletonization3D.pyx":139
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef char sign = 'U'
  */
 
 /* Python wrapper */
@@ -4679,7 +4678,7 @@ static PyObject *__pyx_pw_17skeletonization3D_9make_3D_skeleton(PyObject *__pyx_
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("make_3D_skeleton (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_image3D), __pyx_ptype_5numpy_ndarray, 1, "image3D", 0))) __PYX_ERR(0, 139, __pyx_L1_error)
   __pyx_r = __pyx_pf_17skeletonization3D_8make_3D_skeleton(__pyx_self, ((PyArrayObject *)__pyx_v_image3D));
 
   /* function exit code */
@@ -4729,29 +4728,29 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
   __pyx_pybuffernd_image3D.rcbuffer = &__pyx_pybuffer_image3D;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 218, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_image3D.rcbuffer->pybuffer, (PyObject*)__pyx_v_image3D, &__Pyx_TypeInfo_nn___pyx_t_17skeletonization3D_IMAGE3D_UINT8_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 139, __pyx_L1_error)
   }
   __pyx_pybuffernd_image3D.diminfo[0].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_image3D.diminfo[0].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_image3D.diminfo[1].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_image3D.diminfo[1].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_image3D.diminfo[2].strides = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_image3D.diminfo[2].shape = __pyx_pybuffernd_image3D.rcbuffer->pybuffer.shape[2];
 
-  /* "skeletonization3D.pyx":221
- *     # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
+  /* "skeletonization3D.pyx":141
+ * def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
- *     cdef char sign = 'U' # because str is default             # <<<<<<<<<<<<<<
+ *     cdef char sign = 'U'             # <<<<<<<<<<<<<<
  *     cdef int n = 5
  *     cdef int _
  */
   __pyx_v_sign = 'U';
 
-  /* "skeletonization3D.pyx":222
+  /* "skeletonization3D.pyx":142
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
- *     cdef char sign = 'U' # because str is default
+ *     cdef char sign = 'U'
  *     cdef int n = 5             # <<<<<<<<<<<<<<
  *     cdef int _
  * 
  */
   __pyx_v_n = 5;
 
-  /* "skeletonization3D.pyx":225
+  /* "skeletonization3D.pyx":145
  *     cdef int _
  * 
  *     for _ in range(n):             # <<<<<<<<<<<<<<
@@ -4763,14 +4762,14 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v__ = __pyx_t_3;
 
-    /* "skeletonization3D.pyx":226
+    /* "skeletonization3D.pyx":146
  * 
  *     for _ in range(n):
  *         border_points = determine_border_points(image3D)             # <<<<<<<<<<<<<<
  *         delete_border_points(sign, border_points, image3D)
  *         #delete_border_points("D", border_index, image3D)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_determine_border_points); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 226, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_determine_border_points); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -4784,10 +4783,10 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
     }
     __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, ((PyObject *)__pyx_v_image3D)) : __Pyx_PyObject_CallOneArg(__pyx_t_5, ((PyObject *)__pyx_v_image3D));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 226, __pyx_L1_error)
+    if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 146, __pyx_L1_error)
     __pyx_t_7 = ((PyArrayObject *)__pyx_t_4);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -4804,22 +4803,22 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
         __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
       }
       __pyx_pybuffernd_border_points.diminfo[0].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_border_points.diminfo[0].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_border_points.diminfo[1].strides = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_border_points.diminfo[1].shape = __pyx_pybuffernd_border_points.rcbuffer->pybuffer.shape[1];
-      if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 226, __pyx_L1_error)
+      if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
     }
     __pyx_t_7 = 0;
     __Pyx_XDECREF_SET(__pyx_v_border_points, ((PyArrayObject *)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "skeletonization3D.pyx":227
+    /* "skeletonization3D.pyx":147
  *     for _ in range(n):
  *         border_points = determine_border_points(image3D)
  *         delete_border_points(sign, border_points, image3D)             # <<<<<<<<<<<<<<
  *         #delete_border_points("D", border_index, image3D)
  *     return image3D
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_delete_border_points); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 227, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_delete_border_points); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyInt_From_char(__pyx_v_sign); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 227, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_From_char(__pyx_v_sign); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_12 = NULL;
     __pyx_t_8 = 0;
@@ -4836,7 +4835,7 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_12, __pyx_t_6, ((PyObject *)__pyx_v_border_points), ((PyObject *)__pyx_v_image3D)};
-      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4845,14 +4844,14 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
       PyObject *__pyx_temp[4] = {__pyx_t_12, __pyx_t_6, ((PyObject *)__pyx_v_border_points), ((PyObject *)__pyx_v_image3D)};
-      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     } else
     #endif
     {
-      __pyx_t_13 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_13 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 147, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
       if (__pyx_t_12) {
         __Pyx_GIVEREF(__pyx_t_12); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_12); __pyx_t_12 = NULL;
@@ -4866,7 +4865,7 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
       __Pyx_GIVEREF(((PyObject *)__pyx_v_image3D));
       PyTuple_SET_ITEM(__pyx_t_13, 2+__pyx_t_8, ((PyObject *)__pyx_v_image3D));
       __pyx_t_6 = 0;
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_13, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     }
@@ -4874,24 +4873,22 @@ static PyObject *__pyx_pf_17skeletonization3D_8make_3D_skeleton(CYTHON_UNUSED Py
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
 
-  /* "skeletonization3D.pyx":229
+  /* "skeletonization3D.pyx":149
  *         delete_border_points(sign, border_points, image3D)
  *         #delete_border_points("D", border_index, image3D)
  *     return image3D             # <<<<<<<<<<<<<<
- * 
- * # def fast_threshold(image):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(((PyObject *)__pyx_v_image3D));
   __pyx_r = ((PyObject *)__pyx_v_image3D);
   goto __pyx_L0;
 
-  /* "skeletonization3D.pyx":218
+  /* "skeletonization3D.pyx":139
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef char sign = 'U'
  */
 
   /* function exit code */
@@ -20510,7 +20507,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 40, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 945, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(2, 109, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(3, 133, __pyx_L1_error)
@@ -20528,14 +20525,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "skeletonization3D.pyx":201
+  /* "skeletonization3D.pyx":122
  *     cdef int panel, row, col
  * 
  *     border_points = numpy.zeros(shape=(2_000_000, 3), dtype=numpy.int32)             # <<<<<<<<<<<<<<
  * 
  *     for panel in range(p):
  */
-  __pyx_tuple_ = PyTuple_Pack(2, __pyx_int_2000000, __pyx_int_3); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(2, __pyx_int_2000000, __pyx_int_3); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
@@ -20753,65 +20750,65 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "skeletonization3D.pyx":78
+  /* "skeletonization3D.pyx":26
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):             # <<<<<<<<<<<<<<
- * 
  *     cdef int base_maks, i, j
+ *     cdef int flaga = 0
  */
-  __pyx_tuple__22 = PyTuple_Pack(12, __pyx_n_s_arr, __pyx_n_s_base_maks, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_flaga, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col, __pyx_n_s_size_zeros, __pyx_n_s_size_ones, __pyx_n_s_zeros, __pyx_n_s_ones); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(12, __pyx_n_s_arr, __pyx_n_s_base_maks, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_flaga, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col, __pyx_n_s_size_zeros, __pyx_n_s_size_ones, __pyx_n_s_zeros, __pyx_n_s_ones); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_is_match_mask, 78, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_is_match_mask, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 26, __pyx_L1_error)
 
-  /* "skeletonization3D.pyx":152
+  /* "skeletonization3D.pyx":81
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points,             # <<<<<<<<<<<<<<
  *                          numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
+ *     cdef int z
  */
-  __pyx_tuple__24 = PyTuple_Pack(8, __pyx_n_s_which_side, __pyx_n_s_border_points, __pyx_n_s_image3D, __pyx_n_s_z, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_border_point_and_neighborhood_3x, __pyx_n_s_i); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(8, __pyx_n_s_which_side, __pyx_n_s_border_points, __pyx_n_s_image3D, __pyx_n_s_z, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_border_point_and_neighborhood_3x, __pyx_n_s_i); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_delete_border_points, 152, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_delete_border_points, 81, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 81, __pyx_L1_error)
 
-  /* "skeletonization3D.pyx":172
+  /* "skeletonization3D.pyx":100
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
+ *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  */
-  __pyx_tuple__26 = PyTuple_Pack(4, __pyx_n_s_z, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_image3D); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(4, __pyx_n_s_z, __pyx_n_s_y, __pyx_n_s_x, __pyx_n_s_image3D); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__26);
   __Pyx_GIVEREF(__pyx_tuple__26);
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_is_border_point, 172, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_is_border_point, 100, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 100, __pyx_L1_error)
 
-  /* "skeletonization3D.pyx":185
+  /* "skeletonization3D.pyx":112
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     """
- *     Retrun a indexes of border points
+ *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef int number_of_foreground_points
  */
-  __pyx_tuple__28 = PyTuple_Pack(11, __pyx_n_s_image3D, __pyx_n_s_border_points, __pyx_n_s_number_of_foreground_points, __pyx_n_s_number_of_border_points, __pyx_n_s_i, __pyx_n_s_p, __pyx_n_s_r, __pyx_n_s_c, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(11, __pyx_n_s_image3D, __pyx_n_s_border_points, __pyx_n_s_number_of_foreground_points, __pyx_n_s_number_of_border_points, __pyx_n_s_i, __pyx_n_s_p, __pyx_n_s_r, __pyx_n_s_c, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
-  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(1, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_determine_border_points, 185, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(1, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_determine_border_points, 112, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 112, __pyx_L1_error)
 
-  /* "skeletonization3D.pyx":218
+  /* "skeletonization3D.pyx":139
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef char sign = 'U'
  */
-  __pyx_tuple__31 = PyTuple_Pack(5, __pyx_n_s_image3D, __pyx_n_s_border_points, __pyx_n_s_sign, __pyx_n_s_n, __pyx_n_s__30); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(5, __pyx_n_s_image3D, __pyx_n_s_border_points, __pyx_n_s_sign, __pyx_n_s_n, __pyx_n_s__30); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__31);
   __Pyx_GIVEREF(__pyx_tuple__31);
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_make_3D_skeleton, 218, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_skeletonization3D_pyx, __pyx_n_s_make_3D_skeleton, 139, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 139, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -21320,14 +21317,14 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":36
- * #
- * # }
+  /* "skeletonization3D.pyx":9
+ * ctypedef numpy.int32_t BORDERPOINTS_INT32_t
+ * 
  * cdef array.array a = array.array('i', [0, 0, 0, 0, 0, 1, 0, 0, 2,             # <<<<<<<<<<<<<<
  *          1, 0, 0, 1, 0, 1, 1, 0, 2,
  *          2, 0, 0, 2, 0, 1, 2, 0, 2])
  */
-  __pyx_t_1 = PyList_New(27); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(27); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -21410,7 +21407,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   PyList_SET_ITEM(__pyx_t_1, 26, __pyx_int_2);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_i);
   __Pyx_GIVEREF(__pyx_n_s_i);
@@ -21418,7 +21415,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_XGOTREF(((PyObject *)__pyx_v_17skeletonization3D_a));
@@ -21426,27 +21423,27 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":39
+  /* "skeletonization3D.pyx":12
  *          1, 0, 0, 1, 0, 1, 1, 0, 2,
  *          2, 0, 0, 2, 0, 1, 2, 0, 2])
  * cdef int[:] ZEROS = a             # <<<<<<<<<<<<<<
  * cdef array.array b = array.array('i', [1, 1, 1, 1, 2, 1])
  * cdef int[:] ONES = b
  */
-  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_a), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_a), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 12, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_17skeletonization3D_ZEROS, 1);
   __pyx_v_17skeletonization3D_ZEROS = __pyx_t_3;
   __pyx_t_3.memview = NULL;
   __pyx_t_3.data = NULL;
 
-  /* "skeletonization3D.pyx":40
+  /* "skeletonization3D.pyx":13
  *          2, 0, 0, 2, 0, 1, 2, 0, 2])
  * cdef int[:] ZEROS = a
  * cdef array.array b = array.array('i', [1, 1, 1, 1, 2, 1])             # <<<<<<<<<<<<<<
  * cdef int[:] ONES = b
  * cdef array.array c = array.array('i', [0, 1, 0, 0, 1, 1, 0, 1, 2,
  */
-  __pyx_t_1 = PyList_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
@@ -21466,7 +21463,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
   PyList_SET_ITEM(__pyx_t_1, 5, __pyx_int_1);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_i);
   __Pyx_GIVEREF(__pyx_n_s_i);
@@ -21474,7 +21471,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_XGOTREF(((PyObject *)__pyx_v_17skeletonization3D_b));
@@ -21482,27 +21479,27 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":41
+  /* "skeletonization3D.pyx":14
  * cdef int[:] ZEROS = a
  * cdef array.array b = array.array('i', [1, 1, 1, 1, 2, 1])
  * cdef int[:] ONES = b             # <<<<<<<<<<<<<<
  * cdef array.array c = array.array('i', [0, 1, 0, 0, 1, 1, 0, 1, 2,
  *      0, 2, 0, 0, 2, 1, 0, 2, 2,
  */
-  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_b), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_b), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 14, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_17skeletonization3D_ONES, 1);
   __pyx_v_17skeletonization3D_ONES = __pyx_t_3;
   __pyx_t_3.memview = NULL;
   __pyx_t_3.data = NULL;
 
-  /* "skeletonization3D.pyx":42
+  /* "skeletonization3D.pyx":15
  * cdef array.array b = array.array('i', [1, 1, 1, 1, 2, 1])
  * cdef int[:] ONES = b
  * cdef array.array c = array.array('i', [0, 1, 0, 0, 1, 1, 0, 1, 2,             # <<<<<<<<<<<<<<
  *      0, 2, 0, 0, 2, 1, 0, 2, 2,
  *      1, 1, 0, 1, 1, 2, 1, 2, 0,
  */
-  __pyx_t_1 = PyList_New(48); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(48); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -21648,7 +21645,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   PyList_SET_ITEM(__pyx_t_1, 47, __pyx_int_2);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_i);
   __Pyx_GIVEREF(__pyx_n_s_i);
@@ -21656,7 +21653,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_7cpython_5array_array), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_XGOTREF(((PyObject *)__pyx_v_17skeletonization3D_c));
@@ -21664,77 +21661,77 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":48
+  /* "skeletonization3D.pyx":21
  *      2, 1, 2, 2, 2, 0, 2, 2, 1,
  *      2, 2, 2])
  * cdef int[:] X = c             # <<<<<<<<<<<<<<
  * 
- * # slow version 120 sek
+ * 
  */
-  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_c), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_to_MemoryviewSlice_ds_int(((PyObject *)__pyx_v_17skeletonization3D_c), PyBUF_WRITABLE); if (unlikely(!__pyx_t_3.memview)) __PYX_ERR(0, 21, __pyx_L1_error)
   __PYX_XDEC_MEMVIEW(&__pyx_v_17skeletonization3D_X, 1);
   __pyx_v_17skeletonization3D_X = __pyx_t_3;
   __pyx_t_3.memview = NULL;
   __pyx_t_3.data = NULL;
 
-  /* "skeletonization3D.pyx":78
+  /* "skeletonization3D.pyx":26
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):             # <<<<<<<<<<<<<<
- * 
  *     cdef int base_maks, i, j
+ *     cdef int flaga = 0
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_1is_match_mask, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_1is_match_mask, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_match_mask, __pyx_t_1) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_match_mask, __pyx_t_1) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":152
+  /* "skeletonization3D.pyx":81
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points,             # <<<<<<<<<<<<<<
  *                          numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
- * 
+ *     cdef int z
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_3delete_border_points, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_3delete_border_points, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_delete_border_points, __pyx_t_1) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_delete_border_points, __pyx_t_1) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":172
+  /* "skeletonization3D.pyx":100
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def is_border_point(int z, int y, int x, numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- * 
  *     if image3D[z, y, x - 1] == 0 or image3D[z, y, x + 1] == 0 \
+ *        or image3D[z, y - 1, x] == 0 or image3D[z, y + 1, x] == 0 \
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_5is_border_point, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_5is_border_point, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_border_point, __pyx_t_1) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_border_point, __pyx_t_1) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":185
+  /* "skeletonization3D.pyx":112
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     """
- *     Retrun a indexes of border points
+ *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef int number_of_foreground_points
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_7determine_border_points, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_7determine_border_points, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_determine_border_points, __pyx_t_1) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_determine_border_points, __pyx_t_1) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "skeletonization3D.pyx":218
+  /* "skeletonization3D.pyx":139
  * @cython.wraparound(False)
  * @cython.boundscheck(False)
  * def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):             # <<<<<<<<<<<<<<
- *     # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
  *     cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
+ *     cdef char sign = 'U'
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_9make_3D_skeleton, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17skeletonization3D_9make_3D_skeleton, NULL, __pyx_n_s_skeletonization3D); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_make_3D_skeleton, __pyx_t_1) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_make_3D_skeleton, __pyx_t_1) < 0) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "skeletonization3D.pyx":1
