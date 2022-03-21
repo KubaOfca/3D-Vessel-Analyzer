@@ -51,20 +51,6 @@ def plot_3D_from_3D_binary_image(image, save_to_file_from_diff_view=False):
     plt.show()
 
 
-# def contour(image):
-#     row, col, rgb = image.shape
-#
-#     for i in range(row):
-#         for j in range(col):
-#             if image[i, j, 0] == 255:
-#                 if image[i + 1, j, 0] != 255 or image[i - 1, j, 0] != 255 or image[i, j + 1, 0] != 255 or image[i, j - 1, 0] \
-#                         != 255:
-#                     image[i, j] = [255, 0, 0]
-#
-#     outim = Image.fromarray(image)
-#     outim.save(f"contour.png")
-
-
 def save_2D_binary_image(image, name):
     im = Image.fromarray(image * 255)
     im.save(f"{name}.png")
@@ -87,8 +73,5 @@ def main():
 
 
 main()
-# print('\r',"Skeletonize...", sep="", end="")
-# data = skeletonize_3d(data)
-# print('\r',"Plotting...", sep="", end="")
-# plot_3D_from_3D_binary_image(data, False)
+
 
