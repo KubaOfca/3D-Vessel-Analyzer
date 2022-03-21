@@ -1,12 +1,14 @@
 import numpy
 cimport numpy
 cimport cython
-import time
-
-
+import numpy as np
+from cpython cimport array
 ctypedef numpy.uint8_t IMAGE3D_UINT8_t
-ctypedef numpy.int64_t BORDERPOINTS_INT64_t
-
+ctypedef numpy.int32_t BORDERPOINTS_INT32_t
+# from PIL import Image
+# import matplotlib.pyplot as plt
+# import pydicom
+# import time
 # slow mask structure 120 sek
 # cdef numpy.ndarray MASKS = numpy.array([[[[0, 0, 0],
 #                                           [2, 2, 2],
@@ -18,20 +20,32 @@ ctypedef numpy.int64_t BORDERPOINTS_INT64_t
 #                                           [2, 2, 2],
 #                                           [2, 2, 2]]]], dtype=numpy.uint8)
 
-MASKS = {
-    "U" : [{ "0" : [(0,0,0), (0,0,1), (0,0,2),
-                   (1,0,0), (1,0,1), (1,0,2),
-                   (2,0,0), (2,0,1), (2,0,2)],
-            "1" : [(1,1,1), (1,2,1)],
-            "X" : [(0,1,0), (0,1,1), (0,1,2),
-                   (0,2,0), (0,2,1), (0,2,2),
-                   (1,1,0), (1,1,2), (1,2,0),
-                   (1,2,2), (2,1,0), (2,1,1),
-                   (2,1,2), (2,2,0), (2,2,1),
-                   (2,2,2)]},]
-
-}
-
+# MASKS = {
+#     "U" : [{ "0" : [(0,0,0), (0,0,1), (0,0,2),
+#                    (1,0,0), (1,0,1), (1,0,2),
+#                    (2,0,0), (2,0,1), (2,0,2)],
+#             "1" : [(1,1,1), (1,2,1)],
+#             "X" : [(0,1,0), (0,1,1), (0,1,2),
+#                    (0,2,0), (0,2,1), (0,2,2),
+#                    (1,1,0), (1,1,2), (1,2,0),
+#                    (1,2,2), (2,1,0), (2,1,1),
+#                    (2,1,2), (2,2,0), (2,2,1),
+#                    (2,2,2)]},]
+#
+# }
+cdef array.array a = array.array('i', [0, 0, 0, 0, 0, 1, 0, 0, 2,
+         1, 0, 0, 1, 0, 1, 1, 0, 2,
+         2, 0, 0, 2, 0, 1, 2, 0, 2])
+cdef int[:] ZEROS = a
+cdef array.array b = array.array('i', [1, 1, 1, 1, 2, 1])
+cdef int[:] ONES = b
+cdef array.array c = array.array('i', [0, 1, 0, 0, 1, 1, 0, 1, 2,
+     0, 2, 0, 0, 2, 1, 0, 2, 2,
+     1, 1, 0, 1, 1, 2, 1, 2, 0,
+     1, 2, 2, 2, 1, 0, 2, 1, 1,
+     2, 1, 2, 2, 2, 0, 2, 2, 1,
+     2, 2, 2])
+cdef int[:] X = c
 
 # slow version 120 sek
 # @cython.wraparound(False)
@@ -63,22 +77,55 @@ MASKS = {
 @cython.boundscheck(False)
 def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):
 
-    cdef int num_base_mask = len(MASKS['U'])
+    cdef int base_maks, i, j
+    cdef int flaga = 0
+    cdef int panel
+    cdef int row
+    cdef int col
+    cdef int size_zeros
+    cdef int size_ones
+    cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=1] zeros
+    cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=1] ones
 
-    for base_maks in range(num_base_mask):
-        z, y, x = numpy.where(arr == 0)
-        zeros_index_list = [(z[i], y[i], x[i]) for i in range(len(x))]
-        if not all(x in zeros_index_list for x in MASKS['U'][base_maks]["0"]):
-            continue
-        z, y, x = numpy.where(arr == 1)
-        one_index_list = [(z[i], y[i], x[i]) for i in range(len(x))]
-        if not all(x in one_index_list for x in MASKS['U'][base_maks]["1"]):
-            continue
-        if MASKS['U'][base_maks]["X"] and not any(x in one_index_list for x in MASKS['U'][base_maks]["X"]):
-            continue
+    zeros = numpy.zeros(shape=(81), dtype=numpy.int32)
+    ones = numpy.zeros(shape=(81), dtype=numpy.int32)
 
-        return True
+    for panel in range(3):
+        for row in range(3):
+            for col in range(3):
+                if arr[panel, row, col] == 1:
+                    zeros[size_zeros] = panel
+                    zeros[size_zeros + 1] = row
+                    zeros[size_zeros + 2] = col
+                    size_zeros = size_zeros + 3
+                else:
+                    ones[size_ones] = panel
+                    ones[size_ones + 1] = row
+                    ones[size_ones + 2] = col
+                    size_ones = size_ones + 3
 
+    for i in range(0, len(ZEROS), 3):
+        flaga = 0
+        for j in range(0, len(zeros), 3):
+            if zeros[j] == ZEROS[i] and zeros[j+1] == ZEROS[i+1] and zeros[j+2] == ZEROS[i+2]:
+                flaga = 1
+                break
+        if flaga == 0:
+            return False
+
+    for i in range(0, len(ONES), 3):
+        flaga = 0
+        for j in range(0, len(ones), 3):
+            if ones[j] == ONES[i] and ones[j + 1] == ONES[i + 1] and ones[j + 2] == ONES[i + 2]:
+                flaga = 1
+                break
+        if flaga == 0:
+            return False
+
+    for i in range(0, len(X), 3):
+        for j in range(0, len(ones), 3):
+            if ones[j] == X[i] and ones[j + 1] == X[i + 1] and ones[j + 2] == X[i + 2]:
+                return True
     return False
 
 
@@ -102,13 +149,14 @@ def is_match_mask(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] arr):
 
 @cython.wraparound(False)
 @cython.boundscheck(False)
-def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT64_t, ndim=2] border_points,
+def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points,
                          numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
 
     cdef int z
     cdef int y
     cdef int x
     cdef numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] border_point_and_neighborhood_3x3x3
+    cdef int i
 
     for i in range(border_points.shape[0]):
         z = border_points[i][0]
@@ -117,7 +165,6 @@ def delete_border_points(char which_side, numpy.ndarray[BORDERPOINTS_INT64_t, nd
         border_point_and_neighborhood_3x3x3 = image3D[z-1:z+2, y-1:y+2, x-1:x+2]
         if is_match_mask(border_point_and_neighborhood_3x3x3):
             image3D[z, y, x] = 0
-            #remove index ?
 
 
 @cython.wraparound(False)
@@ -142,20 +189,26 @@ def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
     :return: list of tuples List[tuples()]
     """
 
-    cdef numpy.ndarray[BORDERPOINTS_INT64_t, ndim=2] border_points
+    cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
     cdef int number_of_foreground_points
     cdef int number_of_border_points
+    cdef int i
+    cdef int p = image3D.shape[0]
+    cdef int r = image3D.shape[1]
+    cdef int c = image3D.shape[2]
+    cdef int panel, row, col
 
-    border_points = numpy.zeros(shape=(5_000_000, 3), dtype=numpy.int64)
-    z, y, x = numpy.where(image3D == 1)
-    number_of_foreground_points = len(x)
+    border_points = numpy.zeros(shape=(2_000_000, 3), dtype=numpy.int32)
 
-    for i in range(number_of_foreground_points):
-        if is_border_point(z[i], y[i], x[i], image3D):
-            border_points[number_of_border_points, 0] = z[i]
-            border_points[number_of_border_points, 1] = y[i]
-            border_points[number_of_border_points, 2] = x[i]
-            number_of_border_points = number_of_border_points + 1
+    for panel in range(p):
+        for row in range(r):
+            for col in range(c):
+                if image3D[panel, row, col] == 1:
+                    if is_border_point(panel, row, col, image3D):
+                        border_points[number_of_border_points, 0] = panel
+                        border_points[number_of_border_points, 1] = row
+                        border_points[number_of_border_points, 2] = col
+                        number_of_border_points = number_of_border_points + 1
 
     return border_points[:number_of_border_points]
 
@@ -163,14 +216,50 @@ def determine_border_points(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
 @cython.wraparound(False)
 @cython.boundscheck(False)
 def make_3D_skeleton(numpy.ndarray[IMAGE3D_UINT8_t, ndim=3] image3D):
-    # jaki jest po zwroceniu typ border pointsa ? lista czy np array
-
+    # jaki jest po zwroceniu typ border pointsa ? lista czy numpy array
+    cdef numpy.ndarray[BORDERPOINTS_INT32_t, ndim=2] border_points
     cdef char sign = 'U' # because str is default
     cdef int n = 5
+    cdef int _
+
     for _ in range(n):
         border_points = determine_border_points(image3D)
         delete_border_points(sign, border_points, image3D)
         #delete_border_points("D", border_index, image3D)
     return image3D
 
-
+# def fast_threshold(image):
+#
+#     RGB_threshold = [(120, 255), (0, 105), (0, 255)]
+#
+#     red_range = numpy.logical_and(RGB_threshold[0][0] < image[:, :, :, 0], image[:, :, :, 0] < RGB_threshold[0][1])
+#     green_range = numpy.logical_and(RGB_threshold[1][0] < image[:, :, :, 1], image[:, :, :, 1] < RGB_threshold[1][1])
+#     blue_range = numpy.logical_and(RGB_threshold[2][0] < image[:, :, :, 2], image[:, :, :, 2] < RGB_threshold[2][1])
+#     valid_range = numpy.logical_and(red_range, green_range, blue_range)
+#
+#     image[valid_range] = [255, 255, 255]
+#     image[numpy.logical_not(valid_range)] = [0, 0, 0]
+#
+#     binary = numpy.logical_and(200 < image[:, :, :, 0], 255 >= image[:, :, :, 0])
+#
+#     image[binary] = [1, 1, 1]
+#     image[numpy.logical_not(binary)] = [0, 0, 0]
+#
+#     return image[:, :, 100:]
+#
+#
+# def reduce_RGB_to_binary(image):
+#     image = numpy.delete(image, numpy.s_[1:3], 3).squeeze()
+#     return image
+#
+# print("KURWAMAC")
+# filepath = r"C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\ImageViewer\bazaDanychDCM\zdj.dcm"
+# dcm_image = pydicom.dcmread(filepath)
+# data = fast_threshold(dcm_image.pixel_array)
+# data_with_black_panel_start_end = numpy.zeros(shape=(data.shape[0] + 2, data.shape[1], data.shape[2]), dtype=numpy.uint8)
+# data_with_black_panel_start_end[1:data_with_black_panel_start_end.shape[0]-1] = reduce_RGB_to_binary(data)
+# # check exec tim
+# start_time = time.time()
+# data = make_3D_skeleton(data_with_black_panel_start_end)
+# end_time = time.time() - start_time
+# print('\r', f"[Skeletonization] Exec time {end_time}")
