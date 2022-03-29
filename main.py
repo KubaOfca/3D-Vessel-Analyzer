@@ -131,14 +131,14 @@ def make_RGB_image_binary(image):
 
 
 def save_one_2D_binary_image(image, name):
-    im = Image.fromarray(image*255)
+    im = Image.fromarray(image*50)
     im.save(f"{name}.png")
 
 
 def save_series_2D_binary_image(image, basename):
     n = image.shape[0]
     for i in range(n):
-        im = Image.fromarray(image[i]*255)
+        im = Image.fromarray(image[i]*50)
         im.save(f"{basename}{i}.png")
 
 
@@ -150,8 +150,9 @@ def main():
     data = make_RGB_image_binary(data)
     data_skeleton = skeletonize_3d(data)
     trees = form_array_of_skeleton_make_spanning_trees(data_skeleton)
-    for i in trees:
-        print(i)
+    lista = np.where(data_skeleton == 1)
+    save_series_2D_binary_image(data_skeleton, "zaznaczone")
+    print(lista)
 
 
 main()
