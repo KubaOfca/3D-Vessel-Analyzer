@@ -3,18 +3,44 @@ import numpy as np
 from PIL import Image
 from skimage.morphology import skeletonize_3d
 import time
+
 # Useful commends
 # np.set_printoptions(threshold=sys.maxsize)
 
 # global var
 ROI = [(115, 1032), (169, 702)]
+COLORS = {
+    0: [50, 0, 0],
+    1: [50, 0, 0],
+    2: [50, 0, 0],
+    3: [50, 0, 0],
+    4: [50, 0, 0],
+    5: [255, 0, 0],
+    6: [0, 255, 0],
+    7: [0, 0, 255],
+    8: [255, 255, 0],
+    9: [0, 255, 255],
+    10: [255, 0, 255],
+    11: [128, 128, 128],
+    12: [128, 0, 0],
+    13: [128, 128, 0],
+    14: [0, 128, 0],
+    15: [128, 0, 128],
+    16: [0, 128, 128],
+    17: [0, 0, 128],
+    18: [128, 0, 128],
+    19: [139, 69, 19],
+    20: [152, 251, 152],
+}
+
+change_color = 5
 
 
 class Node:
-    def __init__(self, z, y, x, parent=None):
+    def __init__(self, coords, parent=None):
         self.parent = parent
         self.child = []
-        self.coords = (z, y, x)
+        self.coords = coords
 
     def add_child(self, parent_coords, child_node):
         parent_node = self.find(parent_coords)
@@ -39,18 +65,22 @@ class Node:
         return None
 
 
-def bfs(image, z, y, x):
-    tree = Node(z, y, x, None)
+def bfs(image, coords):
+    tree = Node(coords, None)
     que = [tree.coords]
+    tree_node_list = [tree.coords]
+    global change_color
 
     while que:
         v = que.pop(0)
         for w in neighbour_of_pixel(image, v):
-            if not tree.is_node_in_tree(w) and w not in que:
+            if w not in tree_node_list and w not in que:
                 que.append(w)
-                child = Node(w[0], w[1], w[2], parent=v)
+                tree_node_list.append(w)
+                child = Node(w, parent=v)
                 tree.add_child(v, child)
-        image[v[0], v[1], v[2]] = 5
+        image[v[0], v[1], v[2]] = change_color
+    change_color += 1
     return tree
 
 
@@ -86,7 +116,6 @@ def range_of_neighboor(pixel, image):
 
 
 def neighbour_of_pixel(image, pixel):
-    # TODO: check if pixel is valid (z != 0 etc...)
     neighbour = []
     range_neighboor = range_of_neighboor(pixel, image)
 
@@ -99,22 +128,20 @@ def neighbour_of_pixel(image, pixel):
     return neighbour
 
 
-def is_line_end_point(image, panel, row, col):
-    pixel = (panel,row,col)
-    range_neighboor = range_of_neighboor(pixel, image)
+def is_line_end_point(image, point):
+    range_neighboor = range_of_neighboor(point, image)
     array_to_sum = image[range_neighboor[0][0]:range_neighboor[0][1], range_neighboor[1][0]:range_neighboor[1][1],
-               range_neighboor[2][0]:range_neighboor[2][1]].ravel()
+                   range_neighboor[2][0]:range_neighboor[2][1]].ravel()
     return sum(array_to_sum) == 2
 
 
 def form_array_of_skeleton_make_spanning_trees(image):
     trees = []
-    for panel in range(image.shape[0]):
-        for row in range(image.shape[1]):
-            for col in range(image.shape[2]):
-                if image[panel, row, col] == 1 and is_line_end_point(image, panel, row, col):
-                    s = time.time()
-                    trees.append(bfs(image, panel, row, col))
+    indexes_of_value_one = np.where(image == 1)
+    coords_of_value_one = list(zip(*indexes_of_value_one))
+    for point in coords_of_value_one:
+        if is_line_end_point(image, point):
+            trees.append(bfs(image, point))
 
     return trees
 
@@ -131,30 +158,39 @@ def make_RGB_image_binary(image):
 
 
 def save_one_2D_binary_image(image, name):
-    im = Image.fromarray(image*50)
+    im = Image.fromarray(image * 255)
     im.save(f"{name}.png")
 
 
 def save_series_2D_binary_image(image, basename):
     n = image.shape[0]
     for i in range(n):
-        im = Image.fromarray(image[i]*50)
+        im = Image.fromarray(image[i], "RGB")
         im.save(f"{basename}{i}.png")
 
 
 def main():
-    filepath = r"C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\ImageViewer\bazaDanychDCM\zdj.dcm"
+    filepath = r"C:\Users\bkuba\PycharmProjects\PracaLicencjacka\zdj.dcm"
     dcm_image = pydicom.dcmread(filepath)
     data = dcm_image.pixel_array[:, ROI[1][0]:ROI[1][1], ROI[0][0]:ROI[0][1]]
+    print(data.dtype)
     threshold(data)
     data = make_RGB_image_binary(data)
     data_skeleton = skeletonize_3d(data)
+    s = time.time()
     trees = form_array_of_skeleton_make_spanning_trees(data_skeleton)
-    lista = np.where(data_skeleton == 1)
-    save_series_2D_binary_image(data_skeleton, "zaznaczone")
-    print(lista)
+    print(f'{time.time() - s} END')
+    color_array = np.zeros(shape=(data_skeleton.shape[0], data_skeleton.shape[1], data_skeleton.shape[2], 3),
+                           dtype=np.uint8)
+    for panel in range(data_skeleton.shape[0]):
+        for row in range(data_skeleton.shape[1]):
+            for col in range(data_skeleton.shape[2]):
+                if data_skeleton[panel, row, col] > 0:
+                    print(COLORS[data_skeleton[panel, row, col] % 20])
+                    color_array[panel, row, col] = COLORS[data_skeleton[panel, row, col] % 20]
+                    print(color_array[panel, row, col])
+    print(color_array)
+    save_series_2D_binary_image(color_array, "Kolorwe")
 
 
 main()
-
-
