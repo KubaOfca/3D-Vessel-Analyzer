@@ -53,6 +53,7 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
         "nb" : 0,
         "nc" : 0,
         "pc" : 1,
+        "dm" : 0,
     }
 
     while que:
@@ -77,6 +78,8 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
                 feature["lv"] += euclidean_distance
 
     post_proces(root, feature)
+    feature["dm"] = sqrt(sum([(root.coords[i] - parent.coords[i])**2 for i in range(3)])) / feature["lv"]
+
     if feature["pc"] < 5:
         return None, None
     return root, feature
@@ -144,6 +147,7 @@ def form_array_of_skeleton_make_spanning_trees(image):
     lv_feature = 0.0
     nb_feature = 0
     nc_feature = 0
+    dm_feature = 0
     for coords in coords_of_possible_line_end_points:
         if is_line_end_point(image, coords):
             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
@@ -152,4 +156,5 @@ def form_array_of_skeleton_make_spanning_trees(image):
                 lv_feature += feature["lv"]
                 nb_feature += feature["nb"]
                 nc_feature += feature["nc"]
-    return trees, lv_feature, nb_feature, nc_feature
+                dm_feature += feature["dm"]
+    return trees, lv_feature, nb_feature, nc_feature, dm_feature

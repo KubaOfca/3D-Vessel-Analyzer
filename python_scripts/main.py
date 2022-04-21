@@ -10,6 +10,10 @@ import numpy as np
 # Useful commends
 # np.set_printoptions(threshold=sys.maxsize)
 
+#TODO: cykle, 2 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci, przeliczenie z pixeli na cm
+#TODO: zapis do exela
+#TODO: czy w dm moze byc przestrzen euklidesowa
+
 # global var
 ROI = [(115, 1032), (169, 702)]
 
@@ -22,6 +26,7 @@ def main():
         "length of vessels": [],
         "number of branching": [],
         "number of cycles": [],
+        "distance metric": [],
         "Exec time": [],
     }
 
@@ -52,12 +57,14 @@ def main():
             test_array[1, 1, 2] = 1
             test_array[1, 2, 2] = 1
             # test_array = skeletonize(test_array, method='lee')
-            trees, lv_feature, nb_feature, nc_feature = form_array_of_skeleton_make_spanning_trees(data_skeleton)
+            trees, lv_feature, nb_feature, \
+                nc_feature, dm_feature = form_array_of_skeleton_make_spanning_trees(data_skeleton)
             nt_feature = len(trees)
             result_dict["length of vessels"].append(lv_feature)
             result_dict["number of branching"].append(nb_feature)
             result_dict["number of cycles"].append(nc_feature)
             result_dict["number of vascular trees"].append(nt_feature)
+            result_dict["distance metric"].append(dm_feature)
 
             time_exec = round(time.time() - s_time, 2)
             print(f'[Exec Time] {time_exec}')
@@ -65,9 +72,9 @@ def main():
 
     df = pd.DataFrame(data=result_dict)
     try:
-        df.to_csv(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki2.csv',
+        df.to_csv(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki3.csv',
                   index=False)
-        df.to_excel(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki2.csv',
+        df.to_excel(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki3.csv',
                     index=False)
     except:
         print("Saving Error")
