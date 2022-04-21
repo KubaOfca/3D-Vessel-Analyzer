@@ -13,85 +13,73 @@ class Node:
         self.is_branching_node = False
         self.level = level
 
+def print_tree_bfs(root):
+    que = [root]
+    while que:
+        parent = que.pop(0)
+        print("Parent: ", parent.coords)
+        print("Children: ")
+        for child in parent.children:
+            print(child.coords)
+            que.append(child)
+        print("-----------------------------------")
 
-def post_proces(node, existing_node_in_tree, feature):
-    if node.is_branching_node:
-        for child in node.children:
-            if len(node.children) > 1:
-                if len(child.children) == 0:
-                    node.children.remove(child)
-                    euclidean_distance = sqrt(sum([(node.coords[i] - child.coords[i])**2 for i in range(3)]))
-                    feature["lv"] -= euclidean_distance
-                    try:
-                        existing_node_in_tree.remove(child)
-                    except ValueError:
-                        print("Element not in list")
-
-    if len(node.children) < 2 and node.is_branching_node:
-        node.is_branching_node = False
-        feature["nb"] -= 1
-
-    for child in node.children:
-        try:
-            post_proces(child, existing_node_in_tree, feature)
-        except:
-            print("Too deepth")
+def post_proces(root, feature):
+    que = [root]
+    while que:
+        parent = que.pop(0)
+        if parent.is_branching_node:
+            for child in parent.children:
+                if child.children:
+                    que.append(child)
+                else:
+                    feature["pc"] -= 1
+                    feature["lv"] -= sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
+                    parent.children.remove(child)
+            if len(parent.children) == 1:
+                parent.is_branching_node = False
+                feature["nb"] -= 1
+        elif len(parent.children) == 1:
+            que.append(parent.children[0])
 
 
-def bfs(image, coords):
-    root = Node(coords, 0, None)
-    present_parent = root
-    next_parent = []
-    que = [root.coords]
-    existing_node_in_tree = [root]
-    existing_node_in_tree_coords = [root.coords]
+
+def build_spanning_tree_bfs_and_extract_features(image, coords):
+    root = Node(coords=coords, level=0)
+    image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
+    que = [root]
     feature = {
         "lv" : 0.0,
         "nb" : 0,
         "nc" : 0,
+        "pc" : 1,
     }
 
     while que:
-        node_coords = que.pop(0)
-        count = True
-        all_neighbour, prev_visited = neighbour_of_pixel(image, node_coords)
+        parent = que.pop(0)
+        unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, parent.coords)
 
-        for node in existing_node_in_tree:
-            if node.coords in prev_visited:
-                if present_parent.level - node.level > T_C:
-                    print("dodaje 1")
-                    feature["nc"] += 1
-                    print(feature["nc"])
-                    break
-
-        if len(all_neighbour) > 2:
-            present_parent.is_branching_node = True
+        if len(unvisited_neighbors_coords) > 1:
+            parent.is_branching_node = True
+            # parameter calc
             feature["nb"] += 1
 
 
-        for neighbour in all_neighbour:
-            if neighbour not in existing_node_in_tree_coords and neighbour not in que:
-                que.append(neighbour)
-                existing_node_in_tree_coords.append(neighbour)
-                child = Node(coords=neighbour, level=present_parent.level + 1, parent=present_parent)
-                existing_node_in_tree.append(child)
-                euclidean_distance = sqrt(sum([(present_parent.coords[i] - child.coords[i])**2 for i in range(3)]))
+        for neighbour_coords in unvisited_neighbors_coords:
+            if all(neighbour_coords != node.coords for node in que):
+                child = Node(coords=neighbour_coords, level=parent.level + 1, parent=parent)
+                parent.children.append(child)
+                feature["pc"] += 1 # save amount of tree nodes
+                que.append(child)
+                image[child.coords[0], child.coords[1], child.coords[2]] = VISITED
+                # parameter calc
+                euclidean_distance = sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
                 feature["lv"] += euclidean_distance
-                next_parent.append(child)
-                present_parent.children.append(child)
 
-        image[node_coords[0], node_coords[1], node_coords[2]] = VISITED # in order to mark point which was added to tree
-        if next_parent:
-            present_parent = next_parent.pop(0)
-
-    try:
-        post_proces(root, existing_node_in_tree, feature)
-    except:
-        print("Too deepth ")
-    if len(existing_node_in_tree) <= 4:
+    post_proces(root, feature)
+    if feature["pc"] < 5:
         return None, None
-    else:
-        return root, feature
+    return root, feature
 
 
 def range_of_neighbours(coords, image):
@@ -125,20 +113,20 @@ def range_of_neighbours(coords, image):
     return [(panel_start, panel_end), (row_start, row_end), (col_start, col_end)]
 
 
-def neighbour_of_pixel(image, coords):
-    neighbour = []
-    prev_visited = []
-    range_neighbour = range_of_neighbours(coords, image)
+def coords_of_neighbors_of_pixel(image, coords):
+    unvisited_neighbors = []
+    prev_visited_neighbors = []
+    range_of_neighbors = range_of_neighbours(coords, image)
 
-    for panel in range(range_neighbour[0][0], range_neighbour[0][1]):
-        for row in range(range_neighbour[1][0], range_neighbour[1][1]):
-            for col in range(range_neighbour[2][0], range_neighbour[2][1]):
+    for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
+        for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
+            for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
                 if image[panel, row, col] == 1 and coords != (panel, row, col):
-                    neighbour.append((panel, row, col))
+                    unvisited_neighbors.append((panel, row, col))
                 if image[panel, row, col] == VISITED and coords != (panel, row, col):
-                    prev_visited.append((panel, row, col))
+                    prev_visited_neighbors.append((panel, row, col))
 
-    return neighbour, prev_visited
+    return unvisited_neighbors, prev_visited_neighbors
 
 
 def is_line_end_point(image, coords):
@@ -152,14 +140,13 @@ def is_line_end_point(image, coords):
 
 def form_array_of_skeleton_make_spanning_trees(image):
     trees = []
-    indexes_of_possible_line_end_points = numpy.where(image == 1)
-    coords_of_possible_line_end_points = list(zip(*indexes_of_possible_line_end_points))
+    coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
     lv_feature = 0.0
     nb_feature = 0
     nc_feature = 0
     for coords in coords_of_possible_line_end_points:
         if is_line_end_point(image, coords):
-            tree, feature = bfs(image, coords)
+            tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
             if tree is not None:
                 trees.append(tree)
                 lv_feature += feature["lv"]

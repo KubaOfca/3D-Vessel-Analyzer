@@ -25,21 +25,21 @@ def main():
         "Exec time": [],
     }
 
-    folder = r"C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\DCM_database"
+    folder = r"C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\dane_07.03.2022"
 
     for filename in os.listdir(folder):
-        filename_path = os.path.join(folder, filename)
-        if filename.endswith(".dcm") and os.path.isfile(filename_path):
+        file_full_path = os.path.join(folder, filename)
+        if filename.endswith(".dcm") and os.path.isfile(file_full_path):
             s_time = time.time()
 
             result_dict["FileName"].append(filename)
-            dcm_image = pydicom.dcmread(filename_path)
-            data = dcm_image.pixel_array[:, ROI[1][0]:ROI[1][1], ROI[0][0]:ROI[0][1]]
-            iman.threshold(data)
-            data = iman.make_RGB_image_binary(data)
-            result_dict["Vessel-to-volume ratio"].append(iman.vr(data))
-            data_skeleton = skeletonize(data, method='lee')
-            # test
+            dcm_image = pydicom.dcmread(file_full_path)
+            dcm_as_array = dcm_image.pixel_array[:, ROI[1][0]:ROI[1][1], ROI[0][0]:ROI[0][1]]
+            iman.threshold(dcm_as_array)
+            dcm_as_array = iman.make_RGB_image_binary(dcm_as_array)
+            result_dict["Vessel-to-volume ratio"].append(iman.vr(dcm_as_array))
+            data_skeleton = skeletonize(dcm_as_array, method='lee')
+
             test_array = np.zeros((3, 5, 6), dtype=np.uint8)
             test_array[1, 3, 0] = 1
             test_array[1, 3, 1] = 1
@@ -51,7 +51,7 @@ def main():
             test_array[1, 1, 3] = 1
             test_array[1, 1, 2] = 1
             test_array[1, 2, 2] = 1
-
+            # test_array = skeletonize(test_array, method='lee')
             trees, lv_feature, nb_feature, nc_feature = form_array_of_skeleton_make_spanning_trees(data_skeleton)
             nt_feature = len(trees)
             result_dict["length of vessels"].append(lv_feature)
@@ -64,7 +64,13 @@ def main():
             result_dict["Exec time"].append(time_exec)
 
     df = pd.DataFrame(data=result_dict)
-    df.to_csv('result_form_mat.csv', index=False)
+    try:
+        df.to_csv(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki2.csv',
+                  index=False)
+        df.to_excel(r'C:\Users\Jakub Lechowski\Desktop\PracaLicencjacka\Skrypty\VesselsAnalyzer\results\Wyniki2.csv',
+                    index=False)
+    except:
+        print("Saving Error")
 
 
 main()
