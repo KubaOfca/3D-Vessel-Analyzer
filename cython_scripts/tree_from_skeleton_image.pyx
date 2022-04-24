@@ -2,6 +2,8 @@ import numpy
 cimport numpy
 cimport cython
 from math import sqrt
+from math import acos
+from math import sin
 VISITED = 5
 T_C = 5
 
@@ -12,6 +14,39 @@ class Node:
         self.coords = coords
         self.is_branching_node = False
         self.level = level
+
+
+def soam(root, feature):
+    que = [root.children[0]] # start from child of root
+    while que:
+        curr = que.pop(0)
+        t1 = tuple(numpy.subtract(curr.coords, curr.parent.coords))
+        t1_magnitude = sqrt(numpy.dot(t1, t1))
+        feature["vms"] += t1_magnitude
+        if curr.children:
+            for child in curr.children:
+                t2 = tuple(numpy.subtract(child.coords, curr.coords))
+                t2_magnitude = sqrt(numpy.dot(t2, t2))
+                if child.children:
+                    for child_child in child.children:
+                        t3 = tuple(numpy.subtract(child_child.coords, child.coords))
+                        t3_magnitude = sqrt(numpy.dot(t3, t3))
+                        ip_t1_t2_temp = (numpy.dot(t1, t2)/(t1_magnitude * t2_magnitude))
+                        ip_t1_t2 = acos(round(ip_t1_t2_temp, 10))
+                        ip_t2_t3_temp = (numpy.dot(t2, t3)/(t2_magnitude * t3_magnitude))
+                        ip_t2_t3 = acos(round(ip_t2_t3_temp, 10))
+                        t1_t2_cross_magnitude = t1_magnitude * t2_magnitude * sin(ip_t1_t2)
+                        t2_t3_cross_magnitude = t2_magnitude * t3_magnitude * sin(ip_t2_t3)
+                        if t1_t2_cross_magnitude == 0.0 or t2_t3_cross_magnitude == 0.0:
+                            tp = acos(0)
+                        else:
+                            tp_temp = numpy.dot(numpy.cross(t1, t2)/t1_t2_cross_magnitude,
+                                            numpy.cross(t2, t3)/t2_t3_cross_magnitude)
+                            tp = acos(round(tp_temp, 10))
+                        cp = sqrt(ip_t1_t2**2 + tp**2)
+                        feature["cp"] += cp
+                que.append(child)
+
 
 def print_tree_bfs(root):
     que = [root]
@@ -49,16 +84,22 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
     que = [root]
     feature = {
-        "lv" : 0.0,
-        "nb" : 0,
-        "nc" : 0,
-        "pc" : 1,
-        "dm" : 0,
+        "lv": 0.0,
+        "nb": 0,
+        "nc": 0,
+        "pc": 1,
+        "dm": 0,
+        "cp": 0,
+        "vms": 0,
     }
 
     while que:
         parent = que.pop(0)
         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, parent.coords)
+
+        # not working well
+        if len(prev_visited_neighbors_coords) > 1:
+            feature["nc"] += 1
 
         if len(unvisited_neighbors_coords) > 1:
             parent.is_branching_node = True
@@ -78,7 +119,10 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
                 feature["lv"] += euclidean_distance
 
     post_proces(root, feature)
-    feature["dm"] = sqrt(sum([(root.coords[i] - parent.coords[i])**2 for i in range(3)])) / feature["lv"]
+    soam(root, feature)
+    last_node_coords = parent.coords # for readability
+    root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
+    feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["vms"]
 
     if feature["pc"] < 5:
         return None, None
@@ -148,6 +192,8 @@ def form_array_of_skeleton_make_spanning_trees(image):
     nb_feature = 0
     nc_feature = 0
     dm_feature = 0
+    cp_feature = 0
+    vms_feature = 0
     for coords in coords_of_possible_line_end_points:
         if is_line_end_point(image, coords):
             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
@@ -157,4 +203,6 @@ def form_array_of_skeleton_make_spanning_trees(image):
                 nb_feature += feature["nb"]
                 nc_feature += feature["nc"]
                 dm_feature += feature["dm"]
-    return trees, lv_feature, nb_feature, nc_feature, dm_feature
+                cp_feature += feature["cp"]
+                vms_feature += feature["vms"]
+    return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature, vms_feature

@@ -5,7 +5,7 @@ from PIL import Image
 def vr(image):
     foreground = np.count_nonzero(image == 1)
     depth, height, width = image.shape
-    return foreground/(depth*height*width)
+    return (foreground/(depth*height*width)) * 100
 
 
 def threshold(image):
@@ -27,5 +27,5 @@ def save_one_2D_binary_image(image, name):
 def save_series_2D_binary_image(image, basename):
     n = image.shape[0]
     for i in range(n):
-        im = Image.fromarray(image[i])
+        im = Image.fromarray(image[i]*255)
         im.save(f"{basename}{i}.png")
