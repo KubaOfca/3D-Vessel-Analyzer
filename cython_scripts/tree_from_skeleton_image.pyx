@@ -13,6 +13,7 @@ class Node:
         self.children = []
         self.coords = coords
         self.is_branching_node = False
+        self.is_cycle_check_branching_node = False
         self.level = level
 
 
@@ -22,7 +23,6 @@ def soam(root, feature):
         curr = que.pop(0)
         t1 = tuple(numpy.subtract(curr.coords, curr.parent.coords))
         t1_magnitude = sqrt(numpy.dot(t1, t1))
-        feature["vms"] += t1_magnitude
         if curr.children:
             for child in curr.children:
                 t2 = tuple(numpy.subtract(child.coords, curr.coords))
@@ -48,6 +48,20 @@ def soam(root, feature):
                 que.append(child)
 
 
+def is_cycle(curr):
+    end_of_cycle = curr
+    x = curr.parent
+    while x is not None:
+        if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
+            x.is_cycle_check_branching_node = True
+            if end_of_cycle.level - x.level > T_C:
+                return True
+            else:
+                return False
+        x = x.parent
+    return False
+
+
 def print_tree_bfs(root):
     que = [root]
     while que:
@@ -58,6 +72,7 @@ def print_tree_bfs(root):
             print(child.coords)
             que.append(child)
         print("-----------------------------------")
+
 
 def post_proces(root, feature):
     que = [root]
@@ -90,42 +105,45 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
         "pc": 1,
         "dm": 0,
         "cp": 0,
-        "vms": 0,
     }
 
     while que:
-        parent = que.pop(0)
-        unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, parent.coords)
+        curr = que.pop(0)
+        unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)
 
         # not working well
         if len(prev_visited_neighbors_coords) > 1:
-            feature["nc"] += 1
+            if is_cycle(curr):
+                feature["nc"] += 1
 
         if len(unvisited_neighbors_coords) > 1:
-            parent.is_branching_node = True
+            curr.is_branching_node = True
             # parameter calc
             feature["nb"] += 1
 
 
         for neighbour_coords in unvisited_neighbors_coords:
             if all(neighbour_coords != node.coords for node in que):
-                child = Node(coords=neighbour_coords, level=parent.level + 1, parent=parent)
-                parent.children.append(child)
+                child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)
+                curr.children.append(child)
                 feature["pc"] += 1 # save amount of tree nodes
                 que.append(child)
                 image[child.coords[0], child.coords[1], child.coords[2]] = VISITED
                 # parameter calc
-                euclidean_distance = sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
+                curr_child_vector = tuple(numpy.subtract(curr.coords, child.coords))
+                euclidean_distance = sqrt(numpy.dot(curr_child_vector, curr_child_vector))
                 feature["lv"] += euclidean_distance
 
     post_proces(root, feature)
-    soam(root, feature)
-    last_node_coords = parent.coords # for readability
-    root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
-    feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["vms"]
 
     if feature["pc"] < 5:
         return None, None
+
+    soam(root, feature)
+    last_node_coords = curr.coords # for readability
+    root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
+    feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]
+
     return root, feature
 
 
@@ -193,7 +211,6 @@ def form_array_of_skeleton_make_spanning_trees(image):
     nc_feature = 0
     dm_feature = 0
     cp_feature = 0
-    vms_feature = 0
     for coords in coords_of_possible_line_end_points:
         if is_line_end_point(image, coords):
             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
@@ -204,5 +221,4 @@ def form_array_of_skeleton_make_spanning_trees(image):
                 nc_feature += feature["nc"]
                 dm_feature += feature["dm"]
                 cp_feature += feature["cp"]
-                vms_feature += feature["vms"]
-    return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature, vms_feature
+    return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature
