@@ -1,19 +1,15 @@
 import pydicom
 from skimage.morphology import skeletonize
 from cython_scripts.tree_from_skeleton_image import form_array_of_skeleton_make_spanning_trees
-import os
 import pandas as pd
 import time
 import image_manipulation as iman
-import numpy as np
 from datetime import datetime
 from tkinter import filedialog as fd
 from tkinter import messagebox
 import ttkbootstrap as tk
 import threading
 import os
-import math
-
 
 # TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
 # TODO: przeliczenie na centymetry
@@ -49,7 +45,7 @@ def check_before_analyze():
     except FileNotFoundError as e:
         messagebox.showerror(
             title="Invalid directory",
-            message="Inset a valid directory path"
+            message=f"{e}\nInset a valid directory path"
         )
         return
 
@@ -178,14 +174,14 @@ HEIGHT = 450
 app = tk.Window(themename="darkly")
 # set window position
 app.minsize(WIDTH, HEIGHT)
-x = (app.winfo_screenwidth()/2) - (WIDTH/2)
-y = (app.winfo_screenheight()/2) - (HEIGHT/2)
-app.geometry('%dx%d+%d+%d' % (WIDTH, HEIGHT, x, y))
+x_cor = (app.winfo_screenwidth()/2) - (WIDTH/2)
+y_cor = (app.winfo_screenheight()/2) - (HEIGHT/2)
+app.geometry('%dx%d+%d+%d' % (WIDTH, HEIGHT, x_cor, y_cor))
 
 app.title("Vessels Analyzer")
 title = tk.Label(
     app,
-    text="Algorithm for the analysis of the three-dimensional distribution of neoplastic vessels")
+    text="Algorithm for the analysis of the three-dimensional distribution of vessels")
 
 file_path_frame = tk.LabelFrame(
     app,
