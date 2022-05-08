@@ -3,67 +3,161 @@ from skimage.morphology import skeletonize
 from cython_scripts.tree_from_skeleton_image import form_array_of_skeleton_make_spanning_trees
 import pandas as pd
 import time
-import image_manipulation as iman
+import image_manipulation
 from datetime import datetime
 from tkinter import filedialog as fd
 from tkinter import messagebox
 import ttkbootstrap as tk
 import threading
 import os
+from bs4 import BeautifulSoup
+import cv2
+import tifffile as tiffio
 
 # TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
-# TODO: przeliczenie na centymetry
+# TODO: poprwiac cykle
+# TODO: przeliczenie na centymetry git
 
 # global var
 ROI = [(115, 1032), (169, 702)]
-PIXEL_SIZE = 0.0264583333
 stop_analyze = False
 
 
-def stop():
-    global stop_analyze
-    stop_analyze = True
-    progress_bar_label.configure(text="Stopping the analysis process. Please wait...")
-    progress_bar.configure(bootstyle="warning")
-    app.update_idletasks()
-
-
-def reset_app():
-    progress_bar.pack_forget()
-    progress_bar_label.pack_forget()
-    progress_bar_label.configure(text="File 0/0")
-    progress_bar.configure(value=0)
-    progress_bar.configure(bootstyle="success")
-    stop_analyze_button["state"] = "disabled"
-    app.update_idletasks()
-
-
-def check_before_analyze():
-    folder = fr"{dataset_entry.get()}"
+def is_folder_valid(folder):
     try:
-        list_of_dcm_files = [x for x in os.listdir(folder) if x.endswith(".dcm")]
+        os.listdir(folder)
     except FileNotFoundError as e:
         messagebox.showerror(
             title="Invalid directory",
             message=f"{e}\nInset a valid directory path"
         )
-        return
+        return False
 
-    number_of_dcm_files = len(list_of_dcm_files)
+    return True
 
-    if number_of_dcm_files < 1:
+
+def is_files_with_correct_extension_valid(files, extension):
+    if files:
+        return True
+    else:
         messagebox.showerror(
-            title="File Error",
-            message="No dcm files were found in this directory"
+            title="Files Error",
+            message=f"No {extension} files were found in this directory"
         )
+        return False
+
+
+def load_raw_xml_file(filename, directory):
+    raw_xml_filename = f"{filename.split('.')[0]}.raw.xml"  # in order to load the same filename with .raw.xml extension
+    raw_xml_full_path = os.path.join(directory, raw_xml_filename)
+    try:
+        with open(raw_xml_full_path, 'r') as raw_xml_file:
+            raw_xml_data = raw_xml_file.read()
+        xml_reader = BeautifulSoup(raw_xml_data, "xml")
+        depth = float(xml_reader.find('parameter', {'name': 'B-Mode/Depth'}).get('value').replace(',', '.'))
+        width = float(xml_reader.find('parameter', {'name': 'B-Mode/Width'}).get('value').replace(',', '.'))
+        step_size = float(xml_reader.find('parameter', {'name': '3D-Step-Size'}).get('value').replace(',', '.'))
+        pixel_size_cm = depth * width * step_size / 10
+    except Exception as e:
+        messagebox.showerror(
+            title="Raw XML error",
+            message=f"{e}\nCan't load raw.xml file, so some of features will be in pixel scale instead of cm"
+        )
+        pixel_size_cm = 1
+
+    return pixel_size_cm
+
+
+def check_assumption_before_analysis():
+    directory = fr"{dataset_entry.get()}"
+
+    if input_file_extension_var.get():
+        extension = ".tif"
+    else:
+        extension = ".dcm"
+
+    if not is_folder_valid(directory):
         return
 
-    threading.Thread(target=analyze_vessels, args=(folder, list_of_dcm_files, number_of_dcm_files)).start()
+    files = [x for x in os.listdir(directory) if x.endswith(extension)]
+
+    if not is_files_with_correct_extension_valid(files, extension):
+        return
+
+    threading.Thread(target=analyze_vessels, args=(directory, files, len(files), extension)).start()
 
 
-def analyze_vessels(folder, list_of_dcm_files, number_of_dcm_files):
+def save_results(result_dict, directory):
+    df = pd.DataFrame(data=result_dict)
+    result_file_name = datetime.now().strftime("%d.%m.%Y_%H.%M.%S")
+    is_save_valid = True
+
+    if save_file_type_var.get():
+        # csv
+        try:
+            df.to_csv(
+                rf'{directory}\{result_file_name}.csv',
+                index=False
+            )
+        except Exception as e:
+            error_text = f"Error {type(e).__name__} occurred. Arguments:\n{repr(e.args)}"
+            messagebox.showerror(
+                title="Error in saving to csv",
+                message=f'{error_text}'
+            )
+            is_save_valid = False
+    else:
+        # xlsx
+        try:
+            df.to_excel(
+                rf'{directory}/{result_file_name}.xlsx',
+                index=False,
+                sheet_name='data')
+        except Exception as e:
+            error_text = f"Error {type(e).__name__} occurred. Arguments:\n{repr(e.args)}"
+            messagebox.showerror(
+                title="Error in saving to xlsx",
+                message=f'{error_text}'
+            )
+            is_save_valid = False
+
+    if not is_save_valid:
+        new_save_file_type = "xlsx" if save_file_type_var.get() else "csv"
+        answer = messagebox.askyesno(
+            title="Question?",
+            message=f'Do you want try to save results in {new_save_file_type} file?'
+        )
+        if answer:
+            try:
+                if save_file_type_var.get():
+                    df.to_excel(
+                        rf'{directory}/{result_file_name}.xlsx',
+                        index=False,
+                        sheet_name='data')
+                else:
+                    df.to_csv(
+                        rf'{directory}\{result_file_name}.csv',
+                        index=False
+                    )
+            except Exception as e:
+                error_text = f"Error {type(e).__name__} occurred. Arguments:\n{repr(e.args)}"
+                messagebox.showerror(
+                    title=f"Error in saving to {new_save_file_type}",
+                    message=f'{error_text}\nResult won\'t be save'
+                )
+                return False
+
+    return True
+
+
+def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
     global stop_analyze
-    stop_analyze_button["state"] = "normal"  # make stop button able to click
+    stop_analyze_button["state"] = "normal"  # GUI - make stop button able to click
+    xlsx_radio["state"] = "disabled"
+    csv_radio["state"] = "disabled"
+    tif_radio["state"] = "disabled"
+    dcm_radio["state"] = "disabled"
+
     result_dict = {
         "FileName": [],
         "Vessel-to-volume ratio [%]": [],
@@ -76,14 +170,14 @@ def analyze_vessels(folder, list_of_dcm_files, number_of_dcm_files):
         "Exec time": [],
     }
 
-    # progress bar control
+    # GUI - progress bar control
     progress_bar.pack(padx=20, pady=20)
     progress_bar_label.pack(padx=20, pady=20)
     file_ctr = 0
     step_of_progress_bar = 100 / number_of_dcm_files
 
-    for filename in list_of_dcm_files:
-        # if user click stop button
+    for filename in list_of_files:
+        # GUI - click stop button
         if stop_analyze:
             reset_app()
             messagebox.showinfo(
@@ -93,26 +187,35 @@ def analyze_vessels(folder, list_of_dcm_files, number_of_dcm_files):
             stop_analyze = False
             return
 
-        file_full_path = os.path.join(folder, filename)
+        file_full_path = os.path.join(directory, filename)
         if os.path.isfile(file_full_path):
             s_time = time.time()
 
             # load file
             result_dict["FileName"].append(filename)
-            dcm_image = pydicom.dcmread(file_full_path)
-            dcm_as_array = dcm_image.pixel_array[:, ROI[1][0]:ROI[1][1], ROI[0][0]:ROI[0][1]]
+            pixel_size_cm = 1
+            vessel_3d_array = []  # store information about vessels image in 3D array
+
+            if extension == ".dcm":
+                vessel_3d_array = pydicom.dcmread(file_full_path).pixel_array
+                pixel_size_cm = load_raw_xml_file(filename, directory)
+            elif extension == ".tif":
+                vessel_3d_array = tiffio.imread(file_full_path)
+
+            vessel_3d_array = vessel_3d_array[:, ROI[1][0]: ROI[1][1], ROI[0][0]: ROI[0][1]]
+
             # threshold and make image binary
-            iman.threshold(dcm_as_array)
-            dcm_as_array = iman.make_RGB_image_binary(dcm_as_array)
+            image_manipulation.threshold(vessel_3d_array)
+            vessel_3d_array = image_manipulation.make_RGB_image_binary(vessel_3d_array)
             # make skeleton from data
-            skeleton = skeletonize(dcm_as_array, method='lee')
+            skeleton = skeletonize(vessel_3d_array, method='lee')
             # analyze and extract features
             trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature, \
                 = form_array_of_skeleton_make_spanning_trees(skeleton)
             # save result to dict
             nt_feature = len(trees)
-            result_dict["Vessel-to-volume ratio [%]"].append(round(iman.vr(dcm_as_array), 2))
-            result_dict["length of vessels"].append(round(lv_feature * PIXEL_SIZE, 2))
+            result_dict["Vessel-to-volume ratio [%]"].append(round(image_manipulation.vr(vessel_3d_array), 2))
+            result_dict["length of vessels"].append(round(lv_feature * pixel_size_cm, 2))
             result_dict["number of branching"].append(nb_feature)
             result_dict["number of cycles"].append(nc_feature)
             result_dict["number of vascular trees"].append(nt_feature)
@@ -120,52 +223,55 @@ def analyze_vessels(folder, list_of_dcm_files, number_of_dcm_files):
             result_dict["soam"].append(round(cp_feature / lv_feature, 2))
             time_exec = round(time.time() - s_time, 2)
             result_dict["Exec time"].append(time_exec)
-            # update progress bar
+
+            # GUI - update progress bar
             file_ctr += 1
             progress_bar.step(step_of_progress_bar)
             progress_bar_label.configure(text=f"File {file_ctr}/{number_of_dcm_files}")
             app.update_idletasks()
 
-    # save result to excel or csv file.
-    df = pd.DataFrame(data=result_dict)
-    result_file_name = datetime.now().strftime("%d.%m.%Y_%H.%M.%S")
-    try:
-        df.to_excel(
-            rf'{folder}/{result_file_name}.xlsx',
-            index=False,
-            sheet_name='data')
-    except Exception as e:
-        error_text = f"Error {type(e).__name__} occurred. Arguments:\n{repr(e.args)}"
+    if save_results(result_dict, directory):
+        # ask to open a directory with result
         answer = messagebox.askyesno(
-            title="Error in saving to excel",
-            message=f'{error_text}\nDo you want to try to save it in .csv file?'
+            title="Analysis complete!",
+            message="Do you want to open directory with result file",
         )
         if answer:
-            try:
-                df.to_csv(
-                    rf'{folder}\{result_file_name}.xlsx',
-                    index=False)
-            except Exception as e:
-                error_text = f"Error {type(e).__name__} occurred. Arguments:\n{repr(e.args)}"
-                messagebox.showerror(
-                    title="Error in saving to csv",
-                    message=f'{error_text}\nResult won\'t be save'
-                )
-                reset_app()
-                return
+            os.startfile(directory)
 
-    # reset app to init state in order to be ready to next analyze
+    # reset app in order to be ready to next analyze
     reset_app()
-    # ask to open a directory with result
-    answer = messagebox.askyesno(
-        title="Analysis complete!",
-        message="Do you want to open directory with result file",
-    )
-    if answer:
-        os.startfile(folder)
 
 
 # Main
+
+# GUI Functions
+def stop():
+    global stop_analyze
+    stop_analyze = True
+    progress_bar_label.configure(text="Stopping the analysis process. Please wait...")
+    progress_bar.configure(bootstyle="warning")
+    app.update_idletasks()
+
+
+def select_path():
+    dataset_entry.delete(0, 'end')
+    dataset_entry.insert(0, fd.askdirectory())
+
+
+def reset_app():
+    progress_bar.pack_forget()
+    progress_bar_label.pack_forget()
+    progress_bar_label.configure(text="File 0/0")
+    progress_bar.configure(value=0)
+    progress_bar.configure(bootstyle="success")
+    stop_analyze_button["state"] = "disabled"
+    xlsx_radio["state"] = "normal"
+    csv_radio["state"] = "normal"
+    tif_radio["state"] = "normal"
+    dcm_radio["state"] = "normal"
+    app.update_idletasks()
+
 
 # GUI management
 WIDTH = 650
@@ -196,7 +302,27 @@ dataset_entry = tk.Entry(
 browse_dataset_button = tk.Button(
     file_path_frame,
     text="Browse",
-    command=lambda: dataset_entry.insert(0, fd.askdirectory())
+    command=select_path
+)
+
+input_file_type_frame = tk.Frame(
+    file_path_frame
+)
+
+input_file_extension_var = tk.IntVar()
+
+dcm_radio = tk.Radiobutton(
+    input_file_type_frame,
+    text=".dcm",
+    variable=input_file_extension_var,
+    value=0
+)
+
+tif_radio = tk.Radiobutton(
+    input_file_type_frame,
+    text=".tif",
+    variable=input_file_extension_var,
+    value=1
 )
 
 button_frame = tk.Frame(
@@ -206,15 +332,38 @@ button_frame = tk.Frame(
 analyze_button = tk.Button(
     button_frame,
     text="Analyze",
-    command=check_before_analyze
+    command=check_assumption_before_analysis,
+    width=8
 )
 stop_analyze_button = tk.Button(
     button_frame,
     bootstyle="danger",
     text="Stop",
     command=stop,
+    width=8
 )
 stop_analyze_button["state"] = "disabled"
+
+save_file_type_label = tk.Label(
+    button_frame,
+    text="Save file type:"
+)
+
+save_file_type_var = tk.IntVar()
+
+xlsx_radio = tk.Radiobutton(
+    button_frame,
+    text=".xlsx",
+    variable=save_file_type_var,
+    value=0
+)
+
+csv_radio = tk.Radiobutton(
+    button_frame,
+    text=".csv",
+    variable=save_file_type_var,
+    value=1
+)
 
 progress_bar = tk.Progressbar(
     app,
@@ -231,8 +380,15 @@ title.pack(padx=20, pady=20)
 file_path_frame.pack(padx=20, pady=20)
 dataset_entry.grid(row=0, column=0, padx=20, pady=20)
 browse_dataset_button.grid(row=0, column=1, padx=20, pady=20)
+input_file_type_frame.grid(row=1, column=0, columnspan=2, padx=20)
+dcm_radio.grid(row=0, column=0, padx=20, pady=20)
+tif_radio.grid(row=0, column=1, padx=20, pady=20, sticky=tk.W)
 button_frame.pack(padx=20, pady=20)
-analyze_button.grid(row=0, column=0, padx=20, pady=5, sticky=tk.EW)
-stop_analyze_button.grid(row=1, column=0, padx=20, pady=5, sticky=tk.EW)
+save_file_type_label.grid(row=0, column=0, rowspan=2, padx=20, pady=5)
+xlsx_radio.grid(row=0, column=1, padx=20, pady=5)
+csv_radio.grid(row=1, column=1, padx=20, pady=5)
+analyze_button.grid(row=0, column=2, rowspan=2, padx=20, pady=5)
+stop_analyze_button.grid(row=0, column=3, rowspan=2, padx=20, pady=5)
+
 
 app.mainloop()
