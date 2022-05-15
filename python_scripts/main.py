@@ -11,7 +11,6 @@ import ttkbootstrap as tk
 import threading
 import os
 from bs4 import BeautifulSoup
-import cv2
 import tifffile as tiffio
 
 # TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
@@ -172,12 +171,12 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
 
     # GUI - progress bar control
     progress_bar.pack(padx=20, pady=20)
-    progress_bar_label.pack(padx=20, pady=20)
+    progress_bar_label.pack(padx=20)
     file_ctr = 0
     step_of_progress_bar = 100 / number_of_dcm_files
 
     for filename in list_of_files:
-        # GUI - click stop button
+        # GUI - after click stop button
         if stop_analyze:
             reset_app()
             messagebox.showinfo(
@@ -346,7 +345,7 @@ stop_analyze_button["state"] = "disabled"
 
 save_file_type_label = tk.Label(
     button_frame,
-    text="Save file type:"
+    text="Save results to:"
 )
 
 save_file_type_var = tk.IntVar()
@@ -384,11 +383,10 @@ input_file_type_frame.grid(row=1, column=0, columnspan=2, padx=20)
 dcm_radio.grid(row=0, column=0, padx=20, pady=20)
 tif_radio.grid(row=0, column=1, padx=20, pady=20, sticky=tk.W)
 button_frame.pack(padx=20, pady=20)
-save_file_type_label.grid(row=0, column=0, rowspan=2, padx=20, pady=5)
-xlsx_radio.grid(row=0, column=1, padx=20, pady=5)
-csv_radio.grid(row=1, column=1, padx=20, pady=5)
+save_file_type_label.grid(row=0, column=0, columnspan=2, padx=20, pady=5)
+xlsx_radio.grid(row=1, column=0, padx=20, pady=5)
+csv_radio.grid(row=2, column=0, padx=20, pady=5)
 analyze_button.grid(row=0, column=2, rowspan=2, padx=20, pady=5)
 stop_analyze_button.grid(row=0, column=3, rowspan=2, padx=20, pady=5)
-
 
 app.mainloop()
