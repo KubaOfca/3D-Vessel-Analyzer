@@ -12,10 +12,12 @@ import threading
 import os
 from bs4 import BeautifulSoup
 import tifffile as tiffio
+import numpy as np
 
 # TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
 # TODO: poprwiac cykle
-# TODO: przeliczenie na centymetry git
+# TODO: przeliczenie na centymetry, sprawdzic czy poprawne
+# TODO: poszukac innego sposobu analizy parametrow
 
 # global var
 ROI = [(115, 1032), (169, 702)]
@@ -163,6 +165,7 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
         "number of vascular trees": [],
         "length of vessels": [],
         "number of branching": [],
+        "number of cycles above threshold": [],
         "number of cycles": [],
         "distance metric": [],
         "soam": [],
@@ -208,14 +211,54 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
             vessel_3d_array = image_manipulation.make_RGB_image_binary(vessel_3d_array)
             # make skeleton from data
             skeleton = skeletonize(vessel_3d_array, method='lee')
+            # test
+            # test_arr = np.zeros((3, 10, 17), dtype=np.int32)
+            # test_arr[1, 5, 0] = 1
+            # test_arr[1, 5, 1] = 1
+            # test_arr[1, 5, 2] = 1
+            # test_arr[1, 4, 3] = 1
+            # test_arr[1, 6, 3] = 1
+            # test_arr[1, 3, 4] = 1
+            # test_arr[1, 7, 4] = 1
+            # test_arr[1, 3, 5] = 1
+            # test_arr[1, 7, 5] = 1
+            # test_arr[1, 2, 6] = 1
+            # test_arr[1, 4, 6] = 1
+            # test_arr[1, 7, 6] = 1
+            # test_arr[1, 1, 7] = 1
+            # test_arr[1, 4, 7] = 1
+            # test_arr[1, 7, 7] = 1
+            # test_arr[1, 1, 8] = 1
+            # test_arr[1, 3, 8] = 1
+            # test_arr[1, 6, 8] = 1
+            # test_arr[1, 8, 8] = 1
+            # test_arr[1, 3, 9] = 1
+            # test_arr[1, 6, 9] = 1
+            # test_arr[1, 8, 9] = 1
+            # test_arr[1, 2, 10] = 1
+            # test_arr[1, 4, 10] = 1
+            # test_arr[1, 7, 10] = 1
+            # test_arr[1, 2, 11] = 1
+            # test_arr[1, 4, 11] = 1
+            # test_arr[1, 7, 11] = 1
+            # test_arr[1, 4, 12] = 1
+            # test_arr[1, 7, 12] = 1
+            # test_arr[1, 4, 13] = 1
+            # test_arr[1, 6, 13] = 1
+            # test_arr[1, 8, 13] = 1
+            # test_arr[1, 4, 14] = 1
+            # test_arr[1, 6, 14] = 1
+            # test_arr[1, 8, 14] = 1
+            # test_arr[1, 5, 15] = 1
             # analyze and extract features
-            trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature, \
+            trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature \
                 = form_array_of_skeleton_make_spanning_trees(skeleton)
             # save result to dict
             nt_feature = len(trees)
             result_dict["Vessel-to-volume ratio [%]"].append(round(image_manipulation.vr(vessel_3d_array), 2))
             result_dict["length of vessels"].append(round(lv_feature * pixel_size_cm, 2))
             result_dict["number of branching"].append(nb_feature)
+            result_dict["number of cycles above threshold"].append(nc_t_feature)
             result_dict["number of cycles"].append(nc_feature)
             result_dict["number of vascular trees"].append(nt_feature)
             result_dict["distance metric"].append(round(dm_feature, 2))

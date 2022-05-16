@@ -13,7 +13,7 @@ class Node:
         self.children = []
         self.coords = coords
         self.is_branching_node = False
-        self.is_cycle_check_branching_node = False
+        #self.is_cycle_check_branching_node = False
         self.level = level
 
 
@@ -48,18 +48,21 @@ def soam(root, feature):
                 que.append(child)
 
 
-def is_cycle(curr):
-    end_of_cycle = curr
-    x = curr.parent
-    while x is not None:
-        if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
-            x.is_cycle_check_branching_node = True
-            if end_of_cycle.level - x.level > T_C:
-                return True
-            else:
-                return False
-        x = x.parent
-    return False
+def is_cycle_length_above_threshold(curr, prev):
+    x = curr
+    y = prev
+    level_of_end_cycle = prev.level
+    while x is not y:
+        if x.level >= y.level:
+            x = x.parent
+            while not x.is_branching_node:
+                x = x.parent
+        elif y.level >= x.level:
+            y = y.parent
+            while not y.is_branching_node:
+                y = y.parent
+
+    return level_of_end_cycle - x.level > T_C
 
 
 def print_tree_bfs(root):
@@ -93,6 +96,16 @@ def post_proces(root, feature):
             que.append(parent.children[0])
 
 
+def find_node_by_coords(root, coords_to_find):
+    que = [root]
+    while que:
+        curr = que.pop(0)
+        if curr.coords == coords_to_find:
+            return curr
+        for child in curr.children:
+            que.append(child)
+    return None
+
 
 def build_spanning_tree_bfs_and_extract_features(image, coords):
     root = Node(coords=coords, level=0)
@@ -101,26 +114,36 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
     feature = {
         "lv": 0.0,
         "nb": 0,
-        "nc": 0,
+        "nc_t": 0,
         "pc": 1,
         "dm": 0,
         "cp": 0,
+        "nc": 0,
     }
 
     while que:
         curr = que.pop(0)
         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)
 
-        # not working well
-        if len(prev_visited_neighbors_coords) > 1:
-            if is_cycle(curr):
-                feature["nc"] += 1
+        if curr.parent is not None:
+            prev_visited_neighbors_coords.remove(curr.parent.coords)
 
-        if len(unvisited_neighbors_coords) > 1:
+        if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:
             curr.is_branching_node = True
-            # parameter calc
             feature["nb"] += 1
 
+        # delete unwanted prev in cycle check process
+        for coords in prev_visited_neighbors_coords[:]:
+            node = find_node_by_coords(root, coords)
+            if node.level < curr.level:
+                prev_visited_neighbors_coords.remove(node.coords)
+
+        # if after deleting unwanted prev prev_list is not empty, cycle is report
+        if prev_visited_neighbors_coords:
+            prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+            if is_cycle_length_above_threshold(curr, prev):
+                feature["nc_t"] += 1
+            feature["nc"] += 1
 
         for neighbour_coords in unvisited_neighbors_coords:
             if all(neighbour_coords != node.coords for node in que):
@@ -208,6 +231,7 @@ def form_array_of_skeleton_make_spanning_trees(image):
     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
     lv_feature = 0.0
     nb_feature = 0
+    nc_t_feature = 0
     nc_feature = 0
     dm_feature = 0
     cp_feature = 0
@@ -216,9 +240,10 @@ def form_array_of_skeleton_make_spanning_trees(image):
             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
             if tree is not None:
                 trees.append(tree)
+                nc_feature += feature["nc"]
                 lv_feature += feature["lv"]
                 nb_feature += feature["nb"]
-                nc_feature += feature["nc"]
+                nc_t_feature += feature["nc_t"]
                 dm_feature += feature["dm"]
                 cp_feature += feature["cp"]
-    return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature
+    return trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature
