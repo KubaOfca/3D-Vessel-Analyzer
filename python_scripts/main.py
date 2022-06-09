@@ -1,3 +1,5 @@
+import math
+
 import pydicom
 from skimage.morphology import skeletonize
 from cython_scripts.tree_from_skeleton_image import form_array_of_skeleton_make_spanning_trees
@@ -15,7 +17,6 @@ import tifffile as tiffio
 import numpy as np
 
 # TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
-# TODO: poprwiac cykle
 # TODO: przeliczenie na centymetry, sprawdzic czy poprawne
 # TODO: poszukac innego sposobu analizy parametrow
 
@@ -58,15 +59,15 @@ def load_raw_xml_file(filename, directory):
         depth = float(xml_reader.find('parameter', {'name': 'B-Mode/Depth'}).get('value').replace(',', '.'))
         width = float(xml_reader.find('parameter', {'name': 'B-Mode/Width'}).get('value').replace(',', '.'))
         step_size = float(xml_reader.find('parameter', {'name': '3D-Step-Size'}).get('value').replace(',', '.'))
-        pixel_size_cm = depth * width * step_size / 10
+        real_image_size_mm = depth * width * step_size
     except Exception as e:
         messagebox.showerror(
             title="Raw XML error",
-            message=f"{e}\nCan't load raw.xml file, so some of features will be in pixel scale instead of cm"
+            message=f"{e}\nCan't load raw.xml file, so some features will be in pixel scale instead of cm"
         )
-        pixel_size_cm = 1
+        real_image_size_mm = 1
 
-    return pixel_size_cm
+    return real_image_size_mm
 
 
 def check_assumption_before_analysis():
@@ -153,6 +154,8 @@ def save_results(result_dict, directory):
 
 def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
     global stop_analyze
+
+    # GUI - init
     stop_analyze_button["state"] = "normal"  # GUI - make stop button able to click
     xlsx_radio["state"] = "disabled"
     csv_radio["state"] = "disabled"
@@ -195,68 +198,28 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
 
             # load file
             result_dict["FileName"].append(filename)
-            pixel_size_cm = 1
             vessel_3d_array = []  # store information about vessels image in 3D array
 
             if extension == ".dcm":
                 vessel_3d_array = pydicom.dcmread(file_full_path).pixel_array
-                pixel_size_cm = load_raw_xml_file(filename, directory)
             elif extension == ".tif":
                 vessel_3d_array = tiffio.imread(file_full_path)
 
-            vessel_3d_array = vessel_3d_array[:, ROI[1][0]: ROI[1][1], ROI[0][0]: ROI[0][1]]
+            pixel_size_mm = (load_raw_xml_file(filename, directory) /
+                             (vessel_3d_array.shape[1] * vessel_3d_array.shape[2])) ** (1./3.)
 
             # threshold and make image binary
             image_manipulation.threshold(vessel_3d_array)
             vessel_3d_array = image_manipulation.make_RGB_image_binary(vessel_3d_array)
             # make skeleton from data
             skeleton = skeletonize(vessel_3d_array, method='lee')
-            # test
-            # test_arr = np.zeros((3, 10, 17), dtype=np.int32)
-            # test_arr[1, 5, 0] = 1
-            # test_arr[1, 5, 1] = 1
-            # test_arr[1, 5, 2] = 1
-            # test_arr[1, 4, 3] = 1
-            # test_arr[1, 6, 3] = 1
-            # test_arr[1, 3, 4] = 1
-            # test_arr[1, 7, 4] = 1
-            # test_arr[1, 3, 5] = 1
-            # test_arr[1, 7, 5] = 1
-            # test_arr[1, 2, 6] = 1
-            # test_arr[1, 4, 6] = 1
-            # test_arr[1, 7, 6] = 1
-            # test_arr[1, 1, 7] = 1
-            # test_arr[1, 4, 7] = 1
-            # test_arr[1, 7, 7] = 1
-            # test_arr[1, 1, 8] = 1
-            # test_arr[1, 3, 8] = 1
-            # test_arr[1, 6, 8] = 1
-            # test_arr[1, 8, 8] = 1
-            # test_arr[1, 3, 9] = 1
-            # test_arr[1, 6, 9] = 1
-            # test_arr[1, 8, 9] = 1
-            # test_arr[1, 2, 10] = 1
-            # test_arr[1, 4, 10] = 1
-            # test_arr[1, 7, 10] = 1
-            # test_arr[1, 2, 11] = 1
-            # test_arr[1, 4, 11] = 1
-            # test_arr[1, 7, 11] = 1
-            # test_arr[1, 4, 12] = 1
-            # test_arr[1, 7, 12] = 1
-            # test_arr[1, 4, 13] = 1
-            # test_arr[1, 6, 13] = 1
-            # test_arr[1, 8, 13] = 1
-            # test_arr[1, 4, 14] = 1
-            # test_arr[1, 6, 14] = 1
-            # test_arr[1, 8, 14] = 1
-            # test_arr[1, 5, 15] = 1
-            # analyze and extract features
+
             trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature \
                 = form_array_of_skeleton_make_spanning_trees(skeleton)
             # save result to dict
             nt_feature = len(trees)
             result_dict["Vessel-to-volume ratio [%]"].append(round(image_manipulation.vr(vessel_3d_array), 2))
-            result_dict["length of vessels"].append(round(lv_feature * pixel_size_cm, 2))
+            result_dict["length of vessels"].append(lv_feature * pixel_size_mm)
             result_dict["number of branching"].append(nb_feature)
             result_dict["number of cycles above threshold"].append(nc_t_feature)
             result_dict["number of cycles"].append(nc_feature)
