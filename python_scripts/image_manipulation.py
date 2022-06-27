@@ -1,17 +1,23 @@
+import numpy
 import numpy as np
 from PIL import Image
 
 
-def vr(image):
+def vr(image, tumor):
     foreground = np.count_nonzero(image == 1)
-    depth, height, width = image.shape
-    return (foreground/(depth*height*width)) * 100
+    return (foreground/tumor) * 100
 
 
 def threshold(image):
-    background = np.logical_and(image[:, :, :, 0] == image[:, :, :, 1], image[:, :, :, 1] == image[:, :, :, 2])
+    tumor = np.logical_and(image[:, :, :, 0] != 0,
+                           image[:, :, :, 1] != 0,
+                           image[:, :, :, 2] != 0,)
+    tumor_volume = np.count_nonzero(image[tumor])
+    background = np.logical_and(image[:, :, :, 0] == image[:, :, :, 1],
+                                image[:, :, :, 1] == image[:, :, :, 2])
     image[background] = [0, 0, 0]
     image[np.logical_not(background)] = [1, 0, 0]
+    return tumor_volume
 
 
 def make_RGB_image_binary(image):
@@ -20,7 +26,7 @@ def make_RGB_image_binary(image):
 
 
 def save_one_2D_binary_image(image, name):
-    im = Image.fromarray(image*255)
+    im = Image.fromarray(image)
     im.save(f"{name}.png")
 
 

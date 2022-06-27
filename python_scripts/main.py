@@ -1,5 +1,3 @@
-import math
-
 import pydicom
 from skimage.morphology import skeletonize
 from cython_scripts.tree_from_skeleton_image import form_array_of_skeleton_make_spanning_trees
@@ -14,11 +12,7 @@ import threading
 import os
 from bs4 import BeautifulSoup
 import tifffile as tiffio
-import numpy as np
 
-# TODO: 1 pomiary kretosci, modyfikacja szkieletonizacji w celu zbadania grubosci ???
-# TODO: przeliczenie na centymetry, sprawdzic czy poprawne
-# TODO: poszukac innego sposobu analizy parametrow
 
 # global var
 ROI = [(115, 1032), (169, 702)]
@@ -208,8 +202,8 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
             pixel_size_mm = (load_raw_xml_file(filename, directory) /
                              (vessel_3d_array.shape[1] * vessel_3d_array.shape[2])) ** (1./3.)
 
-            # threshold and make image binary
-            image_manipulation.threshold(vessel_3d_array)
+            # threshold and make image binary and extract tumor volume
+            tumor_volume = image_manipulation.threshold(vessel_3d_array)
             vessel_3d_array = image_manipulation.make_RGB_image_binary(vessel_3d_array)
             # make skeleton from data
             skeleton = skeletonize(vessel_3d_array, method='lee')
@@ -218,7 +212,8 @@ def analyze_vessels(directory, list_of_files, number_of_dcm_files, extension):
                 = form_array_of_skeleton_make_spanning_trees(skeleton)
             # save result to dict
             nt_feature = len(trees)
-            result_dict["Vessel-to-volume ratio [%]"].append(round(image_manipulation.vr(vessel_3d_array), 2))
+            result_dict["Vessel-to-volume ratio [%]"].append(round(image_manipulation.vr(vessel_3d_array, tumor_volume),
+                                                                   2))
             result_dict["length of vessels"].append(lv_feature * pixel_size_mm)
             result_dict["number of branching"].append(nb_feature)
             result_dict["number of cycles above threshold"].append(nc_t_feature)

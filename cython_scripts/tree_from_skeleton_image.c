@@ -1194,7 +1194,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":97
+/* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
@@ -1208,7 +1208,7 @@ struct __pyx_obj_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_
 };
 
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":126
+/* "cython_scripts/tree_from_skeleton_image.pyx":149
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:
  *             if all(neighbour_coords != node.coords for node in que):             # <<<<<<<<<<<<<<
@@ -1548,6 +1548,12 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, long intval, 
 #define __Pyx_PyInt_AddObjC(op1, op2, intval, inplace, zerodivision_check)\
     (inplace ? PyNumber_InPlaceAdd(op1, op2) : PyNumber_Add(op1, op2))
 #endif
+
+/* SliceObject.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
+        PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
+        int has_cstart, int has_cstop, int wraparound);
 
 /* append.proto */
 static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x);
@@ -2054,6 +2060,7 @@ static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_[] = "-----------------------------------";
 static const char __pyx_k_i[] = "i";
 static const char __pyx_k_x[] = "x";
+static const char __pyx_k_y[] = "y";
 static const char __pyx_k_cp[] = "cp";
 static const char __pyx_k_dm[] = "dm";
 static const char __pyx_k_lv[] = "lv";
@@ -2084,6 +2091,9 @@ static const char __pyx_k_init[] = "__init__";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_math[] = "math";
 static const char __pyx_k_name[] = "__name__";
+static const char __pyx_k_nc_t[] = "nc_t";
+static const char __pyx_k_node[] = "node";
+static const char __pyx_k_prev[] = "prev";
 static const char __pyx_k_root[] = "root";
 static const char __pyx_k_self[] = "self";
 static const char __pyx_k_send[] = "send";
@@ -2123,7 +2133,6 @@ static const char __pyx_k_Children[] = "Children: ";
 static const char __pyx_k_children[] = "children";
 static const char __pyx_k_ip_t1_t2[] = "ip_t1_t2";
 static const char __pyx_k_ip_t2_t3[] = "ip_t2_t3";
-static const char __pyx_k_is_cycle[] = "is_cycle";
 static const char __pyx_k_qualname[] = "__qualname__";
 static const char __pyx_k_subtract[] = "subtract";
 static const char __pyx_k_col_start[] = "col_start";
@@ -2141,12 +2150,13 @@ static const char __pyx_k_child_child[] = "child_child";
 static const char __pyx_k_panel_start[] = "panel_start";
 static const char __pyx_k_post_proces[] = "post_proces";
 static const char __pyx_k_array_to_sum[] = "array_to_sum";
-static const char __pyx_k_end_of_cycle[] = "end_of_cycle";
+static const char __pyx_k_nc_t_feature[] = "nc_t_feature";
 static const char __pyx_k_t1_magnitude[] = "t1_magnitude";
 static const char __pyx_k_t2_magnitude[] = "t2_magnitude";
 static const char __pyx_k_t3_magnitude[] = "t3_magnitude";
 static const char __pyx_k_ip_t1_t2_temp[] = "ip_t1_t2_temp";
 static const char __pyx_k_ip_t2_t3_temp[] = "ip_t2_t3_temp";
+static const char __pyx_k_coords_to_find[] = "coords_to_find";
 static const char __pyx_k_print_tree_bfs[] = "print_tree_bfs";
 static const char __pyx_k_range_neighbour[] = "range_neighbour";
 static const char __pyx_k_last_node_coords[] = "last_node_coords";
@@ -2157,7 +2167,9 @@ static const char __pyx_k_is_branching_node[] = "is_branching_node";
 static const char __pyx_k_is_line_end_point[] = "is_line_end_point";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_euclidean_distance[] = "euclidean_distance";
+static const char __pyx_k_level_of_end_cycle[] = "level_of_end_cycle";
 static const char __pyx_k_range_of_neighbors[] = "range_of_neighbors";
+static const char __pyx_k_find_node_by_coords[] = "find_node_by_coords";
 static const char __pyx_k_range_of_neighbours[] = "range_of_neighbours";
 static const char __pyx_k_unvisited_neighbors[] = "unvisited_neighbors";
 static const char __pyx_k_t1_t2_cross_magnitude[] = "t1_t2_cross_magnitude";
@@ -2165,8 +2177,8 @@ static const char __pyx_k_t2_t3_cross_magnitude[] = "t2_t3_cross_magnitude";
 static const char __pyx_k_prev_visited_neighbors[] = "prev_visited_neighbors";
 static const char __pyx_k_unvisited_neighbors_coords[] = "unvisited_neighbors_coords";
 static const char __pyx_k_coords_of_neighbors_of_pixel[] = "coords_of_neighbors_of_pixel";
-static const char __pyx_k_is_cycle_check_branching_node[] = "is_cycle_check_branching_node";
 static const char __pyx_k_prev_visited_neighbors_coords[] = "prev_visited_neighbors_coords";
+static const char __pyx_k_is_cycle_length_above_threshold[] = "is_cycle_length_above_threshold";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_build_spanning_tree_bfs_and_extr[] = "build_spanning_tree_bfs_and_extract_features.<locals>.genexpr";
 static const char __pyx_k_coords_of_possible_line_end_poin[] = "coords_of_possible_line_end_points";
@@ -2200,6 +2212,7 @@ static PyObject *__pyx_n_s_col_start;
 static PyObject *__pyx_n_s_coords;
 static PyObject *__pyx_n_s_coords_of_neighbors_of_pixel;
 static PyObject *__pyx_n_s_coords_of_possible_line_end_poin;
+static PyObject *__pyx_n_s_coords_to_find;
 static PyObject *__pyx_n_s_cp;
 static PyObject *__pyx_n_s_cp_feature;
 static PyObject *__pyx_n_s_cross;
@@ -2212,10 +2225,10 @@ static PyObject *__pyx_n_s_dm_feature;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_dot;
 static PyObject *__pyx_n_s_end;
-static PyObject *__pyx_n_s_end_of_cycle;
 static PyObject *__pyx_n_s_euclidean_distance;
 static PyObject *__pyx_n_s_feature;
 static PyObject *__pyx_n_s_file;
+static PyObject *__pyx_n_s_find_node_by_coords;
 static PyObject *__pyx_n_s_form_array_of_skeleton_make_span;
 static PyObject *__pyx_n_s_genexpr;
 static PyObject *__pyx_n_s_i;
@@ -2227,11 +2240,11 @@ static PyObject *__pyx_n_s_ip_t1_t2_temp;
 static PyObject *__pyx_n_s_ip_t2_t3;
 static PyObject *__pyx_n_s_ip_t2_t3_temp;
 static PyObject *__pyx_n_s_is_branching_node;
-static PyObject *__pyx_n_s_is_cycle;
-static PyObject *__pyx_n_s_is_cycle_check_branching_node;
+static PyObject *__pyx_n_s_is_cycle_length_above_threshold;
 static PyObject *__pyx_n_s_is_line_end_point;
 static PyObject *__pyx_n_s_last_node_coords;
 static PyObject *__pyx_n_s_level;
+static PyObject *__pyx_n_s_level_of_end_cycle;
 static PyObject *__pyx_n_s_lv;
 static PyObject *__pyx_n_s_lv_feature;
 static PyObject *__pyx_n_s_main;
@@ -2243,7 +2256,10 @@ static PyObject *__pyx_n_s_nb;
 static PyObject *__pyx_n_s_nb_feature;
 static PyObject *__pyx_n_s_nc;
 static PyObject *__pyx_n_s_nc_feature;
+static PyObject *__pyx_n_s_nc_t;
+static PyObject *__pyx_n_s_nc_t_feature;
 static PyObject *__pyx_n_s_neighbour_coords;
+static PyObject *__pyx_n_s_node;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_kp_s_numpy_core_multiarray_failed_to;
 static PyObject *__pyx_kp_s_numpy_core_umath_failed_to_impor;
@@ -2255,6 +2271,7 @@ static PyObject *__pyx_n_s_pc;
 static PyObject *__pyx_n_s_pop;
 static PyObject *__pyx_n_s_post_proces;
 static PyObject *__pyx_n_s_prepare;
+static PyObject *__pyx_n_s_prev;
 static PyObject *__pyx_n_s_prev_visited_neighbors;
 static PyObject *__pyx_n_s_prev_visited_neighbors_coords;
 static PyObject *__pyx_n_s_print;
@@ -2298,18 +2315,20 @@ static PyObject *__pyx_n_s_unvisited_neighbors;
 static PyObject *__pyx_n_s_unvisited_neighbors_coords;
 static PyObject *__pyx_n_s_where;
 static PyObject *__pyx_n_s_x;
+static PyObject *__pyx_n_s_y;
 static PyObject *__pyx_n_s_zip;
 static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4Node___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_level, PyObject *__pyx_v_parent); /* proto */
 static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_soam(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_root, PyObject *__pyx_v_feature); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_curr); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle_length_above_threshold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_curr, PyObject *__pyx_v_prev); /* proto */
 static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tree_bfs(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_root); /* proto */
 static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proces(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_root, PyObject *__pyx_v_feature); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8find_node_by_coords(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_root, PyObject *__pyx_v_coords_to_find); /* proto */
 static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_genexpr(PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spanning_tree_bfs_and_extract_features(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of_neighbours(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_image); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_of_neighbors_of_pixel(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_end_point(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_array_of_skeleton_make_spanning_trees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10build_spanning_tree_bfs_and_extract_features(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12range_of_neighbours(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_image); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14coords_of_neighbors_of_pixel(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16is_line_end_point(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords); /* proto */
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_18form_array_of_skeleton_make_spanning_trees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image); /* proto */
 static PyObject *__pyx_tp_new_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_1_genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_float_0_0;
@@ -2318,30 +2337,33 @@ static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_5;
 static PyObject *__pyx_int_10;
-static PyObject *__pyx_tuple__2;
+static PyObject *__pyx_slice__2;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
-static PyObject *__pyx_tuple__7;
+static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__8;
-static PyObject *__pyx_tuple__10;
-static PyObject *__pyx_tuple__12;
-static PyObject *__pyx_tuple__14;
-static PyObject *__pyx_tuple__16;
-static PyObject *__pyx_tuple__18;
-static PyObject *__pyx_tuple__20;
-static PyObject *__pyx_tuple__22;
-static PyObject *__pyx_tuple__24;
-static PyObject *__pyx_codeobj__6;
-static PyObject *__pyx_codeobj__9;
-static PyObject *__pyx_codeobj__11;
-static PyObject *__pyx_codeobj__13;
-static PyObject *__pyx_codeobj__15;
-static PyObject *__pyx_codeobj__17;
-static PyObject *__pyx_codeobj__19;
-static PyObject *__pyx_codeobj__21;
-static PyObject *__pyx_codeobj__23;
-static PyObject *__pyx_codeobj__25;
+static PyObject *__pyx_tuple__9;
+static PyObject *__pyx_tuple__11;
+static PyObject *__pyx_tuple__13;
+static PyObject *__pyx_tuple__15;
+static PyObject *__pyx_tuple__17;
+static PyObject *__pyx_tuple__19;
+static PyObject *__pyx_tuple__21;
+static PyObject *__pyx_tuple__23;
+static PyObject *__pyx_tuple__25;
+static PyObject *__pyx_tuple__27;
+static PyObject *__pyx_codeobj__7;
+static PyObject *__pyx_codeobj__10;
+static PyObject *__pyx_codeobj__12;
+static PyObject *__pyx_codeobj__14;
+static PyObject *__pyx_codeobj__16;
+static PyObject *__pyx_codeobj__18;
+static PyObject *__pyx_codeobj__20;
+static PyObject *__pyx_codeobj__22;
+static PyObject *__pyx_codeobj__24;
+static PyObject *__pyx_codeobj__26;
+static PyObject *__pyx_codeobj__28;
 /* Late includes */
 
 /* "cython_scripts/tree_from_skeleton_image.pyx":11
@@ -2478,7 +2500,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4Node___in
  *         self.children = []
  *         self.coords = coords             # <<<<<<<<<<<<<<
  *         self.is_branching_node = False
- *         self.is_cycle_check_branching_node = False
+ *         #self.is_cycle_check_branching_node = False
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_coords, __pyx_v_coords) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
 
@@ -2486,23 +2508,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4Node___in
  *         self.children = []
  *         self.coords = coords
  *         self.is_branching_node = False             # <<<<<<<<<<<<<<
- *         self.is_cycle_check_branching_node = False
+ *         #self.is_cycle_check_branching_node = False
  *         self.level = level
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_is_branching_node, Py_False) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":16
- *         self.coords = coords
- *         self.is_branching_node = False
- *         self.is_cycle_check_branching_node = False             # <<<<<<<<<<<<<<
- *         self.level = level
- * 
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_is_cycle_check_branching_node, Py_False) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
-
   /* "cython_scripts/tree_from_skeleton_image.pyx":17
  *         self.is_branching_node = False
- *         self.is_cycle_check_branching_node = False
+ *         #self.is_cycle_check_branching_node = False
  *         self.level = level             # <<<<<<<<<<<<<<
  * 
  * 
@@ -3982,28 +3995,80 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_soam(CYTHO
 /* "cython_scripts/tree_from_skeleton_image.pyx":51
  * 
  * 
- * def is_cycle(curr):             # <<<<<<<<<<<<<<
- *     end_of_cycle = curr
- *     x = curr.parent
+ * def is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *     x = curr
+ *     y = prev
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle(PyObject *__pyx_self, PyObject *__pyx_v_curr); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_3is_cycle = {"is_cycle", (PyCFunction)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle, METH_O, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle(PyObject *__pyx_self, PyObject *__pyx_v_curr) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle_length_above_threshold(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_3is_cycle_length_above_threshold = {"is_cycle_length_above_threshold", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle_length_above_threshold, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_3is_cycle_length_above_threshold(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_curr = 0;
+  PyObject *__pyx_v_prev = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("is_cycle (wrapper)", 0);
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle(__pyx_self, ((PyObject *)__pyx_v_curr));
+  __Pyx_RefNannySetupContext("is_cycle_length_above_threshold (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_curr,&__pyx_n_s_prev,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_curr)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_prev)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("is_cycle_length_above_threshold", 1, 2, 2, 1); __PYX_ERR(0, 51, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_cycle_length_above_threshold") < 0)) __PYX_ERR(0, 51, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_curr = values[0];
+    __pyx_v_prev = values[1];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("is_cycle_length_above_threshold", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 51, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.is_cycle_length_above_threshold", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle_length_above_threshold(__pyx_self, __pyx_v_curr, __pyx_v_prev);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_curr) {
-  PyObject *__pyx_v_end_of_cycle = NULL;
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle_length_above_threshold(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_curr, PyObject *__pyx_v_prev) {
   PyObject *__pyx_v_x = NULL;
+  PyObject *__pyx_v_y = NULL;
+  PyObject *__pyx_v_level_of_end_cycle = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4014,178 +4079,217 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle(
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("is_cycle", 0);
+  __Pyx_RefNannySetupContext("is_cycle_length_above_threshold", 0);
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":52
  * 
- * def is_cycle(curr):
- *     end_of_cycle = curr             # <<<<<<<<<<<<<<
- *     x = curr.parent
- *     while x is not None:
+ * def is_cycle_length_above_threshold(curr, prev):
+ *     x = curr             # <<<<<<<<<<<<<<
+ *     y = prev
+ *     level_of_end_cycle = prev.level
  */
   __Pyx_INCREF(__pyx_v_curr);
-  __pyx_v_end_of_cycle = __pyx_v_curr;
+  __pyx_v_x = __pyx_v_curr;
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":53
- * def is_cycle(curr):
- *     end_of_cycle = curr
- *     x = curr.parent             # <<<<<<<<<<<<<<
- *     while x is not None:
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
+ * def is_cycle_length_above_threshold(curr, prev):
+ *     x = curr
+ *     y = prev             # <<<<<<<<<<<<<<
+ *     level_of_end_cycle = prev.level
+ *     while x is not y:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_x = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __Pyx_INCREF(__pyx_v_prev);
+  __pyx_v_y = __pyx_v_prev;
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":54
- *     end_of_cycle = curr
- *     x = curr.parent
- *     while x is not None:             # <<<<<<<<<<<<<<
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
- *             x.is_cycle_check_branching_node = True
+ *     x = curr
+ *     y = prev
+ *     level_of_end_cycle = prev.level             # <<<<<<<<<<<<<<
+ *     while x is not y:
+ *         if x.level >= y.level:
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_prev, __pyx_n_s_level); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_level_of_end_cycle = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":55
+ *     y = prev
+ *     level_of_end_cycle = prev.level
+ *     while x is not y:             # <<<<<<<<<<<<<<
+ *         if x.level >= y.level:
+ *             x = x.parent
  */
   while (1) {
-    __pyx_t_2 = (__pyx_v_x != Py_None);
+    __pyx_t_2 = (__pyx_v_x != __pyx_v_y);
     __pyx_t_3 = (__pyx_t_2 != 0);
     if (!__pyx_t_3) break;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":55
- *     x = curr.parent
- *     while x is not None:
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:             # <<<<<<<<<<<<<<
- *             x.is_cycle_check_branching_node = True
- *             if end_of_cycle.level - x.level > T_C:
+    /* "cython_scripts/tree_from_skeleton_image.pyx":56
+ *     level_of_end_cycle = prev.level
+ *     while x is not y:
+ *         if x.level >= y.level:             # <<<<<<<<<<<<<<
+ *             x = x.parent
+ *             while not x.is_branching_node:
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_is_branching_node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_level); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, Py_True, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (__pyx_t_2) {
-    } else {
-      __pyx_t_3 = __pyx_t_2;
-      goto __pyx_L6_bool_binop_done;
-    }
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_is_cycle_check_branching_node); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_y, __pyx_n_s_level); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, Py_False, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_1, __pyx_t_4, Py_GE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __pyx_t_2;
-    __pyx_L6_bool_binop_done:;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (__pyx_t_3) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":56
- *     while x is not None:
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
- *             x.is_cycle_check_branching_node = True             # <<<<<<<<<<<<<<
- *             if end_of_cycle.level - x.level > T_C:
- *                 return True
- */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_x, __pyx_n_s_is_cycle_check_branching_node, Py_True) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
-
       /* "cython_scripts/tree_from_skeleton_image.pyx":57
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
- *             x.is_cycle_check_branching_node = True
- *             if end_of_cycle.level - x.level > T_C:             # <<<<<<<<<<<<<<
- *                 return True
- *             else:
+ *     while x is not y:
+ *         if x.level >= y.level:
+ *             x = x.parent             # <<<<<<<<<<<<<<
+ *             while not x.is_branching_node:
+ *                 x = x.parent
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_end_of_cycle, __pyx_n_s_level); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_level); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_parent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_T_C); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 57, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 57, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (__pyx_t_3) {
+      __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_5);
+      __pyx_t_5 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":58
- *             x.is_cycle_check_branching_node = True
- *             if end_of_cycle.level - x.level > T_C:
- *                 return True             # <<<<<<<<<<<<<<
- *             else:
- *                 return False
+      /* "cython_scripts/tree_from_skeleton_image.pyx":58
+ *         if x.level >= y.level:
+ *             x = x.parent
+ *             while not x.is_branching_node:             # <<<<<<<<<<<<<<
+ *                 x = x.parent
+ *         elif y.level >= x.level:
  */
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_True);
-        __pyx_r = Py_True;
-        goto __pyx_L0;
+      while (1) {
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_is_branching_node); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 58, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __pyx_t_2 = ((!__pyx_t_3) != 0);
+        if (!__pyx_t_2) break;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":57
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:
- *             x.is_cycle_check_branching_node = True
- *             if end_of_cycle.level - x.level > T_C:             # <<<<<<<<<<<<<<
- *                 return True
- *             else:
+        /* "cython_scripts/tree_from_skeleton_image.pyx":59
+ *             x = x.parent
+ *             while not x.is_branching_node:
+ *                 x = x.parent             # <<<<<<<<<<<<<<
+ *         elif y.level >= x.level:
+ *             y = y.parent
  */
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_parent); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 59, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_5);
+        __pyx_t_5 = 0;
+      }
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":56
+ *     level_of_end_cycle = prev.level
+ *     while x is not y:
+ *         if x.level >= y.level:             # <<<<<<<<<<<<<<
+ *             x = x.parent
+ *             while not x.is_branching_node:
+ */
+      goto __pyx_L5;
+    }
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":60
+ *             while not x.is_branching_node:
+ *                 x = x.parent
+ *         elif y.level >= x.level:             # <<<<<<<<<<<<<<
+ *             y = y.parent
+ *             while not y.is_branching_node:
+ */
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_y, __pyx_n_s_level); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_level); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_5, __pyx_t_4, Py_GE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (__pyx_t_2) {
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":61
+ *                 x = x.parent
+ *         elif y.level >= x.level:
+ *             y = y.parent             # <<<<<<<<<<<<<<
+ *             while not y.is_branching_node:
+ *                 y = y.parent
+ */
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_y, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF_SET(__pyx_v_y, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":62
+ *         elif y.level >= x.level:
+ *             y = y.parent
+ *             while not y.is_branching_node:             # <<<<<<<<<<<<<<
+ *                 y = y.parent
+ * 
+ */
+      while (1) {
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_y, __pyx_n_s_is_branching_node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 62, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_3 = ((!__pyx_t_2) != 0);
+        if (!__pyx_t_3) break;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":63
+ *             y = y.parent
+ *             while not y.is_branching_node:
+ *                 y = y.parent             # <<<<<<<<<<<<<<
+ * 
+ *     return level_of_end_cycle - x.level > T_C
+ */
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_y, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF_SET(__pyx_v_y, __pyx_t_1);
+        __pyx_t_1 = 0;
       }
 
       /* "cython_scripts/tree_from_skeleton_image.pyx":60
- *                 return True
- *             else:
- *                 return False             # <<<<<<<<<<<<<<
- *         x = x.parent
- *     return False
- */
-      /*else*/ {
-        __Pyx_XDECREF(__pyx_r);
-        __Pyx_INCREF(Py_False);
-        __pyx_r = Py_False;
-        goto __pyx_L0;
-      }
-
-      /* "cython_scripts/tree_from_skeleton_image.pyx":55
- *     x = curr.parent
- *     while x is not None:
- *         if x.is_branching_node == True and x.is_cycle_check_branching_node == False:             # <<<<<<<<<<<<<<
- *             x.is_cycle_check_branching_node = True
- *             if end_of_cycle.level - x.level > T_C:
+ *             while not x.is_branching_node:
+ *                 x = x.parent
+ *         elif y.level >= x.level:             # <<<<<<<<<<<<<<
+ *             y = y.parent
+ *             while not y.is_branching_node:
  */
     }
-
-    /* "cython_scripts/tree_from_skeleton_image.pyx":61
- *             else:
- *                 return False
- *         x = x.parent             # <<<<<<<<<<<<<<
- *     return False
- * 
- */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_parent); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_1);
-    __pyx_t_1 = 0;
+    __pyx_L5:;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":62
- *                 return False
- *         x = x.parent
- *     return False             # <<<<<<<<<<<<<<
+  /* "cython_scripts/tree_from_skeleton_image.pyx":65
+ *                 y = y.parent
+ * 
+ *     return level_of_end_cycle - x.level > T_C             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(Py_False);
-  __pyx_r = Py_False;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_x, __pyx_n_s_level); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = PyNumber_Subtract(__pyx_v_level_of_end_cycle, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_T_C); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_t_1, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_5;
+  __pyx_t_5 = 0;
   goto __pyx_L0;
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":51
  * 
  * 
- * def is_cycle(curr):             # <<<<<<<<<<<<<<
- *     end_of_cycle = curr
- *     x = curr.parent
+ * def is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *     x = curr
+ *     y = prev
  */
 
   /* function exit code */
@@ -4193,17 +4297,18 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_2is_cycle(
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.is_cycle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.is_cycle_length_above_threshold", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_end_of_cycle);
   __Pyx_XDECREF(__pyx_v_x);
+  __Pyx_XDECREF(__pyx_v_y);
+  __Pyx_XDECREF(__pyx_v_level_of_end_cycle);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":66
+/* "cython_scripts/tree_from_skeleton_image.pyx":68
  * 
  * 
  * def print_tree_bfs(root):             # <<<<<<<<<<<<<<
@@ -4242,14 +4347,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("print_tree_bfs", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":67
+  /* "cython_scripts/tree_from_skeleton_image.pyx":69
  * 
  * def print_tree_bfs(root):
  *     que = [root]             # <<<<<<<<<<<<<<
  *     while que:
  *         parent = que.pop(0)
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_root);
   __Pyx_GIVEREF(__pyx_v_root);
@@ -4257,7 +4362,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
   __pyx_v_que = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":68
+  /* "cython_scripts/tree_from_skeleton_image.pyx":70
  * def print_tree_bfs(root):
  *     que = [root]
  *     while que:             # <<<<<<<<<<<<<<
@@ -4268,28 +4373,28 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
     __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_que) != 0);
     if (!__pyx_t_2) break;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":69
+    /* "cython_scripts/tree_from_skeleton_image.pyx":71
  *     que = [root]
  *     while que:
  *         parent = que.pop(0)             # <<<<<<<<<<<<<<
  *         print("Parent: ", parent.coords)
  *         print("Children: ")
  */
-    __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_parent, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":70
+    /* "cython_scripts/tree_from_skeleton_image.pyx":72
  *     while que:
  *         parent = que.pop(0)
  *         print("Parent: ", parent.coords)             # <<<<<<<<<<<<<<
  *         print("Children: ")
  *         for child in parent.children:
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_kp_s_Parent);
     __Pyx_GIVEREF(__pyx_kp_s_Parent);
@@ -4297,34 +4402,34 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
     __pyx_t_1 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":71
+    /* "cython_scripts/tree_from_skeleton_image.pyx":73
  *         parent = que.pop(0)
  *         print("Parent: ", parent.coords)
  *         print("Children: ")             # <<<<<<<<<<<<<<
  *         for child in parent.children:
  *             print(child.coords)
  */
-    if (__Pyx_PrintOne(0, __pyx_kp_s_Children) < 0) __PYX_ERR(0, 71, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_kp_s_Children) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":72
+    /* "cython_scripts/tree_from_skeleton_image.pyx":74
  *         print("Parent: ", parent.coords)
  *         print("Children: ")
  *         for child in parent.children:             # <<<<<<<<<<<<<<
  *             print(child.coords)
  *             que.append(child)
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
       __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
       __pyx_t_5 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+      __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 72, __pyx_L1_error)
+      __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
@@ -4332,17 +4437,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
         if (likely(PyList_CheckExact(__pyx_t_1))) {
           if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 72, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 74, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -4352,7 +4457,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 72, __pyx_L1_error)
+            else __PYX_ERR(0, 74, __pyx_L1_error)
           }
           break;
         }
@@ -4361,28 +4466,28 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
       __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":73
+      /* "cython_scripts/tree_from_skeleton_image.pyx":75
  *         print("Children: ")
  *         for child in parent.children:
  *             print(child.coords)             # <<<<<<<<<<<<<<
  *             que.append(child)
  *         print("-----------------------------------")
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 73, __pyx_L1_error)
+      if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":74
+      /* "cython_scripts/tree_from_skeleton_image.pyx":76
  *         for child in parent.children:
  *             print(child.coords)
  *             que.append(child)             # <<<<<<<<<<<<<<
  *         print("-----------------------------------")
  * 
  */
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 76, __pyx_L1_error)
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":72
+      /* "cython_scripts/tree_from_skeleton_image.pyx":74
  *         print("Parent: ", parent.coords)
  *         print("Children: ")
  *         for child in parent.children:             # <<<<<<<<<<<<<<
@@ -4392,17 +4497,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":75
+    /* "cython_scripts/tree_from_skeleton_image.pyx":77
  *             print(child.coords)
  *             que.append(child)
  *         print("-----------------------------------")             # <<<<<<<<<<<<<<
  * 
- * def post_proces(root, feature):
+ * 
  */
-    if (__Pyx_PrintOne(0, __pyx_kp_s_) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
+    if (__Pyx_PrintOne(0, __pyx_kp_s_) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":66
+  /* "cython_scripts/tree_from_skeleton_image.pyx":68
  * 
  * 
  * def print_tree_bfs(root):             # <<<<<<<<<<<<<<
@@ -4427,8 +4532,8 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_4print_tre
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":77
- *         print("-----------------------------------")
+/* "cython_scripts/tree_from_skeleton_image.pyx":80
+ * 
  * 
  * def post_proces(root, feature):             # <<<<<<<<<<<<<<
  *     que = [root]
@@ -4470,11 +4575,11 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_7post_proc
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_feature)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("post_proces", 1, 2, 2, 1); __PYX_ERR(0, 77, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("post_proces", 1, 2, 2, 1); __PYX_ERR(0, 80, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "post_proces") < 0)) __PYX_ERR(0, 77, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "post_proces") < 0)) __PYX_ERR(0, 80, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4487,7 +4592,7 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_7post_proc
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("post_proces", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 77, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("post_proces", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 80, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.post_proces", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4526,14 +4631,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("post_proces", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":78
+  /* "cython_scripts/tree_from_skeleton_image.pyx":81
  * 
  * def post_proces(root, feature):
  *     que = [root]             # <<<<<<<<<<<<<<
  *     while que:
  *         parent = que.pop(0)
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_root);
   __Pyx_GIVEREF(__pyx_v_root);
@@ -4541,7 +4646,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
   __pyx_v_que = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":79
+  /* "cython_scripts/tree_from_skeleton_image.pyx":82
  * def post_proces(root, feature):
  *     que = [root]
  *     while que:             # <<<<<<<<<<<<<<
@@ -4552,47 +4657,47 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
     __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_que) != 0);
     if (!__pyx_t_2) break;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":80
+    /* "cython_scripts/tree_from_skeleton_image.pyx":83
  *     que = [root]
  *     while que:
  *         parent = que.pop(0)             # <<<<<<<<<<<<<<
  *         if parent.is_branching_node:
  *             for child in parent.children:
  */
-    __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_parent, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":81
+    /* "cython_scripts/tree_from_skeleton_image.pyx":84
  *     while que:
  *         parent = que.pop(0)
  *         if parent.is_branching_node:             # <<<<<<<<<<<<<<
  *             for child in parent.children:
  *                 if child.children:
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_is_branching_node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_is_branching_node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_2) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":82
+      /* "cython_scripts/tree_from_skeleton_image.pyx":85
  *         parent = que.pop(0)
  *         if parent.is_branching_node:
  *             for child in parent.children:             # <<<<<<<<<<<<<<
  *                 if child.children:
  *                     que.append(child)
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
         __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
         __pyx_t_5 = NULL;
       } else {
-        __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
+        __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       for (;;) {
@@ -4600,17 +4705,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
           if (likely(PyList_CheckExact(__pyx_t_3))) {
             if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
+            __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           } else {
             if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 82, __pyx_L1_error)
+            __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L1_error)
             #else
-            __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+            __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             #endif
           }
@@ -4620,7 +4725,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 82, __pyx_L1_error)
+              else __PYX_ERR(0, 85, __pyx_L1_error)
             }
             break;
           }
@@ -4629,29 +4734,29 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
         __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":83
+        /* "cython_scripts/tree_from_skeleton_image.pyx":86
  *         if parent.is_branching_node:
  *             for child in parent.children:
  *                 if child.children:             # <<<<<<<<<<<<<<
  *                     que.append(child)
  *                 else:
  */
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         if (__pyx_t_2) {
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":84
+          /* "cython_scripts/tree_from_skeleton_image.pyx":87
  *             for child in parent.children:
  *                 if child.children:
  *                     que.append(child)             # <<<<<<<<<<<<<<
  *                 else:
  *                     feature["pc"] -= 1
  */
-          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 84, __pyx_L1_error)
+          __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 87, __pyx_L1_error)
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":83
+          /* "cython_scripts/tree_from_skeleton_image.pyx":86
  *         if parent.is_branching_node:
  *             for child in parent.children:
  *                 if child.children:             # <<<<<<<<<<<<<<
@@ -4661,7 +4766,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
           goto __pyx_L8;
         }
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":86
+        /* "cython_scripts/tree_from_skeleton_image.pyx":89
  *                     que.append(child)
  *                 else:
  *                     feature["pc"] -= 1             # <<<<<<<<<<<<<<
@@ -4671,16 +4776,16 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
         /*else*/ {
           __Pyx_INCREF(__pyx_n_s_pc);
           __pyx_t_7 = __pyx_n_s_pc;
-          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_8 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 86, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_8) < 0)) __PYX_ERR(0, 86, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_8) < 0)) __PYX_ERR(0, 89, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":87
+          /* "cython_scripts/tree_from_skeleton_image.pyx":90
  *                 else:
  *                     feature["pc"] -= 1
  *                     feature["lv"] -= sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))             # <<<<<<<<<<<<<<
@@ -4689,35 +4794,35 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
  */
           __Pyx_INCREF(__pyx_n_s_lv);
           __pyx_t_7 = __pyx_n_s_lv;
-          __pyx_t_8 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 87, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
-          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 87, __pyx_L1_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = PyList_New(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 87, __pyx_L1_error)
+          __pyx_t_10 = PyList_New(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_10);
           for (__pyx_t_11 = 0; __pyx_t_11 < 3; __pyx_t_11+=1) {
             __pyx_v_i = __pyx_t_11;
-            __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_coords); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_coords); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
-            __pyx_t_13 = __Pyx_GetItemInt(__pyx_t_12, __pyx_v_i, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_13 = __Pyx_GetItemInt(__pyx_t_12, __pyx_v_i, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_13);
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-            __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
-            __pyx_t_14 = __Pyx_GetItemInt(__pyx_t_12, __pyx_v_i, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_14 = __Pyx_GetItemInt(__pyx_t_12, __pyx_v_i, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_14);
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-            __pyx_t_12 = PyNumber_Subtract(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_12 = PyNumber_Subtract(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-            __pyx_t_14 = PyNumber_Power(__pyx_t_12, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 87, __pyx_L1_error)
+            __pyx_t_14 = PyNumber_Power(__pyx_t_12, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_14);
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-            if (unlikely(__Pyx_ListComp_Append(__pyx_t_10, (PyObject*)__pyx_t_14))) __PYX_ERR(0, 87, __pyx_L1_error)
+            if (unlikely(__Pyx_ListComp_Append(__pyx_t_10, (PyObject*)__pyx_t_14))) __PYX_ERR(0, 90, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           }
-          __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_10); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 87, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_10); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __pyx_t_10 = NULL;
@@ -4733,27 +4838,27 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
           __pyx_t_1 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_9, __pyx_t_10, __pyx_t_14) : __Pyx_PyObject_CallOneArg(__pyx_t_9, __pyx_t_14);
           __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+          if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          __pyx_t_9 = PyNumber_InPlaceSubtract(__pyx_t_8, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 87, __pyx_L1_error)
+          __pyx_t_9 = PyNumber_InPlaceSubtract(__pyx_t_8, __pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_9) < 0)) __PYX_ERR(0, 87, __pyx_L1_error)
+          if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_9) < 0)) __PYX_ERR(0, 90, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":88
+          /* "cython_scripts/tree_from_skeleton_image.pyx":91
  *                     feature["pc"] -= 1
  *                     feature["lv"] -= sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
  *                     parent.children.remove(child)             # <<<<<<<<<<<<<<
  *             if len(parent.children) == 1:
  *                 parent.is_branching_node = False
  */
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 88, __pyx_L1_error)
+          __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_remove); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_t_1 = NULL;
@@ -4768,14 +4873,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
           }
           __pyx_t_9 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_1, __pyx_v_child) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_v_child);
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 88, __pyx_L1_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         }
         __pyx_L8:;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":82
+        /* "cython_scripts/tree_from_skeleton_image.pyx":85
  *         parent = que.pop(0)
  *         if parent.is_branching_node:
  *             for child in parent.children:             # <<<<<<<<<<<<<<
@@ -4785,30 +4890,30 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":89
+      /* "cython_scripts/tree_from_skeleton_image.pyx":92
  *                     feature["lv"] -= sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
  *                     parent.children.remove(child)
  *             if len(parent.children) == 1:             # <<<<<<<<<<<<<<
  *                 parent.is_branching_node = False
  *                 feature["nb"] -= 1
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 89, __pyx_L1_error)
+      __pyx_t_4 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_2 = ((__pyx_t_4 == 1) != 0);
       if (__pyx_t_2) {
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":90
+        /* "cython_scripts/tree_from_skeleton_image.pyx":93
  *                     parent.children.remove(child)
  *             if len(parent.children) == 1:
  *                 parent.is_branching_node = False             # <<<<<<<<<<<<<<
  *                 feature["nb"] -= 1
  *         elif len(parent.children) == 1:
  */
-        if (__Pyx_PyObject_SetAttrStr(__pyx_v_parent, __pyx_n_s_is_branching_node, Py_False) < 0) __PYX_ERR(0, 90, __pyx_L1_error)
+        if (__Pyx_PyObject_SetAttrStr(__pyx_v_parent, __pyx_n_s_is_branching_node, Py_False) < 0) __PYX_ERR(0, 93, __pyx_L1_error)
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":91
+        /* "cython_scripts/tree_from_skeleton_image.pyx":94
  *             if len(parent.children) == 1:
  *                 parent.is_branching_node = False
  *                 feature["nb"] -= 1             # <<<<<<<<<<<<<<
@@ -4817,16 +4922,16 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
  */
         __Pyx_INCREF(__pyx_n_s_nb);
         __pyx_t_7 = __pyx_n_s_nb;
-        __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_9 = __Pyx_PyInt_SubtractObjC(__pyx_t_3, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 91, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyInt_SubtractObjC(__pyx_t_3, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 94, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_9) < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+        if (unlikely(PyObject_SetItem(__pyx_v_feature, __pyx_t_7, __pyx_t_9) < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":89
+        /* "cython_scripts/tree_from_skeleton_image.pyx":92
  *                     feature["lv"] -= sqrt(sum([(parent.coords[i] - child.coords[i])**2 for i in range(3)]))
  *                     parent.children.remove(child)
  *             if len(parent.children) == 1:             # <<<<<<<<<<<<<<
@@ -4835,7 +4940,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
  */
       }
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":81
+      /* "cython_scripts/tree_from_skeleton_image.pyx":84
  *     while que:
  *         parent = que.pop(0)
  *         if parent.is_branching_node:             # <<<<<<<<<<<<<<
@@ -4845,36 +4950,36 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
       goto __pyx_L5;
     }
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":92
+    /* "cython_scripts/tree_from_skeleton_image.pyx":95
  *                 parent.is_branching_node = False
  *                 feature["nb"] -= 1
  *         elif len(parent.children) == 1:             # <<<<<<<<<<<<<<
  *             que.append(parent.children[0])
  * 
  */
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 92, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 95, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_4 = PyObject_Length(__pyx_t_9); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
+    __pyx_t_4 = PyObject_Length(__pyx_t_9); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 95, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_2 = ((__pyx_t_4 == 1) != 0);
     if (__pyx_t_2) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":93
+      /* "cython_scripts/tree_from_skeleton_image.pyx":96
  *                 feature["nb"] -= 1
  *         elif len(parent.children) == 1:
  *             que.append(parent.children[0])             # <<<<<<<<<<<<<<
  * 
  * 
  */
-      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_parent, __pyx_n_s_children); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 96, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_9, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_9, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_t_3); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 93, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_t_3); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 96, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":92
+      /* "cython_scripts/tree_from_skeleton_image.pyx":95
  *                 parent.is_branching_node = False
  *                 feature["nb"] -= 1
  *         elif len(parent.children) == 1:             # <<<<<<<<<<<<<<
@@ -4885,8 +4990,8 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
     __pyx_L5:;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":77
- *         print("-----------------------------------")
+  /* "cython_scripts/tree_from_skeleton_image.pyx":80
+ * 
  * 
  * def post_proces(root, feature):             # <<<<<<<<<<<<<<
  *     que = [root]
@@ -4917,7 +5022,277 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":97
+/* "cython_scripts/tree_from_skeleton_image.pyx":99
+ * 
+ * 
+ * def find_node_by_coords(root, coords_to_find):             # <<<<<<<<<<<<<<
+ *     que = [root]
+ *     while que:
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9find_node_by_coords(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_9find_node_by_coords = {"find_node_by_coords", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9find_node_by_coords, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9find_node_by_coords(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_root = 0;
+  PyObject *__pyx_v_coords_to_find = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("find_node_by_coords (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_root,&__pyx_n_s_coords_to_find,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_root)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_coords_to_find)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("find_node_by_coords", 1, 2, 2, 1); __PYX_ERR(0, 99, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "find_node_by_coords") < 0)) __PYX_ERR(0, 99, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_root = values[0];
+    __pyx_v_coords_to_find = values[1];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("find_node_by_coords", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 99, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.find_node_by_coords", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_8find_node_by_coords(__pyx_self, __pyx_v_root, __pyx_v_coords_to_find);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8find_node_by_coords(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_root, PyObject *__pyx_v_coords_to_find) {
+  PyObject *__pyx_v_que = NULL;
+  PyObject *__pyx_v_curr = NULL;
+  PyObject *__pyx_v_child = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  PyObject *(*__pyx_t_5)(PyObject *);
+  int __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("find_node_by_coords", 0);
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":100
+ * 
+ * def find_node_by_coords(root, coords_to_find):
+ *     que = [root]             # <<<<<<<<<<<<<<
+ *     while que:
+ *         curr = que.pop(0)
+ */
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_v_root);
+  __Pyx_GIVEREF(__pyx_v_root);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_v_root);
+  __pyx_v_que = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":101
+ * def find_node_by_coords(root, coords_to_find):
+ *     que = [root]
+ *     while que:             # <<<<<<<<<<<<<<
+ *         curr = que.pop(0)
+ *         if curr.coords == coords_to_find:
+ */
+  while (1) {
+    __pyx_t_2 = (PyList_GET_SIZE(__pyx_v_que) != 0);
+    if (!__pyx_t_2) break;
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":102
+ *     que = [root]
+ *     while que:
+ *         curr = que.pop(0)             # <<<<<<<<<<<<<<
+ *         if curr.coords == coords_to_find:
+ *             return curr
+ */
+    __pyx_t_1 = __Pyx_PyList_PopIndex(__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_XDECREF_SET(__pyx_v_curr, __pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":103
+ *     while que:
+ *         curr = que.pop(0)
+ *         if curr.coords == coords_to_find:             # <<<<<<<<<<<<<<
+ *             return curr
+ *         for child in curr.children:
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_v_coords_to_find, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (__pyx_t_2) {
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":104
+ *         curr = que.pop(0)
+ *         if curr.coords == coords_to_find:
+ *             return curr             # <<<<<<<<<<<<<<
+ *         for child in curr.children:
+ *             que.append(child)
+ */
+      __Pyx_XDECREF(__pyx_r);
+      __Pyx_INCREF(__pyx_v_curr);
+      __pyx_r = __pyx_v_curr;
+      goto __pyx_L0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":103
+ *     while que:
+ *         curr = que.pop(0)
+ *         if curr.coords == coords_to_find:             # <<<<<<<<<<<<<<
+ *             return curr
+ *         for child in curr.children:
+ */
+    }
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":105
+ *         if curr.coords == coords_to_find:
+ *             return curr
+ *         for child in curr.children:             # <<<<<<<<<<<<<<
+ *             que.append(child)
+ *     return None
+ */
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_children); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
+      __pyx_t_1 = __pyx_t_3; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
+      __pyx_t_5 = NULL;
+    } else {
+      __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 105, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_5)) {
+        if (likely(PyList_CheckExact(__pyx_t_1))) {
+          if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+          #else
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          #endif
+        } else {
+          if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
+          #else
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          #endif
+        }
+      } else {
+        __pyx_t_3 = __pyx_t_5(__pyx_t_1);
+        if (unlikely(!__pyx_t_3)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 105, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_3);
+      }
+      __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_3);
+      __pyx_t_3 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":106
+ *             return curr
+ *         for child in curr.children:
+ *             que.append(child)             # <<<<<<<<<<<<<<
+ *     return None
+ * 
+ */
+      __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 106, __pyx_L1_error)
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":105
+ *         if curr.coords == coords_to_find:
+ *             return curr
+ *         for child in curr.children:             # <<<<<<<<<<<<<<
+ *             que.append(child)
+ *     return None
+ */
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":107
+ *         for child in curr.children:
+ *             que.append(child)
+ *     return None             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":99
+ * 
+ * 
+ * def find_node_by_coords(root, coords_to_find):             # <<<<<<<<<<<<<<
+ *     que = [root]
+ *     while que:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.find_node_by_coords", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_que);
+  __Pyx_XDECREF(__pyx_v_curr);
+  __Pyx_XDECREF(__pyx_v_child);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
@@ -4926,9 +5301,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_6post_proc
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spanning_tree_bfs_and_extract_features(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_9build_spanning_tree_bfs_and_extract_features = {"build_spanning_tree_bfs_and_extract_features", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spanning_tree_bfs_and_extract_features, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spanning_tree_bfs_and_extract_features(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11build_spanning_tree_bfs_and_extract_features(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_11build_spanning_tree_bfs_and_extract_features = {"build_spanning_tree_bfs_and_extract_features", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11build_spanning_tree_bfs_and_extract_features, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11build_spanning_tree_bfs_and_extract_features(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_image = 0;
   PyObject *__pyx_v_coords = 0;
   int __pyx_lineno = 0;
@@ -4960,11 +5335,11 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spa
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("build_spanning_tree_bfs_and_extract_features", 1, 2, 2, 1); __PYX_ERR(0, 97, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("build_spanning_tree_bfs_and_extract_features", 1, 2, 2, 1); __PYX_ERR(0, 110, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_spanning_tree_bfs_and_extract_features") < 0)) __PYX_ERR(0, 97, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_spanning_tree_bfs_and_extract_features") < 0)) __PYX_ERR(0, 110, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4977,13 +5352,13 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spa
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("build_spanning_tree_bfs_and_extract_features", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 97, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("build_spanning_tree_bfs_and_extract_features", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 110, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.build_spanning_tree_bfs_and_extract_features", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spanning_tree_bfs_and_extract_features(__pyx_self, __pyx_v_image, __pyx_v_coords);
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_10build_spanning_tree_bfs_and_extract_features(__pyx_self, __pyx_v_image, __pyx_v_coords);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
@@ -4991,7 +5366,7 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_9build_spa
 }
 static PyObject *__pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_2generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":126
+/* "cython_scripts/tree_from_skeleton_image.pyx":149
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:
  *             if all(neighbour_coords != node.coords for node in que):             # <<<<<<<<<<<<<<
@@ -5011,7 +5386,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_44build_sp
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_1_genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 126, __pyx_L1_error)
+    __PYX_ERR(0, 149, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -5019,7 +5394,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_44build_sp
   __Pyx_INCREF(((PyObject *)__pyx_cur_scope->__pyx_outer_scope));
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_outer_scope);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_build_spanning_tree_bfs_and_extr, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!gen)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_2generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_genexpr, __pyx_n_s_build_spanning_tree_bfs_and_extr, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!gen)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -5057,31 +5432,31 @@ static PyObject *__pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_sp
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 126, __pyx_L1_error)
-  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_que)) { __Pyx_RaiseClosureNameError("que"); __PYX_ERR(0, 126, __pyx_L1_error) }
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 149, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_que)) { __Pyx_RaiseClosureNameError("que"); __PYX_ERR(0, 149, __pyx_L1_error) }
   if (unlikely(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_que == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 126, __pyx_L1_error)
+    __PYX_ERR(0, 149, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_cur_scope->__pyx_outer_scope->__pyx_v_que; __Pyx_INCREF(__pyx_t_1); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_2 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_3); __pyx_t_2++; if (unlikely(0 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
     #else
-    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_node);
     __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_node, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_neighbour_coords)) { __Pyx_RaiseClosureNameError("neighbour_coords"); __PYX_ERR(0, 126, __pyx_L1_error) }
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_node, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
+    if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_neighbour_coords)) { __Pyx_RaiseClosureNameError("neighbour_coords"); __PYX_ERR(0, 149, __pyx_L1_error) }
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_node, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_neighbour_coords, __pyx_t_3, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_neighbour_coords, __pyx_t_3, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_6 = ((!__pyx_t_5) != 0);
     if (__pyx_t_6) {
@@ -5120,7 +5495,7 @@ static PyObject *__pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_sp
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":97
+/* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
@@ -5128,13 +5503,15 @@ static PyObject *__pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_sp
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
  */
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spanning_tree_bfs_and_extract_features(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10build_spanning_tree_bfs_and_extract_features(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
   struct __pyx_obj_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features *__pyx_cur_scope;
   PyObject *__pyx_v_root = NULL;
   PyObject *__pyx_v_feature = NULL;
   PyObject *__pyx_v_curr = NULL;
   PyObject *__pyx_v_unvisited_neighbors_coords = NULL;
   PyObject *__pyx_v_prev_visited_neighbors_coords = NULL;
+  PyObject *__pyx_v_node = NULL;
+  PyObject *__pyx_v_prev = NULL;
   PyObject *__pyx_v_child = NULL;
   PyObject *__pyx_v_curr_child_vector = NULL;
   PyObject *__pyx_v_euclidean_distance = NULL;
@@ -5151,12 +5528,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   int __pyx_t_6;
   int __pyx_t_7;
   PyObject *(*__pyx_t_8)(PyObject *);
-  Py_ssize_t __pyx_t_9;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *(*__pyx_t_11)(PyObject *);
-  int __pyx_t_12;
-  PyObject *__pyx_t_13 = NULL;
-  PyObject *__pyx_t_14 = NULL;
+  int __pyx_t_9;
+  Py_ssize_t __pyx_t_10;
+  Py_ssize_t __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *(*__pyx_t_13)(PyObject *);
+  int __pyx_t_14;
+  PyObject *__pyx_t_15 = NULL;
+  PyObject *__pyx_t_16 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5165,56 +5544,57 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 97, __pyx_L1_error)
+    __PYX_ERR(0, 110, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
+  __Pyx_INCREF(__pyx_v_coords);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":98
+  /* "cython_scripts/tree_from_skeleton_image.pyx":111
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):
  *     root = Node(coords=coords, level=0)             # <<<<<<<<<<<<<<
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
  *     que = [root]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Node); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_coords, __pyx_v_coords) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_level, __pyx_int_0) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_coords, __pyx_v_coords) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_level, __pyx_int_0) < 0) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_root = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":99
+  /* "cython_scripts/tree_from_skeleton_image.pyx":112
  * def build_spanning_tree_bfs_and_extract_features(image, coords):
  *     root = Node(coords=coords, level=0)
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree             # <<<<<<<<<<<<<<
  *     que = [root]
  *     feature = {
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
@@ -5225,18 +5605,18 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   __pyx_t_1 = 0;
   __pyx_t_4 = 0;
   __pyx_t_5 = 0;
-  if (unlikely(PyObject_SetItem(__pyx_v_image, __pyx_t_2, __pyx_t_3) < 0)) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (unlikely(PyObject_SetItem(__pyx_v_image, __pyx_t_2, __pyx_t_3) < 0)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":100
+  /* "cython_scripts/tree_from_skeleton_image.pyx":113
  *     root = Node(coords=coords, level=0)
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
  *     que = [root]             # <<<<<<<<<<<<<<
  *     feature = {
  *         "lv": 0.0,
  */
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_root);
   __Pyx_GIVEREF(__pyx_v_root);
@@ -5245,25 +5625,26 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   __pyx_cur_scope->__pyx_v_que = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":102
+  /* "cython_scripts/tree_from_skeleton_image.pyx":115
  *     que = [root]
  *     feature = {
  *         "lv": 0.0,             # <<<<<<<<<<<<<<
  *         "nb": 0,
- *         "nc": 0,
+ *         "nc_t": 0,
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_lv, __pyx_float_0_0) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_nb, __pyx_int_0) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_nc, __pyx_int_0) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_pc, __pyx_int_1) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dm, __pyx_int_0) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_cp, __pyx_int_0) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_lv, __pyx_float_0_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_nb, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_nc_t, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_pc, __pyx_int_1) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dm, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_cp, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_nc, __pyx_int_0) < 0) __PYX_ERR(0, 115, __pyx_L1_error)
   __pyx_v_feature = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":110
+  /* "cython_scripts/tree_from_skeleton_image.pyx":124
  *     }
  * 
  *     while que:             # <<<<<<<<<<<<<<
@@ -5274,28 +5655,28 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
     __pyx_t_6 = (PyList_GET_SIZE(__pyx_cur_scope->__pyx_v_que) != 0);
     if (!__pyx_t_6) break;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":111
+    /* "cython_scripts/tree_from_skeleton_image.pyx":125
  * 
  *     while que:
  *         curr = que.pop(0)             # <<<<<<<<<<<<<<
  *         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)
  * 
  */
-    __pyx_t_3 = __Pyx_PyList_PopIndex(__pyx_cur_scope->__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyList_PopIndex(__pyx_cur_scope->__pyx_v_que, __pyx_int_0, 0, 1, Py_ssize_t, PyInt_FromSsize_t); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_curr, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":112
+    /* "cython_scripts/tree_from_skeleton_image.pyx":126
  *     while que:
  *         curr = que.pop(0)
  *         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)             # <<<<<<<<<<<<<<
  * 
- *         # not working well
+ *         if curr.parent is not None:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_coords_of_neighbors_of_pixel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_coords_of_neighbors_of_pixel); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_4 = NULL;
     __pyx_t_7 = 0;
@@ -5312,7 +5693,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_image, __pyx_t_5};
-      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -5321,14 +5702,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_image, __pyx_t_5};
-      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else
     #endif
     {
-      __pyx_t_1 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -5339,7 +5720,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
       __Pyx_GIVEREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_7, __pyx_t_5);
       __pyx_t_5 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
@@ -5350,7 +5731,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 112, __pyx_L1_error)
+        __PYX_ERR(0, 126, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -5363,15 +5744,15 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
       __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_1);
       #else
-      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       #endif
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
+      __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -5379,7 +5760,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
       __Pyx_GOTREF(__pyx_t_2);
       index = 1; __pyx_t_1 = __pyx_t_8(__pyx_t_5); if (unlikely(!__pyx_t_1)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_1);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_5), 2) < 0) __PYX_ERR(0, 112, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_5), 2) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       goto __pyx_L6_unpacking_done;
@@ -5387,7 +5768,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 112, __pyx_L1_error)
+      __PYX_ERR(0, 126, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_unvisited_neighbors_coords, __pyx_t_2);
@@ -5395,28 +5776,36 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
     __Pyx_XDECREF_SET(__pyx_v_prev_visited_neighbors_coords, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":115
+    /* "cython_scripts/tree_from_skeleton_image.pyx":128
+ *         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)
  * 
- *         # not working well
- *         if len(prev_visited_neighbors_coords) > 1:             # <<<<<<<<<<<<<<
- *             if is_cycle(curr):
- *                 feature["nc"] += 1
+ *         if curr.parent is not None:             # <<<<<<<<<<<<<<
+ *             prev_visited_neighbors_coords.remove(curr.parent.coords)
+ * 
  */
-    __pyx_t_9 = PyObject_Length(__pyx_v_prev_visited_neighbors_coords); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 115, __pyx_L1_error)
-    __pyx_t_6 = ((__pyx_t_9 > 1) != 0);
-    if (__pyx_t_6) {
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_parent); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_6 = (__pyx_t_3 != Py_None);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_9 = (__pyx_t_6 != 0);
+    if (__pyx_t_9) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":116
- *         # not working well
- *         if len(prev_visited_neighbors_coords) > 1:
- *             if is_cycle(curr):             # <<<<<<<<<<<<<<
- *                 feature["nc"] += 1
+      /* "cython_scripts/tree_from_skeleton_image.pyx":129
  * 
+ *         if curr.parent is not None:
+ *             prev_visited_neighbors_coords.remove(curr.parent.coords)             # <<<<<<<<<<<<<<
+ * 
+ *         if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_is_cycle); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_prev_visited_neighbors_coords, __pyx_n_s_remove); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_parent); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_coords); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_2 = NULL;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
         __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
         if (likely(__pyx_t_2)) {
           PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
@@ -5425,205 +5814,536 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
           __Pyx_DECREF_SET(__pyx_t_1, function);
         }
       }
-      __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_curr) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_curr);
+      __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (__pyx_t_6) {
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":117
- *         if len(prev_visited_neighbors_coords) > 1:
- *             if is_cycle(curr):
- *                 feature["nc"] += 1             # <<<<<<<<<<<<<<
+      /* "cython_scripts/tree_from_skeleton_image.pyx":128
+ *         unvisited_neighbors_coords, prev_visited_neighbors_coords = coords_of_neighbors_of_pixel(image, curr.coords)
  * 
- *         if len(unvisited_neighbors_coords) > 1:
+ *         if curr.parent is not None:             # <<<<<<<<<<<<<<
+ *             prev_visited_neighbors_coords.remove(curr.parent.coords)
+ * 
  */
-        __Pyx_INCREF(__pyx_n_s_nc);
-        __pyx_t_10 = __pyx_n_s_nc;
-        __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_10, __pyx_t_1) < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    }
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":116
- *         # not working well
- *         if len(prev_visited_neighbors_coords) > 1:
- *             if is_cycle(curr):             # <<<<<<<<<<<<<<
- *                 feature["nc"] += 1
+    /* "cython_scripts/tree_from_skeleton_image.pyx":131
+ *             prev_visited_neighbors_coords.remove(curr.parent.coords)
+ * 
+ *         if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:             # <<<<<<<<<<<<<<
+ *             curr.is_branching_node = True
+ *             feature["nb"] += 1
+ */
+    __pyx_t_10 = PyObject_Length(__pyx_v_unvisited_neighbors_coords); if (unlikely(__pyx_t_10 == ((Py_ssize_t)-1))) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_11 = PyObject_Length(__pyx_v_prev_visited_neighbors_coords); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_9 = (((__pyx_t_10 + __pyx_t_11) > 1) != 0);
+    if (__pyx_t_9) {
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":132
+ * 
+ *         if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:
+ *             curr.is_branching_node = True             # <<<<<<<<<<<<<<
+ *             feature["nb"] += 1
+ * 
+ */
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_curr, __pyx_n_s_is_branching_node, Py_True) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":133
+ *         if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:
+ *             curr.is_branching_node = True
+ *             feature["nb"] += 1             # <<<<<<<<<<<<<<
+ * 
+ *         # delete unwanted prev in cycle check process
+ */
+      __Pyx_INCREF(__pyx_n_s_nb);
+      __pyx_t_12 = __pyx_n_s_nb;
+      __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_12, __pyx_t_1) < 0)) __PYX_ERR(0, 133, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":131
+ *             prev_visited_neighbors_coords.remove(curr.parent.coords)
+ * 
+ *         if (len(unvisited_neighbors_coords) + len(prev_visited_neighbors_coords)) > 1:             # <<<<<<<<<<<<<<
+ *             curr.is_branching_node = True
+ *             feature["nb"] += 1
+ */
+    }
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":136
+ * 
+ *         # delete unwanted prev in cycle check process
+ *         for coords in prev_visited_neighbors_coords[:]:             # <<<<<<<<<<<<<<
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_prev_visited_neighbors_coords, 0, 0, NULL, NULL, &__pyx_slice__2, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+      __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
+      __pyx_t_13 = NULL;
+    } else {
+      __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_13 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 136, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_13)) {
+        if (likely(PyList_CheckExact(__pyx_t_3))) {
+          if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        } else {
+          if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+          #else
+          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        }
+      } else {
+        __pyx_t_1 = __pyx_t_13(__pyx_t_3);
+        if (unlikely(!__pyx_t_1)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 136, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_DECREF_SET(__pyx_v_coords, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":137
+ *         # delete unwanted prev in cycle check process
+ *         for coords in prev_visited_neighbors_coords[:]:
+ *             node = find_node_by_coords(root, coords)             # <<<<<<<<<<<<<<
+ *             if node.level < curr.level:
+ *                 prev_visited_neighbors_coords.remove(node.coords)
+ */
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_find_node_by_coords); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_2 = NULL;
+      __pyx_t_7 = 0;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_5))) {
+        __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
+        if (likely(__pyx_t_2)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+          __Pyx_INCREF(__pyx_t_2);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_5, function);
+          __pyx_t_7 = 1;
+        }
+      }
+      #if CYTHON_FAST_PYCALL
+      if (PyFunction_Check(__pyx_t_5)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_root, __pyx_v_coords};
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_GOTREF(__pyx_t_1);
+      } else
+      #endif
+      #if CYTHON_FAST_PYCCALL
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_root, __pyx_v_coords};
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_GOTREF(__pyx_t_1);
+      } else
+      #endif
+      {
+        __pyx_t_4 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        if (__pyx_t_2) {
+          __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+        }
+        __Pyx_INCREF(__pyx_v_root);
+        __Pyx_GIVEREF(__pyx_v_root);
+        PyTuple_SET_ITEM(__pyx_t_4, 0+__pyx_t_7, __pyx_v_root);
+        __Pyx_INCREF(__pyx_v_coords);
+        __Pyx_GIVEREF(__pyx_v_coords);
+        PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_7, __pyx_v_coords);
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_node, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":138
+ *         for coords in prev_visited_neighbors_coords[:]:
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:             # <<<<<<<<<<<<<<
+ *                 prev_visited_neighbors_coords.remove(node.coords)
+ * 
+ */
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node, __pyx_n_s_level); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_level); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_5, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 138, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (__pyx_t_9) {
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":139
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:
+ *                 prev_visited_neighbors_coords.remove(node.coords)             # <<<<<<<<<<<<<<
+ * 
+ *         # if after deleting unwanted prev prev_list is not empty, cycle is report
+ */
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_prev_visited_neighbors_coords, __pyx_n_s_remove); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_node, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = NULL;
+        if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
+          __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
+          if (likely(__pyx_t_2)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+            __Pyx_INCREF(__pyx_t_2);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_5, function);
+          }
+        }
+        __pyx_t_4 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_2, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_1);
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":138
+ *         for coords in prev_visited_neighbors_coords[:]:
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:             # <<<<<<<<<<<<<<
+ *                 prev_visited_neighbors_coords.remove(node.coords)
  * 
  */
       }
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":115
+      /* "cython_scripts/tree_from_skeleton_image.pyx":136
  * 
- *         # not working well
- *         if len(prev_visited_neighbors_coords) > 1:             # <<<<<<<<<<<<<<
- *             if is_cycle(curr):
- *                 feature["nc"] += 1
+ *         # delete unwanted prev in cycle check process
+ *         for coords in prev_visited_neighbors_coords[:]:             # <<<<<<<<<<<<<<
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:
  */
     }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":119
- *                 feature["nc"] += 1
+    /* "cython_scripts/tree_from_skeleton_image.pyx":142
  * 
- *         if len(unvisited_neighbors_coords) > 1:             # <<<<<<<<<<<<<<
- *             curr.is_branching_node = True
- *             # parameter calc
+ *         # if after deleting unwanted prev prev_list is not empty, cycle is report
+ *         if prev_visited_neighbors_coords:             # <<<<<<<<<<<<<<
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+ *             if is_cycle_length_above_threshold(curr, prev):
  */
-    __pyx_t_9 = PyObject_Length(__pyx_v_unvisited_neighbors_coords); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 119, __pyx_L1_error)
-    __pyx_t_6 = ((__pyx_t_9 > 1) != 0);
-    if (__pyx_t_6) {
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_prev_visited_neighbors_coords); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 142, __pyx_L1_error)
+    if (__pyx_t_9) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":120
- * 
- *         if len(unvisited_neighbors_coords) > 1:
- *             curr.is_branching_node = True             # <<<<<<<<<<<<<<
- *             # parameter calc
- *             feature["nb"] += 1
+      /* "cython_scripts/tree_from_skeleton_image.pyx":143
+ *         # if after deleting unwanted prev prev_list is not empty, cycle is report
+ *         if prev_visited_neighbors_coords:
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])             # <<<<<<<<<<<<<<
+ *             if is_cycle_length_above_threshold(curr, prev):
+ *                 feature["nc_t"] += 1
  */
-      if (__Pyx_PyObject_SetAttrStr(__pyx_v_curr, __pyx_n_s_is_branching_node, Py_True) < 0) __PYX_ERR(0, 120, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_find_node_by_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_prev_visited_neighbors_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_1 = NULL;
+      __pyx_t_7 = 0;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_1)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_1);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+          __pyx_t_7 = 1;
+        }
+      }
+      #if CYTHON_FAST_PYCALL
+      if (PyFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_root, __pyx_t_5};
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      } else
+      #endif
+      #if CYTHON_FAST_PYCCALL
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_root, __pyx_t_5};
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      } else
+      #endif
+      {
+        __pyx_t_2 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        if (__pyx_t_1) {
+          __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
+        }
+        __Pyx_INCREF(__pyx_v_root);
+        __Pyx_GIVEREF(__pyx_v_root);
+        PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_7, __pyx_v_root);
+        __Pyx_GIVEREF(__pyx_t_5);
+        PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_7, __pyx_t_5);
+        __pyx_t_5 = 0;
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_prev, __pyx_t_3);
+      __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":122
- *             curr.is_branching_node = True
- *             # parameter calc
- *             feature["nb"] += 1             # <<<<<<<<<<<<<<
- * 
- * 
+      /* "cython_scripts/tree_from_skeleton_image.pyx":144
+ *         if prev_visited_neighbors_coords:
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+ *             if is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *                 feature["nc_t"] += 1
+ *             feature["nc"] += 1
  */
-      __Pyx_INCREF(__pyx_n_s_nb);
-      __pyx_t_10 = __pyx_n_s_nb;
-      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_10, __pyx_t_3) < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_is_cycle_length_above_threshold); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_2 = NULL;
+      __pyx_t_7 = 0;
+      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_2)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_2);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+          __pyx_t_7 = 1;
+        }
+      }
+      #if CYTHON_FAST_PYCALL
+      if (PyFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_curr, __pyx_v_prev};
+        __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_GOTREF(__pyx_t_3);
+      } else
+      #endif
+      #if CYTHON_FAST_PYCCALL
+      if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+        PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_curr, __pyx_v_prev};
+        __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_GOTREF(__pyx_t_3);
+      } else
+      #endif
+      {
+        __pyx_t_5 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+        if (__pyx_t_2) {
+          __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
+        }
+        __Pyx_INCREF(__pyx_v_curr);
+        __Pyx_GIVEREF(__pyx_v_curr);
+        PyTuple_SET_ITEM(__pyx_t_5, 0+__pyx_t_7, __pyx_v_curr);
+        __Pyx_INCREF(__pyx_v_prev);
+        __Pyx_GIVEREF(__pyx_v_prev);
+        PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_7, __pyx_v_prev);
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      if (__pyx_t_9) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":119
- *                 feature["nc"] += 1
+        /* "cython_scripts/tree_from_skeleton_image.pyx":145
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+ *             if is_cycle_length_above_threshold(curr, prev):
+ *                 feature["nc_t"] += 1             # <<<<<<<<<<<<<<
+ *             feature["nc"] += 1
  * 
- *         if len(unvisited_neighbors_coords) > 1:             # <<<<<<<<<<<<<<
- *             curr.is_branching_node = True
- *             # parameter calc
+ */
+        __Pyx_INCREF(__pyx_n_s_nc_t);
+        __pyx_t_12 = __pyx_n_s_nc_t;
+        __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_12); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_3, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_12, __pyx_t_4) < 0)) __PYX_ERR(0, 145, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":144
+ *         if prev_visited_neighbors_coords:
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+ *             if is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *                 feature["nc_t"] += 1
+ *             feature["nc"] += 1
+ */
+      }
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":146
+ *             if is_cycle_length_above_threshold(curr, prev):
+ *                 feature["nc_t"] += 1
+ *             feature["nc"] += 1             # <<<<<<<<<<<<<<
+ * 
+ *         for neighbour_coords in unvisited_neighbors_coords:
+ */
+      __Pyx_INCREF(__pyx_n_s_nc);
+      __pyx_t_12 = __pyx_n_s_nc;
+      __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_12, __pyx_t_3) < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+
+      /* "cython_scripts/tree_from_skeleton_image.pyx":142
+ * 
+ *         # if after deleting unwanted prev prev_list is not empty, cycle is report
+ *         if prev_visited_neighbors_coords:             # <<<<<<<<<<<<<<
+ *             prev = find_node_by_coords(root, prev_visited_neighbors_coords[0])
+ *             if is_cycle_length_above_threshold(curr, prev):
  */
     }
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":125
- * 
+    /* "cython_scripts/tree_from_skeleton_image.pyx":148
+ *             feature["nc"] += 1
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:             # <<<<<<<<<<<<<<
  *             if all(neighbour_coords != node.coords for node in que):
  *                 child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)
  */
     if (likely(PyList_CheckExact(__pyx_v_unvisited_neighbors_coords)) || PyTuple_CheckExact(__pyx_v_unvisited_neighbors_coords)) {
-      __pyx_t_3 = __pyx_v_unvisited_neighbors_coords; __Pyx_INCREF(__pyx_t_3); __pyx_t_9 = 0;
-      __pyx_t_11 = NULL;
+      __pyx_t_3 = __pyx_v_unvisited_neighbors_coords; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
+      __pyx_t_13 = NULL;
     } else {
-      __pyx_t_9 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_unvisited_neighbors_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_unvisited_neighbors_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_11 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 125, __pyx_L1_error)
+      __pyx_t_13 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 148, __pyx_L1_error)
     }
     for (;;) {
-      if (likely(!__pyx_t_11)) {
+      if (likely(!__pyx_t_13)) {
         if (likely(PyList_CheckExact(__pyx_t_3))) {
-          if (__pyx_t_9 >= PyList_GET_SIZE(__pyx_t_3)) break;
+          if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 125, __pyx_L1_error)
+          __pyx_t_4 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
           #endif
         } else {
-          if (__pyx_t_9 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
+          if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_9); __Pyx_INCREF(__pyx_t_1); __pyx_t_9++; if (unlikely(0 < 0)) __PYX_ERR(0, 125, __pyx_L1_error)
+          __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_4); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
           #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_9); __pyx_t_9++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_4 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
           #endif
         }
       } else {
-        __pyx_t_1 = __pyx_t_11(__pyx_t_3);
-        if (unlikely(!__pyx_t_1)) {
+        __pyx_t_4 = __pyx_t_13(__pyx_t_3);
+        if (unlikely(!__pyx_t_4)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 125, __pyx_L1_error)
+            else __PYX_ERR(0, 148, __pyx_L1_error)
           }
           break;
         }
-        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GOTREF(__pyx_t_4);
       }
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_neighbour_coords);
-      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_neighbour_coords, __pyx_t_1);
-      __Pyx_GIVEREF(__pyx_t_1);
-      __pyx_t_1 = 0;
+      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_neighbour_coords, __pyx_t_4);
+      __Pyx_GIVEREF(__pyx_t_4);
+      __pyx_t_4 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":126
+      /* "cython_scripts/tree_from_skeleton_image.pyx":149
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:
  *             if all(neighbour_coords != node.coords for node in que):             # <<<<<<<<<<<<<<
  *                 child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)
  *                 curr.children.append(child)
  */
-      __pyx_t_1 = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_genexpr(((PyObject*)__pyx_cur_scope)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_Generator_Next(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 126, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (__pyx_t_6) {
+      __pyx_t_4 = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_genexpr(((PyObject*)__pyx_cur_scope)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_5 = __Pyx_Generator_Next(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (__pyx_t_9) {
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":127
+        /* "cython_scripts/tree_from_skeleton_image.pyx":150
  *         for neighbour_coords in unvisited_neighbors_coords:
  *             if all(neighbour_coords != node.coords for node in que):
  *                 child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)             # <<<<<<<<<<<<<<
  *                 curr.children.append(child)
  *                 feature["pc"] += 1 # save amount of tree nodes
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_Node); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_coords, __pyx_cur_scope->__pyx_v_neighbour_coords) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_level); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Node); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 150, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_5, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_level, __pyx_t_4) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_parent, __pyx_v_curr) < 0) __PYX_ERR(0, 127, __pyx_L1_error)
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_coords, __pyx_cur_scope->__pyx_v_neighbour_coords) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_level); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_level, __pyx_t_1) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_4);
-        __pyx_t_4 = 0;
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_parent, __pyx_v_curr) < 0) __PYX_ERR(0, 150, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_child, __pyx_t_1);
+        __pyx_t_1 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":128
+        /* "cython_scripts/tree_from_skeleton_image.pyx":151
  *             if all(neighbour_coords != node.coords for node in que):
  *                 child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)
  *                 curr.children.append(child)             # <<<<<<<<<<<<<<
  *                 feature["pc"] += 1 # save amount of tree nodes
  *                 que.append(child)
  */
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_children); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_12 = __Pyx_PyObject_Append(__pyx_t_4, __pyx_v_child); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 128, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_children); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_14 = __Pyx_PyObject_Append(__pyx_t_1, __pyx_v_child); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 151, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":129
+        /* "cython_scripts/tree_from_skeleton_image.pyx":152
  *                 child = Node(coords=neighbour_coords, level=curr.level + 1, parent=curr)
  *                 curr.children.append(child)
  *                 feature["pc"] += 1 # save amount of tree nodes             # <<<<<<<<<<<<<<
@@ -5631,214 +6351,214 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
  *                 image[child.coords[0], child.coords[1], child.coords[2]] = VISITED
  */
         __Pyx_INCREF(__pyx_n_s_pc);
-        __pyx_t_10 = __pyx_n_s_pc;
-        __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_12 = __pyx_n_s_pc;
+        __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_12); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_10, __pyx_t_1) < 0)) __PYX_ERR(0, 129, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_12, __pyx_t_4) < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":130
+        /* "cython_scripts/tree_from_skeleton_image.pyx":153
  *                 curr.children.append(child)
  *                 feature["pc"] += 1 # save amount of tree nodes
  *                 que.append(child)             # <<<<<<<<<<<<<<
  *                 image[child.coords[0], child.coords[1], child.coords[2]] = VISITED
  *                 # parameter calc
  */
-        __pyx_t_12 = __Pyx_PyList_Append(__pyx_cur_scope->__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 130, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyList_Append(__pyx_cur_scope->__pyx_v_que, __pyx_v_child); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 153, __pyx_L1_error)
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":131
+        /* "cython_scripts/tree_from_skeleton_image.pyx":154
  *                 feature["pc"] += 1 # save amount of tree nodes
  *                 que.append(child)
  *                 image[child.coords[0], child.coords[1], child.coords[2]] = VISITED             # <<<<<<<<<<<<<<
  *                 # parameter calc
  *                 curr_child_vector = tuple(numpy.subtract(curr.coords, child.coords))
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_2);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 154, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_13 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
-        __Pyx_GIVEREF(__pyx_t_5);
-        PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_5);
-        __Pyx_GIVEREF(__pyx_t_13);
-        PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_13);
-        __pyx_t_2 = 0;
-        __pyx_t_5 = 0;
-        __pyx_t_13 = 0;
-        if (unlikely(PyObject_SetItem(__pyx_v_image, __pyx_t_4, __pyx_t_1) < 0)) __PYX_ERR(0, 131, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_15 = __Pyx_GetItemInt(__pyx_t_1, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_GIVEREF(__pyx_t_5);
+        PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
+        __Pyx_GIVEREF(__pyx_t_2);
+        PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
+        __Pyx_GIVEREF(__pyx_t_15);
+        PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_15);
+        __pyx_t_5 = 0;
+        __pyx_t_2 = 0;
+        __pyx_t_15 = 0;
+        if (unlikely(PyObject_SetItem(__pyx_v_image, __pyx_t_1, __pyx_t_4) < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":133
+        /* "cython_scripts/tree_from_skeleton_image.pyx":156
  *                 image[child.coords[0], child.coords[1], child.coords[2]] = VISITED
  *                 # parameter calc
  *                 curr_child_vector = tuple(numpy.subtract(curr.coords, child.coords))             # <<<<<<<<<<<<<<
  *                 euclidean_distance = sqrt(numpy.dot(curr_child_vector, curr_child_vector))
  *                 feature["lv"] += euclidean_distance
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_subtract); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 133, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_2 = NULL;
+        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_subtract); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_child, __pyx_n_s_coords); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_5 = NULL;
         __pyx_t_7 = 0;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_13))) {
-          __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_13);
-          if (likely(__pyx_t_2)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_13);
-            __Pyx_INCREF(__pyx_t_2);
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_15))) {
+          __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_15);
+          if (likely(__pyx_t_5)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
+            __Pyx_INCREF(__pyx_t_5);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_13, function);
+            __Pyx_DECREF_SET(__pyx_t_15, function);
             __pyx_t_7 = 1;
           }
         }
         #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_13)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_4, __pyx_t_5};
-          __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_13, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        if (PyFunction_Check(__pyx_t_15)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_1, __pyx_t_2};
+          __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_13)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_4, __pyx_t_5};
-          __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_13, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_1, __pyx_t_2};
+          __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         } else
         #endif
         {
-          __pyx_t_14 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 133, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_14);
-          if (__pyx_t_2) {
-            __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_2); __pyx_t_2 = NULL;
+          __pyx_t_16 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 156, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_16);
+          if (__pyx_t_5) {
+            __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_5); __pyx_t_5 = NULL;
           }
-          __Pyx_GIVEREF(__pyx_t_4);
-          PyTuple_SET_ITEM(__pyx_t_14, 0+__pyx_t_7, __pyx_t_4);
-          __Pyx_GIVEREF(__pyx_t_5);
-          PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_7, __pyx_t_5);
-          __pyx_t_4 = 0;
-          __pyx_t_5 = 0;
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+          __Pyx_GIVEREF(__pyx_t_1);
+          PyTuple_SET_ITEM(__pyx_t_16, 0+__pyx_t_7, __pyx_t_1);
+          __Pyx_GIVEREF(__pyx_t_2);
+          PyTuple_SET_ITEM(__pyx_t_16, 1+__pyx_t_7, __pyx_t_2);
+          __pyx_t_1 = 0;
+          __pyx_t_2 = 0;
+          __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_16, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
         }
-        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        __pyx_t_13 = __Pyx_PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 133, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_XDECREF_SET(__pyx_v_curr_child_vector, ((PyObject*)__pyx_t_13));
-        __pyx_t_13 = 0;
+        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        __pyx_t_15 = __Pyx_PySequence_Tuple(__pyx_t_4); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_curr_child_vector, ((PyObject*)__pyx_t_15));
+        __pyx_t_15 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":134
+        /* "cython_scripts/tree_from_skeleton_image.pyx":157
  *                 # parameter calc
  *                 curr_child_vector = tuple(numpy.subtract(curr.coords, child.coords))
  *                 euclidean_distance = sqrt(numpy.dot(curr_child_vector, curr_child_vector))             # <<<<<<<<<<<<<<
  *                 feature["lv"] += euclidean_distance
  * 
  */
-        __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_dot); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_5 = NULL;
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dot); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_2 = NULL;
         __pyx_t_7 = 0;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-          __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-          if (likely(__pyx_t_5)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-            __Pyx_INCREF(__pyx_t_5);
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+          __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+          if (likely(__pyx_t_2)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+            __Pyx_INCREF(__pyx_t_2);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_4, function);
+            __Pyx_DECREF_SET(__pyx_t_1, function);
             __pyx_t_7 = 1;
           }
         }
         #if CYTHON_FAST_PYCALL
-        if (PyFunction_Check(__pyx_t_4)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_curr_child_vector, __pyx_v_curr_child_vector};
-          __pyx_t_14 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 134, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-          __Pyx_GOTREF(__pyx_t_14);
+        if (PyFunction_Check(__pyx_t_1)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_curr_child_vector, __pyx_v_curr_child_vector};
+          __pyx_t_16 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 157, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_GOTREF(__pyx_t_16);
         } else
         #endif
         #if CYTHON_FAST_PYCCALL
-        if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
-          PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_v_curr_child_vector, __pyx_v_curr_child_vector};
-          __pyx_t_14 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 134, __pyx_L1_error)
-          __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-          __Pyx_GOTREF(__pyx_t_14);
+        if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+          PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_curr_child_vector, __pyx_v_curr_child_vector};
+          __pyx_t_16 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 157, __pyx_L1_error)
+          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_GOTREF(__pyx_t_16);
         } else
         #endif
         {
-          __pyx_t_2 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          if (__pyx_t_5) {
-            __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5); __pyx_t_5 = NULL;
+          __pyx_t_5 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 157, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_5);
+          if (__pyx_t_2) {
+            __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __pyx_t_2 = NULL;
           }
           __Pyx_INCREF(__pyx_v_curr_child_vector);
           __Pyx_GIVEREF(__pyx_v_curr_child_vector);
-          PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_7, __pyx_v_curr_child_vector);
+          PyTuple_SET_ITEM(__pyx_t_5, 0+__pyx_t_7, __pyx_v_curr_child_vector);
           __Pyx_INCREF(__pyx_v_curr_child_vector);
           __Pyx_GIVEREF(__pyx_v_curr_child_vector);
-          PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_7, __pyx_v_curr_child_vector);
-          __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 134, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_14);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_7, __pyx_v_curr_child_vector);
+          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 157, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_16);
+          __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         }
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = NULL;
-        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
-          if (likely(__pyx_t_4)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-            __Pyx_INCREF(__pyx_t_4);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_1, function);
-          }
-        }
-        __pyx_t_13 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_t_14) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_14);
-        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 134, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_XDECREF_SET(__pyx_v_euclidean_distance, __pyx_t_13);
-        __pyx_t_13 = 0;
+        __pyx_t_1 = NULL;
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+          __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+          if (likely(__pyx_t_1)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+            __Pyx_INCREF(__pyx_t_1);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_4, function);
+          }
+        }
+        __pyx_t_15 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_1, __pyx_t_16) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_16);
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
+        if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 157, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_euclidean_distance, __pyx_t_15);
+        __pyx_t_15 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":135
+        /* "cython_scripts/tree_from_skeleton_image.pyx":158
  *                 curr_child_vector = tuple(numpy.subtract(curr.coords, child.coords))
  *                 euclidean_distance = sqrt(numpy.dot(curr_child_vector, curr_child_vector))
  *                 feature["lv"] += euclidean_distance             # <<<<<<<<<<<<<<
@@ -5846,17 +6566,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
  *     post_proces(root, feature)
  */
         __Pyx_INCREF(__pyx_n_s_lv);
-        __pyx_t_10 = __pyx_n_s_lv;
-        __pyx_t_13 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_10); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 135, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_t_13, __pyx_v_euclidean_distance); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_10, __pyx_t_1) < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __pyx_t_12 = __pyx_n_s_lv;
+        __pyx_t_15 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_t_12); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 158, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_15);
+        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_15, __pyx_v_euclidean_distance); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_t_12, __pyx_t_4) < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":126
+        /* "cython_scripts/tree_from_skeleton_image.pyx":149
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:
  *             if all(neighbour_coords != node.coords for node in que):             # <<<<<<<<<<<<<<
@@ -5865,8 +6585,8 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
  */
       }
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":125
- * 
+      /* "cython_scripts/tree_from_skeleton_image.pyx":148
+ *             feature["nc"] += 1
  * 
  *         for neighbour_coords in unvisited_neighbors_coords:             # <<<<<<<<<<<<<<
  *             if all(neighbour_coords != node.coords for node in que):
@@ -5876,339 +6596,339 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":137
+  /* "cython_scripts/tree_from_skeleton_image.pyx":160
  *                 feature["lv"] += euclidean_distance
  * 
  *     post_proces(root, feature)             # <<<<<<<<<<<<<<
- *     soam(root, feature)
- *     last_node_coords = curr.coords # for readability
+ * 
+ *     if feature["pc"] < 5:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_post_proces); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_13 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_post_proces); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_15 = NULL;
   __pyx_t_7 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_13)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_13);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_15)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_15);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
       __pyx_t_7 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_13, __pyx_v_root, __pyx_v_feature};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+  if (PyFunction_Check(__pyx_t_4)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_15, __pyx_v_root, __pyx_v_feature};
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_13, __pyx_v_root, __pyx_v_feature};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_15, __pyx_v_root, __pyx_v_feature};
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_14 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 137, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
-    if (__pyx_t_13) {
-      __Pyx_GIVEREF(__pyx_t_13); PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_13); __pyx_t_13 = NULL;
+    __pyx_t_16 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_16);
+    if (__pyx_t_15) {
+      __Pyx_GIVEREF(__pyx_t_15); PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_15); __pyx_t_15 = NULL;
     }
     __Pyx_INCREF(__pyx_v_root);
     __Pyx_GIVEREF(__pyx_v_root);
-    PyTuple_SET_ITEM(__pyx_t_14, 0+__pyx_t_7, __pyx_v_root);
+    PyTuple_SET_ITEM(__pyx_t_16, 0+__pyx_t_7, __pyx_v_root);
     __Pyx_INCREF(__pyx_v_feature);
     __Pyx_GIVEREF(__pyx_v_feature);
-    PyTuple_SET_ITEM(__pyx_t_14, 1+__pyx_t_7, __pyx_v_feature);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_14, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+    PyTuple_SET_ITEM(__pyx_t_16, 1+__pyx_t_7, __pyx_v_feature);
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_16, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+    __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":138
- * 
+  /* "cython_scripts/tree_from_skeleton_image.pyx":162
  *     post_proces(root, feature)
+ * 
+ *     if feature["pc"] < 5:             # <<<<<<<<<<<<<<
+ *         return None, None
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_n_s_pc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, __pyx_int_5, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_9 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__pyx_t_9) {
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":163
+ * 
+ *     if feature["pc"] < 5:
+ *         return None, None             # <<<<<<<<<<<<<<
+ * 
+ *     soam(root, feature)
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_tuple__3);
+    __pyx_r = __pyx_tuple__3;
+    goto __pyx_L0;
+
+    /* "cython_scripts/tree_from_skeleton_image.pyx":162
+ *     post_proces(root, feature)
+ * 
+ *     if feature["pc"] < 5:             # <<<<<<<<<<<<<<
+ *         return None, None
+ * 
+ */
+  }
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":165
+ *         return None, None
+ * 
  *     soam(root, feature)             # <<<<<<<<<<<<<<
  *     last_node_coords = curr.coords # for readability
  *     root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_soam); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_14 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_soam); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_16 = NULL;
   __pyx_t_7 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_14)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_14);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_16 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_16)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_16);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
       __pyx_t_7 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_v_root, __pyx_v_feature};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+  if (PyFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_16, __pyx_v_root, __pyx_v_feature};
+    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_v_root, __pyx_v_feature};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_16, __pyx_v_root, __pyx_v_feature};
+    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
   } else
   #endif
   {
-    __pyx_t_13 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 138, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    if (__pyx_t_14) {
-      __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_14); __pyx_t_14 = NULL;
+    __pyx_t_15 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_15);
+    if (__pyx_t_16) {
+      __Pyx_GIVEREF(__pyx_t_16); PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_16); __pyx_t_16 = NULL;
     }
     __Pyx_INCREF(__pyx_v_root);
     __Pyx_GIVEREF(__pyx_v_root);
-    PyTuple_SET_ITEM(__pyx_t_13, 0+__pyx_t_7, __pyx_v_root);
+    PyTuple_SET_ITEM(__pyx_t_15, 0+__pyx_t_7, __pyx_v_root);
     __Pyx_INCREF(__pyx_v_feature);
     __Pyx_GIVEREF(__pyx_v_feature);
-    PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_7, __pyx_v_feature);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_13, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    PyTuple_SET_ITEM(__pyx_t_15, 1+__pyx_t_7, __pyx_v_feature);
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_15, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":139
- *     post_proces(root, feature)
+  /* "cython_scripts/tree_from_skeleton_image.pyx":166
+ * 
  *     soam(root, feature)
  *     last_node_coords = curr.coords # for readability             # <<<<<<<<<<<<<<
  *     root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
  *     feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]
  */
-  if (unlikely(!__pyx_v_curr)) { __Pyx_RaiseUnboundLocalError("curr"); __PYX_ERR(0, 139, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_v_last_node_coords = __pyx_t_3;
-  __pyx_t_3 = 0;
+  if (unlikely(!__pyx_v_curr)) { __Pyx_RaiseUnboundLocalError("curr"); __PYX_ERR(0, 166, __pyx_L1_error) }
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_curr, __pyx_n_s_coords); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_v_last_node_coords = __pyx_t_4;
+  __pyx_t_4 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":140
+  /* "cython_scripts/tree_from_skeleton_image.pyx":167
  *     soam(root, feature)
  *     last_node_coords = curr.coords # for readability
  *     root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))             # <<<<<<<<<<<<<<
  *     feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_subtract); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_14 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_subtract); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_15);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_root, __pyx_n_s_coords); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_16 = NULL;
   __pyx_t_7 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_13))) {
-    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_13);
-    if (likely(__pyx_t_14)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_13);
-      __Pyx_INCREF(__pyx_t_14);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_15))) {
+    __pyx_t_16 = PyMethod_GET_SELF(__pyx_t_15);
+    if (likely(__pyx_t_16)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_15);
+      __Pyx_INCREF(__pyx_t_16);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_13, function);
+      __Pyx_DECREF_SET(__pyx_t_15, function);
       __pyx_t_7 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_13)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_1, __pyx_v_last_node_coords};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_13, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (PyFunction_Check(__pyx_t_15)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_16, __pyx_t_3, __pyx_v_last_node_coords};
+    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_15, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_13)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_14, __pyx_t_1, __pyx_v_last_node_coords};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_13, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_15)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_16, __pyx_t_3, __pyx_v_last_node_coords};
+    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_15, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   {
-    __pyx_t_4 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    if (__pyx_t_14) {
-      __Pyx_GIVEREF(__pyx_t_14); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_14); __pyx_t_14 = NULL;
+    __pyx_t_1 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (__pyx_t_16) {
+      __Pyx_GIVEREF(__pyx_t_16); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_16); __pyx_t_16 = NULL;
     }
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_4, 0+__pyx_t_7, __pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_1, 0+__pyx_t_7, __pyx_t_3);
     __Pyx_INCREF(__pyx_v_last_node_coords);
     __Pyx_GIVEREF(__pyx_v_last_node_coords);
-    PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_7, __pyx_v_last_node_coords);
-    __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_13, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_7, __pyx_v_last_node_coords);
+    __pyx_t_3 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_13 = __Pyx_PySequence_Tuple(__pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_root_last_vector = ((PyObject*)__pyx_t_13);
-  __pyx_t_13 = 0;
+  __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+  __pyx_t_15 = __Pyx_PySequence_Tuple(__pyx_t_4); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_15);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_root_last_vector = ((PyObject*)__pyx_t_15);
+  __pyx_t_15 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":141
+  /* "cython_scripts/tree_from_skeleton_image.pyx":168
  *     last_node_coords = curr.coords # for readability
  *     root_last_vector = tuple(numpy.subtract(root.coords, last_node_coords))
  *     feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]             # <<<<<<<<<<<<<<
  * 
- *     if feature["pc"] < 5:
+ *     return root, feature
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_dot); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_14);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dot); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_16);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = NULL;
   __pyx_t_7 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_14))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_14);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_14);
-      __Pyx_INCREF(__pyx_t_1);
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_16))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_16);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_16);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_14, function);
+      __Pyx_DECREF_SET(__pyx_t_16, function);
       __pyx_t_7 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_14)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_root_last_vector, __pyx_v_root_last_vector};
-    __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_4);
+  if (PyFunction_Check(__pyx_t_16)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_root_last_vector, __pyx_v_root_last_vector};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_16, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_14)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_root_last_vector, __pyx_v_root_last_vector};
-    __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_14, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_4);
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_16)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_root_last_vector, __pyx_v_root_last_vector};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_16, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_2 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (__pyx_t_1) {
-      __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __pyx_t_1 = NULL;
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    if (__pyx_t_3) {
+      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
     }
     __Pyx_INCREF(__pyx_v_root_last_vector);
     __Pyx_GIVEREF(__pyx_v_root_last_vector);
-    PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_7, __pyx_v_root_last_vector);
+    PyTuple_SET_ITEM(__pyx_t_5, 0+__pyx_t_7, __pyx_v_root_last_vector);
     __Pyx_INCREF(__pyx_v_root_last_vector);
     __Pyx_GIVEREF(__pyx_v_root_last_vector);
-    PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_7, __pyx_v_root_last_vector);
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_7, __pyx_v_root_last_vector);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_16, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
-  __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  __pyx_t_14 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_14)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_14);
+  __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
+  __pyx_t_16 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_16 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_16)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_16);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  __pyx_t_13 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_14, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+  __pyx_t_15 = (__pyx_t_16) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_16, __pyx_t_1) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_15);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_n_s_lv); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyNumber_Divide(__pyx_t_13, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_n_s_lv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_n_s_dm, __pyx_t_4) < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_15, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(PyDict_SetItem(__pyx_v_feature, __pyx_n_s_dm, __pyx_t_1) < 0)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":143
+  /* "cython_scripts/tree_from_skeleton_image.pyx":170
  *     feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]
  * 
- *     if feature["pc"] < 5:             # <<<<<<<<<<<<<<
- *         return None, None
- *     return root, feature
- */
-  __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_feature, __pyx_n_s_pc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_4, __pyx_int_5, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__pyx_t_6) {
-
-    /* "cython_scripts/tree_from_skeleton_image.pyx":144
- * 
- *     if feature["pc"] < 5:
- *         return None, None             # <<<<<<<<<<<<<<
- *     return root, feature
- * 
- */
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_tuple__2);
-    __pyx_r = __pyx_tuple__2;
-    goto __pyx_L0;
-
-    /* "cython_scripts/tree_from_skeleton_image.pyx":143
- *     feature["dm"] = sqrt(numpy.dot(root_last_vector, root_last_vector)) / feature["lv"]
- * 
- *     if feature["pc"] < 5:             # <<<<<<<<<<<<<<
- *         return None, None
- *     return root, feature
- */
-  }
-
-  /* "cython_scripts/tree_from_skeleton_image.pyx":145
- *     if feature["pc"] < 5:
- *         return None, None
  *     return root, feature             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_root);
   __Pyx_GIVEREF(__pyx_v_root);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_root);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_root);
   __Pyx_INCREF(__pyx_v_feature);
   __Pyx_GIVEREF(__pyx_v_feature);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_feature);
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_feature);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":97
+  /* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
@@ -6223,9 +6943,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_13);
-  __Pyx_XDECREF(__pyx_t_14);
+  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_15);
+  __Pyx_XDECREF(__pyx_t_16);
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.build_spanning_tree_bfs_and_extract_features", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6234,19 +6954,22 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
   __Pyx_XDECREF(__pyx_v_curr);
   __Pyx_XDECREF(__pyx_v_unvisited_neighbors_coords);
   __Pyx_XDECREF(__pyx_v_prev_visited_neighbors_coords);
+  __Pyx_XDECREF(__pyx_v_node);
+  __Pyx_XDECREF(__pyx_v_prev);
   __Pyx_XDECREF(__pyx_v_child);
   __Pyx_XDECREF(__pyx_v_curr_child_vector);
   __Pyx_XDECREF(__pyx_v_euclidean_distance);
   __Pyx_XDECREF(__pyx_v_last_node_coords);
   __Pyx_XDECREF(__pyx_v_root_last_vector);
   __Pyx_XDECREF(__pyx_gb_14cython_scripts_24tree_from_skeleton_image_44build_spanning_tree_bfs_and_extract_features_2generator);
+  __Pyx_XDECREF(__pyx_v_coords);
   __Pyx_DECREF(((PyObject *)__pyx_cur_scope));
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":148
+/* "cython_scripts/tree_from_skeleton_image.pyx":173
  * 
  * 
  * def range_of_neighbours(coords, image):             # <<<<<<<<<<<<<<
@@ -6255,9 +6978,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_8build_spa
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11range_of_neighbours(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_11range_of_neighbours = {"range_of_neighbours", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11range_of_neighbours, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11range_of_neighbours(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13range_of_neighbours(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_13range_of_neighbours = {"range_of_neighbours", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13range_of_neighbours, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13range_of_neighbours(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_coords = 0;
   PyObject *__pyx_v_image = 0;
   int __pyx_lineno = 0;
@@ -6289,11 +7012,11 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11range_of
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_image)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("range_of_neighbours", 1, 2, 2, 1); __PYX_ERR(0, 148, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("range_of_neighbours", 1, 2, 2, 1); __PYX_ERR(0, 173, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "range_of_neighbours") < 0)) __PYX_ERR(0, 148, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "range_of_neighbours") < 0)) __PYX_ERR(0, 173, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6306,20 +7029,20 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_11range_of
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("range_of_neighbours", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 148, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("range_of_neighbours", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 173, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.range_of_neighbours", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of_neighbours(__pyx_self, __pyx_v_coords, __pyx_v_image);
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_12range_of_neighbours(__pyx_self, __pyx_v_coords, __pyx_v_image);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of_neighbours(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_image) {
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12range_of_neighbours(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_coords, PyObject *__pyx_v_image) {
   PyObject *__pyx_v_panel_start = NULL;
   PyObject *__pyx_v_panel_end = NULL;
   PyObject *__pyx_v_row_start = NULL;
@@ -6338,35 +7061,35 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("range_of_neighbours", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":149
+  /* "cython_scripts/tree_from_skeleton_image.pyx":174
  * 
  * def range_of_neighbours(coords, image):
  *     if coords[0] == 0:             # <<<<<<<<<<<<<<
  *         panel_start = coords[0]
  *     else:
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":150
+    /* "cython_scripts/tree_from_skeleton_image.pyx":175
  * def range_of_neighbours(coords, image):
  *     if coords[0] == 0:
  *         panel_start = coords[0]             # <<<<<<<<<<<<<<
  *     else:
  *         panel_start = coords[0] - 1
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_panel_start = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":149
+    /* "cython_scripts/tree_from_skeleton_image.pyx":174
  * 
  * def range_of_neighbours(coords, image):
  *     if coords[0] == 0:             # <<<<<<<<<<<<<<
@@ -6376,7 +7099,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L3;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":152
+  /* "cython_scripts/tree_from_skeleton_image.pyx":177
  *         panel_start = coords[0]
  *     else:
  *         panel_start = coords[0] - 1             # <<<<<<<<<<<<<<
@@ -6384,9 +7107,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *         panel_end = coords[0] + 1
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_panel_start = __pyx_t_1;
@@ -6394,46 +7117,46 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L3:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":153
+  /* "cython_scripts/tree_from_skeleton_image.pyx":178
  *     else:
  *         panel_start = coords[0] - 1
  *     if coords[0] == image.shape[0] - 1:             # <<<<<<<<<<<<<<
  *         panel_end = coords[0] + 1
  *     else:
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":154
+    /* "cython_scripts/tree_from_skeleton_image.pyx":179
  *         panel_start = coords[0] - 1
  *     if coords[0] == image.shape[0] - 1:
  *         panel_end = coords[0] + 1             # <<<<<<<<<<<<<<
  *     else:
  *         panel_end = coords[0] + 2
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_panel_end = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":153
+    /* "cython_scripts/tree_from_skeleton_image.pyx":178
  *     else:
  *         panel_start = coords[0] - 1
  *     if coords[0] == image.shape[0] - 1:             # <<<<<<<<<<<<<<
@@ -6443,7 +7166,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L4;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":156
+  /* "cython_scripts/tree_from_skeleton_image.pyx":181
  *         panel_end = coords[0] + 1
  *     else:
  *         panel_end = coords[0] + 2             # <<<<<<<<<<<<<<
@@ -6451,9 +7174,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *     if coords[1] == 0:
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_panel_end = __pyx_t_4;
@@ -6461,35 +7184,35 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L4:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":158
+  /* "cython_scripts/tree_from_skeleton_image.pyx":183
  *         panel_end = coords[0] + 2
  * 
  *     if coords[1] == 0:             # <<<<<<<<<<<<<<
  *         row_start = coords[1]
  *     else:
  */
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_4, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_4, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":159
+    /* "cython_scripts/tree_from_skeleton_image.pyx":184
  * 
  *     if coords[1] == 0:
  *         row_start = coords[1]             # <<<<<<<<<<<<<<
  *     else:
  *         row_start = coords[1] - 1
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_row_start = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":158
+    /* "cython_scripts/tree_from_skeleton_image.pyx":183
  *         panel_end = coords[0] + 2
  * 
  *     if coords[1] == 0:             # <<<<<<<<<<<<<<
@@ -6499,7 +7222,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L5;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":161
+  /* "cython_scripts/tree_from_skeleton_image.pyx":186
  *         row_start = coords[1]
  *     else:
  *         row_start = coords[1] - 1             # <<<<<<<<<<<<<<
@@ -6507,9 +7230,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *         row_end = coords[1] + 1
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_row_start = __pyx_t_4;
@@ -6517,46 +7240,46 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L5:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":162
+  /* "cython_scripts/tree_from_skeleton_image.pyx":187
  *     else:
  *         row_start = coords[1] - 1
  *     if coords[1] == image.shape[1] - 1:             # <<<<<<<<<<<<<<
  *         row_end = coords[1] + 1
  *     else:
  */
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":163
+    /* "cython_scripts/tree_from_skeleton_image.pyx":188
  *         row_start = coords[1] - 1
  *     if coords[1] == image.shape[1] - 1:
  *         row_end = coords[1] + 1             # <<<<<<<<<<<<<<
  *     else:
  *         row_end = coords[1] + 2
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_row_end = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":162
+    /* "cython_scripts/tree_from_skeleton_image.pyx":187
  *     else:
  *         row_start = coords[1] - 1
  *     if coords[1] == image.shape[1] - 1:             # <<<<<<<<<<<<<<
@@ -6566,7 +7289,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L6;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":165
+  /* "cython_scripts/tree_from_skeleton_image.pyx":190
  *         row_end = coords[1] + 1
  *     else:
  *         row_end = coords[1] + 2             # <<<<<<<<<<<<<<
@@ -6574,9 +7297,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *     if coords[2] == 0:
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_row_end = __pyx_t_1;
@@ -6584,35 +7307,35 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L6:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":167
+  /* "cython_scripts/tree_from_skeleton_image.pyx":192
  *         row_end = coords[1] + 2
  * 
  *     if coords[2] == 0:             # <<<<<<<<<<<<<<
  *         col_start = coords[2]
  *     else:
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_t_1, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":168
+    /* "cython_scripts/tree_from_skeleton_image.pyx":193
  * 
  *     if coords[2] == 0:
  *         col_start = coords[2]             # <<<<<<<<<<<<<<
  *     else:
  *         col_start = coords[2] - 1
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_col_start = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":167
+    /* "cython_scripts/tree_from_skeleton_image.pyx":192
  *         row_end = coords[1] + 2
  * 
  *     if coords[2] == 0:             # <<<<<<<<<<<<<<
@@ -6622,7 +7345,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L7;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":170
+  /* "cython_scripts/tree_from_skeleton_image.pyx":195
  *         col_start = coords[2]
  *     else:
  *         col_start = coords[2] - 1             # <<<<<<<<<<<<<<
@@ -6630,9 +7353,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *         col_end = coords[2] + 1
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyInt_SubtractObjC(__pyx_t_2, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_col_start = __pyx_t_1;
@@ -6640,46 +7363,46 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L7:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":171
+  /* "cython_scripts/tree_from_skeleton_image.pyx":196
  *     else:
  *         col_start = coords[2] - 1
  *     if coords[2] == image.shape[2] - 1:             # <<<<<<<<<<<<<<
  *         col_end = coords[2] + 1
  *     else:
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_image, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_2, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_SubtractObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":172
+    /* "cython_scripts/tree_from_skeleton_image.pyx":197
  *         col_start = coords[2] - 1
  *     if coords[2] == image.shape[2] - 1:
  *         col_end = coords[2] + 1             # <<<<<<<<<<<<<<
  *     else:
  *         col_end = coords[2] + 2
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_t_4, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v_col_end = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":171
+    /* "cython_scripts/tree_from_skeleton_image.pyx":196
  *     else:
  *         col_start = coords[2] - 1
  *     if coords[2] == image.shape[2] - 1:             # <<<<<<<<<<<<<<
@@ -6689,7 +7412,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
     goto __pyx_L8;
   }
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":174
+  /* "cython_scripts/tree_from_skeleton_image.pyx":199
  *         col_end = coords[2] + 1
  *     else:
  *         col_end = coords[2] + 2             # <<<<<<<<<<<<<<
@@ -6697,9 +7420,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  *     return [(panel_start, panel_end), (row_start, row_end), (col_start, col_end)]
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_coords, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_2, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_col_end = __pyx_t_4;
@@ -6707,7 +7430,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   }
   __pyx_L8:;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":176
+  /* "cython_scripts/tree_from_skeleton_image.pyx":201
  *         col_end = coords[2] + 2
  * 
  *     return [(panel_start, panel_end), (row_start, row_end), (col_start, col_end)]             # <<<<<<<<<<<<<<
@@ -6715,7 +7438,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_panel_start);
   __Pyx_GIVEREF(__pyx_v_panel_start);
@@ -6723,7 +7446,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   __Pyx_INCREF(__pyx_v_panel_end);
   __Pyx_GIVEREF(__pyx_v_panel_end);
   PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_panel_end);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_row_start);
   __Pyx_GIVEREF(__pyx_v_row_start);
@@ -6731,7 +7454,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   __Pyx_INCREF(__pyx_v_row_end);
   __Pyx_GIVEREF(__pyx_v_row_end);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_row_end);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_col_start);
   __Pyx_GIVEREF(__pyx_v_col_start);
@@ -6739,7 +7462,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   __Pyx_INCREF(__pyx_v_col_end);
   __Pyx_GIVEREF(__pyx_v_col_end);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_col_end);
-  __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_4);
   PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
@@ -6754,7 +7477,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":148
+  /* "cython_scripts/tree_from_skeleton_image.pyx":173
  * 
  * 
  * def range_of_neighbours(coords, image):             # <<<<<<<<<<<<<<
@@ -6782,7 +7505,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":179
+/* "cython_scripts/tree_from_skeleton_image.pyx":204
  * 
  * 
  * def coords_of_neighbors_of_pixel(image, coords):             # <<<<<<<<<<<<<<
@@ -6791,9 +7514,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_10range_of
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13coords_of_neighbors_of_pixel(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_13coords_of_neighbors_of_pixel = {"coords_of_neighbors_of_pixel", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13coords_of_neighbors_of_pixel, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13coords_of_neighbors_of_pixel(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15coords_of_neighbors_of_pixel(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_15coords_of_neighbors_of_pixel = {"coords_of_neighbors_of_pixel", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15coords_of_neighbors_of_pixel, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15coords_of_neighbors_of_pixel(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_image = 0;
   PyObject *__pyx_v_coords = 0;
   int __pyx_lineno = 0;
@@ -6825,11 +7548,11 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13coords_o
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("coords_of_neighbors_of_pixel", 1, 2, 2, 1); __PYX_ERR(0, 179, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("coords_of_neighbors_of_pixel", 1, 2, 2, 1); __PYX_ERR(0, 204, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "coords_of_neighbors_of_pixel") < 0)) __PYX_ERR(0, 179, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "coords_of_neighbors_of_pixel") < 0)) __PYX_ERR(0, 204, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6842,20 +7565,20 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_13coords_o
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("coords_of_neighbors_of_pixel", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 179, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("coords_of_neighbors_of_pixel", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 204, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.coords_of_neighbors_of_pixel", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_of_neighbors_of_pixel(__pyx_self, __pyx_v_image, __pyx_v_coords);
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_14coords_of_neighbors_of_pixel(__pyx_self, __pyx_v_image, __pyx_v_coords);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_of_neighbors_of_pixel(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14coords_of_neighbors_of_pixel(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
   PyObject *__pyx_v_unvisited_neighbors = NULL;
   PyObject *__pyx_v_prev_visited_neighbors = NULL;
   PyObject *__pyx_v_range_of_neighbors = NULL;
@@ -6885,38 +7608,38 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("coords_of_neighbors_of_pixel", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":180
+  /* "cython_scripts/tree_from_skeleton_image.pyx":205
  * 
  * def coords_of_neighbors_of_pixel(image, coords):
  *     unvisited_neighbors = []             # <<<<<<<<<<<<<<
  *     prev_visited_neighbors = []
  *     range_of_neighbors = range_of_neighbours(coords, image)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_unvisited_neighbors = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":181
+  /* "cython_scripts/tree_from_skeleton_image.pyx":206
  * def coords_of_neighbors_of_pixel(image, coords):
  *     unvisited_neighbors = []
  *     prev_visited_neighbors = []             # <<<<<<<<<<<<<<
  *     range_of_neighbors = range_of_neighbours(coords, image)
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_prev_visited_neighbors = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":182
+  /* "cython_scripts/tree_from_skeleton_image.pyx":207
  *     unvisited_neighbors = []
  *     prev_visited_neighbors = []
  *     range_of_neighbors = range_of_neighbours(coords, image)             # <<<<<<<<<<<<<<
  * 
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_range_of_neighbours); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_range_of_neighbours); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -6933,7 +7656,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_coords, __pyx_v_image};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -6941,13 +7664,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_coords, __pyx_v_image};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -6958,7 +7681,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
     __Pyx_INCREF(__pyx_v_image);
     __Pyx_GIVEREF(__pyx_v_image);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_image);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -6966,24 +7689,24 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   __pyx_v_range_of_neighbors = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":184
+  /* "cython_scripts/tree_from_skeleton_image.pyx":209
  *     range_of_neighbors = range_of_neighbours(coords, image)
  * 
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):             # <<<<<<<<<<<<<<
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -6991,16 +7714,16 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_5);
   __pyx_t_2 = 0;
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_t_5)) || PyTuple_CheckExact(__pyx_t_5)) {
     __pyx_t_1 = __pyx_t_5; __Pyx_INCREF(__pyx_t_1); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __pyx_t_7 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   for (;;) {
@@ -7008,17 +7731,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
       if (likely(PyList_CheckExact(__pyx_t_1))) {
         if (__pyx_t_6 >= PyList_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
+        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       } else {
         if (__pyx_t_6 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely(0 < 0)) __PYX_ERR(0, 209, __pyx_L1_error)
         #else
-        __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       }
@@ -7028,7 +7751,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 184, __pyx_L1_error)
+          else __PYX_ERR(0, 209, __pyx_L1_error)
         }
         break;
       }
@@ -7037,24 +7760,24 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
     __Pyx_XDECREF_SET(__pyx_v_panel, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":185
+    /* "cython_scripts/tree_from_skeleton_image.pyx":210
  * 
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):             # <<<<<<<<<<<<<<
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):
  */
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -7062,16 +7785,16 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
     PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
       __pyx_t_5 = __pyx_t_3; __Pyx_INCREF(__pyx_t_5); __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
     } else {
-      __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+      __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 185, __pyx_L1_error)
+      __pyx_t_9 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 210, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
@@ -7079,17 +7802,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_8 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_8 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_3); __pyx_t_8++; if (unlikely(0 < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -7099,7 +7822,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 185, __pyx_L1_error)
+            else __PYX_ERR(0, 210, __pyx_L1_error)
           }
           break;
         }
@@ -7108,24 +7831,24 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
       __Pyx_XDECREF_SET(__pyx_v_row, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":186
+      /* "cython_scripts/tree_from_skeleton_image.pyx":211
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):             # <<<<<<<<<<<<<<
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):
  *                     unvisited_neighbors.append((panel, row, col))
  */
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_of_neighbors, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_10 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -7133,16 +7856,16 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
       PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10);
       __pyx_t_2 = 0;
       __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_3, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (likely(PyList_CheckExact(__pyx_t_10)) || PyTuple_CheckExact(__pyx_t_10)) {
         __pyx_t_3 = __pyx_t_10; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+        __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_10); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 186, __pyx_L1_error)
+        __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 211, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       for (;;) {
@@ -7150,17 +7873,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
           if (likely(PyList_CheckExact(__pyx_t_3))) {
             if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_10 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_10); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 186, __pyx_L1_error)
+            __pyx_t_10 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_10); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
             #else
-            __pyx_t_10 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 186, __pyx_L1_error)
+            __pyx_t_10 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 211, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_10);
             #endif
           } else {
             if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-            __pyx_t_10 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_10); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 186, __pyx_L1_error)
+            __pyx_t_10 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_10); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
             #else
-            __pyx_t_10 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 186, __pyx_L1_error)
+            __pyx_t_10 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 211, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_10);
             #endif
           }
@@ -7170,7 +7893,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 186, __pyx_L1_error)
+              else __PYX_ERR(0, 211, __pyx_L1_error)
             }
             break;
           }
@@ -7179,14 +7902,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         __Pyx_XDECREF_SET(__pyx_v_col, __pyx_t_10);
         __pyx_t_10 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":187
+        /* "cython_scripts/tree_from_skeleton_image.pyx":212
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):             # <<<<<<<<<<<<<<
  *                     unvisited_neighbors.append((panel, row, col))
  *                 if image[panel, row, col] == VISITED and coords != (panel, row, col):
  */
-        __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_INCREF(__pyx_v_panel);
         __Pyx_GIVEREF(__pyx_v_panel);
@@ -7197,20 +7920,20 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         __Pyx_INCREF(__pyx_v_col);
         __Pyx_GIVEREF(__pyx_v_col);
         PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_v_col);
-        __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = __Pyx_PyInt_EqObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyInt_EqObjC(__pyx_t_2, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         if (__pyx_t_14) {
         } else {
           __pyx_t_13 = __pyx_t_14;
           goto __pyx_L10_bool_binop_done;
         }
-        __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_INCREF(__pyx_v_panel);
         __Pyx_GIVEREF(__pyx_v_panel);
@@ -7221,22 +7944,22 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         __Pyx_INCREF(__pyx_v_col);
         __Pyx_GIVEREF(__pyx_v_col);
         PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_v_col);
-        __pyx_t_2 = PyObject_RichCompare(__pyx_v_coords, __pyx_t_10, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_2 = PyObject_RichCompare(__pyx_v_coords, __pyx_t_10, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 187, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_13 = __pyx_t_14;
         __pyx_L10_bool_binop_done:;
         if (__pyx_t_13) {
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":188
+          /* "cython_scripts/tree_from_skeleton_image.pyx":213
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):
  *                     unvisited_neighbors.append((panel, row, col))             # <<<<<<<<<<<<<<
  *                 if image[panel, row, col] == VISITED and coords != (panel, row, col):
  *                     prev_visited_neighbors.append((panel, row, col))
  */
-          __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_INCREF(__pyx_v_panel);
           __Pyx_GIVEREF(__pyx_v_panel);
@@ -7247,10 +7970,10 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
           __Pyx_INCREF(__pyx_v_col);
           __Pyx_GIVEREF(__pyx_v_col);
           PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_col);
-          __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_unvisited_neighbors, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 188, __pyx_L1_error)
+          __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_unvisited_neighbors, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 213, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":187
+          /* "cython_scripts/tree_from_skeleton_image.pyx":212
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):             # <<<<<<<<<<<<<<
@@ -7259,14 +7982,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
  */
         }
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":189
+        /* "cython_scripts/tree_from_skeleton_image.pyx":214
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):
  *                     unvisited_neighbors.append((panel, row, col))
  *                 if image[panel, row, col] == VISITED and coords != (panel, row, col):             # <<<<<<<<<<<<<<
  *                     prev_visited_neighbors.append((panel, row, col))
  * 
  */
-        __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_v_panel);
         __Pyx_GIVEREF(__pyx_v_panel);
@@ -7277,22 +8000,22 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         __Pyx_INCREF(__pyx_v_col);
         __Pyx_GIVEREF(__pyx_v_col);
         PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_col);
-        __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_VISITED); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_16 = PyObject_RichCompare(__pyx_t_10, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_16); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_16 = PyObject_RichCompare(__pyx_t_10, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_16); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_16); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_16); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
         if (__pyx_t_14) {
         } else {
           __pyx_t_13 = __pyx_t_14;
           goto __pyx_L13_bool_binop_done;
         }
-        __pyx_t_16 = PyTuple_New(3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_16 = PyTuple_New(3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
         __Pyx_INCREF(__pyx_v_panel);
         __Pyx_GIVEREF(__pyx_v_panel);
@@ -7303,22 +8026,22 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
         __Pyx_INCREF(__pyx_v_col);
         __Pyx_GIVEREF(__pyx_v_col);
         PyTuple_SET_ITEM(__pyx_t_16, 2, __pyx_v_col);
-        __pyx_t_2 = PyObject_RichCompare(__pyx_v_coords, __pyx_t_16, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_2 = PyObject_RichCompare(__pyx_v_coords, __pyx_t_16, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 189, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_14 < 0)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_13 = __pyx_t_14;
         __pyx_L13_bool_binop_done:;
         if (__pyx_t_13) {
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":190
+          /* "cython_scripts/tree_from_skeleton_image.pyx":215
  *                     unvisited_neighbors.append((panel, row, col))
  *                 if image[panel, row, col] == VISITED and coords != (panel, row, col):
  *                     prev_visited_neighbors.append((panel, row, col))             # <<<<<<<<<<<<<<
  * 
  *     return unvisited_neighbors, prev_visited_neighbors
  */
-          __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_INCREF(__pyx_v_panel);
           __Pyx_GIVEREF(__pyx_v_panel);
@@ -7329,10 +8052,10 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
           __Pyx_INCREF(__pyx_v_col);
           __Pyx_GIVEREF(__pyx_v_col);
           PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_col);
-          __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_prev_visited_neighbors, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 190, __pyx_L1_error)
+          __pyx_t_15 = __Pyx_PyList_Append(__pyx_v_prev_visited_neighbors, __pyx_t_2); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 215, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "cython_scripts/tree_from_skeleton_image.pyx":189
+          /* "cython_scripts/tree_from_skeleton_image.pyx":214
  *                 if image[panel, row, col] == 1 and coords != (panel, row, col):
  *                     unvisited_neighbors.append((panel, row, col))
  *                 if image[panel, row, col] == VISITED and coords != (panel, row, col):             # <<<<<<<<<<<<<<
@@ -7341,7 +8064,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
  */
         }
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":186
+        /* "cython_scripts/tree_from_skeleton_image.pyx":211
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):
  *             for col in range(range_of_neighbors[2][0], range_of_neighbors[2][1]):             # <<<<<<<<<<<<<<
@@ -7351,7 +8074,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":185
+      /* "cython_scripts/tree_from_skeleton_image.pyx":210
  * 
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):
  *         for row in range(range_of_neighbors[1][0], range_of_neighbors[1][1]):             # <<<<<<<<<<<<<<
@@ -7361,7 +8084,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":184
+    /* "cython_scripts/tree_from_skeleton_image.pyx":209
  *     range_of_neighbors = range_of_neighbours(coords, image)
  * 
  *     for panel in range(range_of_neighbors[0][0], range_of_neighbors[0][1]):             # <<<<<<<<<<<<<<
@@ -7371,7 +8094,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":192
+  /* "cython_scripts/tree_from_skeleton_image.pyx":217
  *                     prev_visited_neighbors.append((panel, row, col))
  * 
  *     return unvisited_neighbors, prev_visited_neighbors             # <<<<<<<<<<<<<<
@@ -7379,7 +8102,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_unvisited_neighbors);
   __Pyx_GIVEREF(__pyx_v_unvisited_neighbors);
@@ -7391,7 +8114,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":179
+  /* "cython_scripts/tree_from_skeleton_image.pyx":204
  * 
  * 
  * def coords_of_neighbors_of_pixel(image, coords):             # <<<<<<<<<<<<<<
@@ -7421,7 +8144,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":195
+/* "cython_scripts/tree_from_skeleton_image.pyx":220
  * 
  * 
  * def is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
@@ -7430,9 +8153,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_12coords_o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15is_line_end_point(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_15is_line_end_point = {"is_line_end_point", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15is_line_end_point, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15is_line_end_point(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17is_line_end_point(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_17is_line_end_point = {"is_line_end_point", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17is_line_end_point, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17is_line_end_point(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_image = 0;
   PyObject *__pyx_v_coords = 0;
   int __pyx_lineno = 0;
@@ -7464,11 +8187,11 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15is_line_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_coords)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("is_line_end_point", 1, 2, 2, 1); __PYX_ERR(0, 195, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("is_line_end_point", 1, 2, 2, 1); __PYX_ERR(0, 220, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_line_end_point") < 0)) __PYX_ERR(0, 195, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_line_end_point") < 0)) __PYX_ERR(0, 220, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -7481,20 +8204,20 @@ static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_15is_line_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("is_line_end_point", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 195, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("is_line_end_point", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 220, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cython_scripts.tree_from_skeleton_image.is_line_end_point", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_end_point(__pyx_self, __pyx_v_image, __pyx_v_coords);
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_16is_line_end_point(__pyx_self, __pyx_v_image, __pyx_v_coords);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_end_point(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16is_line_end_point(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image, PyObject *__pyx_v_coords) {
   PyObject *__pyx_v_range_neighbour = NULL;
   PyObject *__pyx_v_array_to_sum = NULL;
   PyObject *__pyx_r = NULL;
@@ -7510,14 +8233,14 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_line_end_point", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":196
+  /* "cython_scripts/tree_from_skeleton_image.pyx":221
  * 
  * def is_line_end_point(image, coords):
  *     range_neighbour = range_of_neighbours(coords, image)             # <<<<<<<<<<<<<<
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],
  *                    range_neighbour[1][0]:range_neighbour[1][1],
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_range_of_neighbours); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_range_of_neighbours); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -7534,7 +8257,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_coords, __pyx_v_image};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -7542,13 +8265,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_coords, __pyx_v_image};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -7559,7 +8282,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
     __Pyx_INCREF(__pyx_v_image);
     __Pyx_GIVEREF(__pyx_v_image);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_image);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -7567,88 +8290,88 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   __pyx_v_range_neighbour = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":197
+  /* "cython_scripts/tree_from_skeleton_image.pyx":222
  * def is_line_end_point(image, coords):
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],             # <<<<<<<<<<<<<<
  *                    range_neighbour[1][0]:range_neighbour[1][1],
  *                    range_neighbour[2][0]:range_neighbour[2][1]]
  */
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySlice_New(__pyx_t_2, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_1 = PySlice_New(__pyx_t_2, __pyx_t_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":198
+  /* "cython_scripts/tree_from_skeleton_image.pyx":223
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],
  *                    range_neighbour[1][0]:range_neighbour[1][1],             # <<<<<<<<<<<<<<
  *                    range_neighbour[2][0]:range_neighbour[2][1]]
  * 
  */
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_5, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":197
+  /* "cython_scripts/tree_from_skeleton_image.pyx":222
  * def is_line_end_point(image, coords):
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],             # <<<<<<<<<<<<<<
  *                    range_neighbour[1][0]:range_neighbour[1][1],
  *                    range_neighbour[2][0]:range_neighbour[2][1]]
  */
-  __pyx_t_5 = PySlice_New(__pyx_t_2, __pyx_t_3, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_5 = PySlice_New(__pyx_t_2, __pyx_t_3, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":199
+  /* "cython_scripts/tree_from_skeleton_image.pyx":224
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],
  *                    range_neighbour[1][0]:range_neighbour[1][1],
  *                    range_neighbour[2][0]:range_neighbour[2][1]]             # <<<<<<<<<<<<<<
  * 
  *     return numpy.sum(array_to_sum) == 2
  */
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_range_neighbour, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 199, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":197
+  /* "cython_scripts/tree_from_skeleton_image.pyx":222
  * def is_line_end_point(image, coords):
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],             # <<<<<<<<<<<<<<
  *                    range_neighbour[1][0]:range_neighbour[1][1],
  *                    range_neighbour[2][0]:range_neighbour[2][1]]
  */
-  __pyx_t_3 = PySlice_New(__pyx_t_2, __pyx_t_6, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_3 = PySlice_New(__pyx_t_2, __pyx_t_6, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
@@ -7659,13 +8382,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   __pyx_t_1 = 0;
   __pyx_t_5 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_image, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_array_to_sum = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":201
+  /* "cython_scripts/tree_from_skeleton_image.pyx":226
  *                    range_neighbour[2][0]:range_neighbour[2][1]]
  * 
  *     return numpy.sum(array_to_sum) == 2             # <<<<<<<<<<<<<<
@@ -7673,9 +8396,9 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_numpy); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_numpy); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sum); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sum); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_6 = NULL;
@@ -7690,17 +8413,17 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   }
   __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_array_to_sum) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_array_to_sum);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyInt_EqObjC(__pyx_t_3, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_EqObjC(__pyx_t_3, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":195
+  /* "cython_scripts/tree_from_skeleton_image.pyx":220
  * 
  * 
  * def is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
@@ -7725,7 +8448,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
   return __pyx_r;
 }
 
-/* "cython_scripts/tree_from_skeleton_image.pyx":204
+/* "cython_scripts/tree_from_skeleton_image.pyx":229
  * 
  * 
  * def form_array_of_skeleton_make_spanning_trees(image):             # <<<<<<<<<<<<<<
@@ -7734,24 +8457,25 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_14is_line_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17form_array_of_skeleton_make_spanning_trees(PyObject *__pyx_self, PyObject *__pyx_v_image); /*proto*/
-static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_17form_array_of_skeleton_make_spanning_trees = {"form_array_of_skeleton_make_spanning_trees", (PyCFunction)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17form_array_of_skeleton_make_spanning_trees, METH_O, 0};
-static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_17form_array_of_skeleton_make_spanning_trees(PyObject *__pyx_self, PyObject *__pyx_v_image) {
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_19form_array_of_skeleton_make_spanning_trees(PyObject *__pyx_self, PyObject *__pyx_v_image); /*proto*/
+static PyMethodDef __pyx_mdef_14cython_scripts_24tree_from_skeleton_image_19form_array_of_skeleton_make_spanning_trees = {"form_array_of_skeleton_make_spanning_trees", (PyCFunction)__pyx_pw_14cython_scripts_24tree_from_skeleton_image_19form_array_of_skeleton_make_spanning_trees, METH_O, 0};
+static PyObject *__pyx_pw_14cython_scripts_24tree_from_skeleton_image_19form_array_of_skeleton_make_spanning_trees(PyObject *__pyx_self, PyObject *__pyx_v_image) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("form_array_of_skeleton_make_spanning_trees (wrapper)", 0);
-  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_array_of_skeleton_make_spanning_trees(__pyx_self, ((PyObject *)__pyx_v_image));
+  __pyx_r = __pyx_pf_14cython_scripts_24tree_from_skeleton_image_18form_array_of_skeleton_make_spanning_trees(__pyx_self, ((PyObject *)__pyx_v_image));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_array_of_skeleton_make_spanning_trees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image) {
+static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_18form_array_of_skeleton_make_spanning_trees(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image) {
   PyObject *__pyx_v_trees = NULL;
   PyObject *__pyx_v_coords_of_possible_line_end_points = NULL;
   PyObject *__pyx_v_lv_feature = NULL;
   PyObject *__pyx_v_nb_feature = NULL;
+  PyObject *__pyx_v_nc_t_feature = NULL;
   PyObject *__pyx_v_nc_feature = NULL;
   PyObject *__pyx_v_dm_feature = NULL;
   PyObject *__pyx_v_cp_feature = NULL;
@@ -7776,31 +8500,31 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("form_array_of_skeleton_make_spanning_trees", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":205
+  /* "cython_scripts/tree_from_skeleton_image.pyx":230
  * 
  * def form_array_of_skeleton_make_spanning_trees(image):
  *     trees = []             # <<<<<<<<<<<<<<
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
  *     lv_feature = 0.0
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_trees = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":206
+  /* "cython_scripts/tree_from_skeleton_image.pyx":231
  * def form_array_of_skeleton_make_spanning_trees(image):
  *     trees = []
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))             # <<<<<<<<<<<<<<
  *     lv_feature = 0.0
  *     nb_feature = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_where); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_where); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_v_image, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_EqObjC(__pyx_v_image, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -7815,44 +8539,54 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_3 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_coords_of_possible_line_end_points = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":207
+  /* "cython_scripts/tree_from_skeleton_image.pyx":232
  *     trees = []
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
  *     lv_feature = 0.0             # <<<<<<<<<<<<<<
  *     nb_feature = 0
- *     nc_feature = 0
+ *     nc_t_feature = 0
  */
   __Pyx_INCREF(__pyx_float_0_0);
   __pyx_v_lv_feature = __pyx_float_0_0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":208
+  /* "cython_scripts/tree_from_skeleton_image.pyx":233
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
  *     lv_feature = 0.0
  *     nb_feature = 0             # <<<<<<<<<<<<<<
+ *     nc_t_feature = 0
  *     nc_feature = 0
- *     dm_feature = 0
  */
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_nb_feature = __pyx_int_0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":209
+  /* "cython_scripts/tree_from_skeleton_image.pyx":234
  *     lv_feature = 0.0
  *     nb_feature = 0
+ *     nc_t_feature = 0             # <<<<<<<<<<<<<<
+ *     nc_feature = 0
+ *     dm_feature = 0
+ */
+  __Pyx_INCREF(__pyx_int_0);
+  __pyx_v_nc_t_feature = __pyx_int_0;
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":235
+ *     nb_feature = 0
+ *     nc_t_feature = 0
  *     nc_feature = 0             # <<<<<<<<<<<<<<
  *     dm_feature = 0
  *     cp_feature = 0
@@ -7860,8 +8594,8 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_nc_feature = __pyx_int_0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":210
- *     nb_feature = 0
+  /* "cython_scripts/tree_from_skeleton_image.pyx":236
+ *     nc_t_feature = 0
  *     nc_feature = 0
  *     dm_feature = 0             # <<<<<<<<<<<<<<
  *     cp_feature = 0
@@ -7870,7 +8604,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_dm_feature = __pyx_int_0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":211
+  /* "cython_scripts/tree_from_skeleton_image.pyx":237
  *     nc_feature = 0
  *     dm_feature = 0
  *     cp_feature = 0             # <<<<<<<<<<<<<<
@@ -7880,7 +8614,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_cp_feature = __pyx_int_0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":212
+  /* "cython_scripts/tree_from_skeleton_image.pyx":238
  *     dm_feature = 0
  *     cp_feature = 0
  *     for coords in coords_of_possible_line_end_points:             # <<<<<<<<<<<<<<
@@ -7891,22 +8625,22 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   for (;;) {
     if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 238, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_coords, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":213
+    /* "cython_scripts/tree_from_skeleton_image.pyx":239
  *     cp_feature = 0
  *     for coords in coords_of_possible_line_end_points:
  *         if is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
  *             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
  *             if tree is not None:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_is_line_end_point); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_is_line_end_point); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     __pyx_t_6 = 0;
@@ -7923,7 +8657,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
     #if CYTHON_FAST_PYCALL
     if (PyFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_image, __pyx_v_coords};
-      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
@@ -7931,13 +8665,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
     #if CYTHON_FAST_PYCCALL
     if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
       PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_v_image, __pyx_v_coords};
-      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else
     #endif
     {
-      __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       if (__pyx_t_4) {
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7948,23 +8682,23 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
       __Pyx_INCREF(__pyx_v_coords);
       __Pyx_GIVEREF(__pyx_v_coords);
       PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_v_coords);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 213, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_8) {
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":214
+      /* "cython_scripts/tree_from_skeleton_image.pyx":240
  *     for coords in coords_of_possible_line_end_points:
  *         if is_line_end_point(image, coords):
  *             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)             # <<<<<<<<<<<<<<
  *             if tree is not None:
  *                 trees.append(tree)
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_build_spanning_tree_bfs_and_extr_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_build_spanning_tree_bfs_and_extr_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_7 = NULL;
       __pyx_t_6 = 0;
@@ -7981,7 +8715,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_image, __pyx_v_coords};
-        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
@@ -7989,13 +8723,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
         PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_image, __pyx_v_coords};
-        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_GOTREF(__pyx_t_1);
       } else
       #endif
       {
-        __pyx_t_4 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         if (__pyx_t_7) {
           __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -8006,7 +8740,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
         __Pyx_INCREF(__pyx_v_coords);
         __Pyx_GIVEREF(__pyx_v_coords);
         PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_6, __pyx_v_coords);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       }
@@ -8017,7 +8751,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 214, __pyx_L1_error)
+          __PYX_ERR(0, 240, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -8030,15 +8764,15 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_4);
         #else
-        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 240, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_9 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -8046,7 +8780,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
         __Pyx_GOTREF(__pyx_t_2);
         index = 1; __pyx_t_4 = __pyx_t_9(__pyx_t_7); if (unlikely(!__pyx_t_4)) goto __pyx_L6_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_4);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_7), 2) < 0) __PYX_ERR(0, 240, __pyx_L1_error)
         __pyx_t_9 = NULL;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         goto __pyx_L7_unpacking_done;
@@ -8054,7 +8788,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_t_9 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 214, __pyx_L1_error)
+        __PYX_ERR(0, 240, __pyx_L1_error)
         __pyx_L7_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_tree, __pyx_t_2);
@@ -8062,110 +8796,125 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
       __Pyx_XDECREF_SET(__pyx_v_feature, __pyx_t_4);
       __pyx_t_4 = 0;
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":215
+      /* "cython_scripts/tree_from_skeleton_image.pyx":241
  *         if is_line_end_point(image, coords):
  *             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
  *             if tree is not None:             # <<<<<<<<<<<<<<
  *                 trees.append(tree)
- *                 lv_feature += feature["lv"]
+ *                 nc_feature += feature["nc"]
  */
       __pyx_t_8 = (__pyx_v_tree != Py_None);
       __pyx_t_10 = (__pyx_t_8 != 0);
       if (__pyx_t_10) {
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":216
+        /* "cython_scripts/tree_from_skeleton_image.pyx":242
  *             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
  *             if tree is not None:
  *                 trees.append(tree)             # <<<<<<<<<<<<<<
+ *                 nc_feature += feature["nc"]
  *                 lv_feature += feature["lv"]
- *                 nb_feature += feature["nb"]
  */
-        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_trees, __pyx_v_tree); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 216, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_trees, __pyx_v_tree); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":217
+        /* "cython_scripts/tree_from_skeleton_image.pyx":243
  *             if tree is not None:
  *                 trees.append(tree)
- *                 lv_feature += feature["lv"]             # <<<<<<<<<<<<<<
- *                 nb_feature += feature["nb"]
- *                 nc_feature += feature["nc"]
- */
-        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_lv); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_lv_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF_SET(__pyx_v_lv_feature, __pyx_t_4);
-        __pyx_t_4 = 0;
-
-        /* "cython_scripts/tree_from_skeleton_image.pyx":218
- *                 trees.append(tree)
- *                 lv_feature += feature["lv"]
- *                 nb_feature += feature["nb"]             # <<<<<<<<<<<<<<
- *                 nc_feature += feature["nc"]
- *                 dm_feature += feature["dm"]
- */
-        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_nb); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_nb_feature, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_DECREF_SET(__pyx_v_nb_feature, __pyx_t_1);
-        __pyx_t_1 = 0;
-
-        /* "cython_scripts/tree_from_skeleton_image.pyx":219
- *                 lv_feature += feature["lv"]
- *                 nb_feature += feature["nb"]
  *                 nc_feature += feature["nc"]             # <<<<<<<<<<<<<<
- *                 dm_feature += feature["dm"]
- *                 cp_feature += feature["cp"]
+ *                 lv_feature += feature["lv"]
+ *                 nb_feature += feature["nb"]
  */
-        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_nc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_nc); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_nc_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_nc_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF_SET(__pyx_v_nc_feature, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":220
- *                 nb_feature += feature["nb"]
+        /* "cython_scripts/tree_from_skeleton_image.pyx":244
+ *                 trees.append(tree)
  *                 nc_feature += feature["nc"]
- *                 dm_feature += feature["dm"]             # <<<<<<<<<<<<<<
- *                 cp_feature += feature["cp"]
- *     return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature
+ *                 lv_feature += feature["lv"]             # <<<<<<<<<<<<<<
+ *                 nb_feature += feature["nb"]
+ *                 nc_t_feature += feature["nc_t"]
  */
-        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_dm); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_lv); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_dm_feature, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_lv_feature, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_DECREF_SET(__pyx_v_dm_feature, __pyx_t_1);
+        __Pyx_DECREF_SET(__pyx_v_lv_feature, __pyx_t_1);
         __pyx_t_1 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":221
+        /* "cython_scripts/tree_from_skeleton_image.pyx":245
  *                 nc_feature += feature["nc"]
+ *                 lv_feature += feature["lv"]
+ *                 nb_feature += feature["nb"]             # <<<<<<<<<<<<<<
+ *                 nc_t_feature += feature["nc_t"]
  *                 dm_feature += feature["dm"]
- *                 cp_feature += feature["cp"]             # <<<<<<<<<<<<<<
- *     return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature
  */
-        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_cp); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_nb); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_cp_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_nb_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF_SET(__pyx_v_cp_feature, __pyx_t_4);
+        __Pyx_DECREF_SET(__pyx_v_nb_feature, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "cython_scripts/tree_from_skeleton_image.pyx":215
+        /* "cython_scripts/tree_from_skeleton_image.pyx":246
+ *                 lv_feature += feature["lv"]
+ *                 nb_feature += feature["nb"]
+ *                 nc_t_feature += feature["nc_t"]             # <<<<<<<<<<<<<<
+ *                 dm_feature += feature["dm"]
+ *                 cp_feature += feature["cp"]
+ */
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_nc_t); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_nc_t_feature, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF_SET(__pyx_v_nc_t_feature, __pyx_t_1);
+        __pyx_t_1 = 0;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":247
+ *                 nb_feature += feature["nb"]
+ *                 nc_t_feature += feature["nc_t"]
+ *                 dm_feature += feature["dm"]             # <<<<<<<<<<<<<<
+ *                 cp_feature += feature["cp"]
+ *     return trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature
+ */
+        __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_dm); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_dm_feature, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_DECREF_SET(__pyx_v_dm_feature, __pyx_t_4);
+        __pyx_t_4 = 0;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":248
+ *                 nc_t_feature += feature["nc_t"]
+ *                 dm_feature += feature["dm"]
+ *                 cp_feature += feature["cp"]             # <<<<<<<<<<<<<<
+ *     return trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature
+ */
+        __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_feature, __pyx_n_s_cp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_cp_feature, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF_SET(__pyx_v_cp_feature, __pyx_t_1);
+        __pyx_t_1 = 0;
+
+        /* "cython_scripts/tree_from_skeleton_image.pyx":241
  *         if is_line_end_point(image, coords):
  *             tree, feature = build_spanning_tree_bfs_and_extract_features(image, coords)
  *             if tree is not None:             # <<<<<<<<<<<<<<
  *                 trees.append(tree)
- *                 lv_feature += feature["lv"]
+ *                 nc_feature += feature["nc"]
  */
       }
 
-      /* "cython_scripts/tree_from_skeleton_image.pyx":213
+      /* "cython_scripts/tree_from_skeleton_image.pyx":239
  *     cp_feature = 0
  *     for coords in coords_of_possible_line_end_points:
  *         if is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
@@ -8174,7 +8923,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
  */
     }
 
-    /* "cython_scripts/tree_from_skeleton_image.pyx":212
+    /* "cython_scripts/tree_from_skeleton_image.pyx":238
  *     dm_feature = 0
  *     cp_feature = 0
  *     for coords in coords_of_possible_line_end_points:             # <<<<<<<<<<<<<<
@@ -8184,13 +8933,13 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":222
+  /* "cython_scripts/tree_from_skeleton_image.pyx":249
  *                 dm_feature += feature["dm"]
  *                 cp_feature += feature["cp"]
- *     return trees, lv_feature, nb_feature, nc_feature, dm_feature, cp_feature             # <<<<<<<<<<<<<<
+ *     return trees, lv_feature, nb_feature, nc_t_feature, dm_feature, cp_feature, nc_feature             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = PyTuple_New(6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_trees);
   __Pyx_GIVEREF(__pyx_v_trees);
@@ -8201,20 +8950,23 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __Pyx_INCREF(__pyx_v_nb_feature);
   __Pyx_GIVEREF(__pyx_v_nb_feature);
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_nb_feature);
-  __Pyx_INCREF(__pyx_v_nc_feature);
-  __Pyx_GIVEREF(__pyx_v_nc_feature);
-  PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_nc_feature);
+  __Pyx_INCREF(__pyx_v_nc_t_feature);
+  __Pyx_GIVEREF(__pyx_v_nc_t_feature);
+  PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_nc_t_feature);
   __Pyx_INCREF(__pyx_v_dm_feature);
   __Pyx_GIVEREF(__pyx_v_dm_feature);
   PyTuple_SET_ITEM(__pyx_t_3, 4, __pyx_v_dm_feature);
   __Pyx_INCREF(__pyx_v_cp_feature);
   __Pyx_GIVEREF(__pyx_v_cp_feature);
   PyTuple_SET_ITEM(__pyx_t_3, 5, __pyx_v_cp_feature);
+  __Pyx_INCREF(__pyx_v_nc_feature);
+  __Pyx_GIVEREF(__pyx_v_nc_feature);
+  PyTuple_SET_ITEM(__pyx_t_3, 6, __pyx_v_nc_feature);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":204
+  /* "cython_scripts/tree_from_skeleton_image.pyx":229
  * 
  * 
  * def form_array_of_skeleton_make_spanning_trees(image):             # <<<<<<<<<<<<<<
@@ -8236,6 +8988,7 @@ static PyObject *__pyx_pf_14cython_scripts_24tree_from_skeleton_image_16form_arr
   __Pyx_XDECREF(__pyx_v_coords_of_possible_line_end_points);
   __Pyx_XDECREF(__pyx_v_lv_feature);
   __Pyx_XDECREF(__pyx_v_nb_feature);
+  __Pyx_XDECREF(__pyx_v_nc_t_feature);
   __Pyx_XDECREF(__pyx_v_nc_feature);
   __Pyx_XDECREF(__pyx_v_dm_feature);
   __Pyx_XDECREF(__pyx_v_cp_feature);
@@ -8779,7 +9532,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 945, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 945, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -8911,7 +9664,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 951, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 951, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -9043,7 +9796,7 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
  * 
  * cdef extern from *:
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 957, __pyx_L5_except_error)
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_builtin_ImportError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 957, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_Raise(__pyx_t_8, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
@@ -9573,6 +10326,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_coords, __pyx_k_coords, sizeof(__pyx_k_coords), 0, 0, 1, 1},
   {&__pyx_n_s_coords_of_neighbors_of_pixel, __pyx_k_coords_of_neighbors_of_pixel, sizeof(__pyx_k_coords_of_neighbors_of_pixel), 0, 0, 1, 1},
   {&__pyx_n_s_coords_of_possible_line_end_poin, __pyx_k_coords_of_possible_line_end_poin, sizeof(__pyx_k_coords_of_possible_line_end_poin), 0, 0, 1, 1},
+  {&__pyx_n_s_coords_to_find, __pyx_k_coords_to_find, sizeof(__pyx_k_coords_to_find), 0, 0, 1, 1},
   {&__pyx_n_s_cp, __pyx_k_cp, sizeof(__pyx_k_cp), 0, 0, 1, 1},
   {&__pyx_n_s_cp_feature, __pyx_k_cp_feature, sizeof(__pyx_k_cp_feature), 0, 0, 1, 1},
   {&__pyx_n_s_cross, __pyx_k_cross, sizeof(__pyx_k_cross), 0, 0, 1, 1},
@@ -9585,10 +10339,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_dot, __pyx_k_dot, sizeof(__pyx_k_dot), 0, 0, 1, 1},
   {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
-  {&__pyx_n_s_end_of_cycle, __pyx_k_end_of_cycle, sizeof(__pyx_k_end_of_cycle), 0, 0, 1, 1},
   {&__pyx_n_s_euclidean_distance, __pyx_k_euclidean_distance, sizeof(__pyx_k_euclidean_distance), 0, 0, 1, 1},
   {&__pyx_n_s_feature, __pyx_k_feature, sizeof(__pyx_k_feature), 0, 0, 1, 1},
   {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
+  {&__pyx_n_s_find_node_by_coords, __pyx_k_find_node_by_coords, sizeof(__pyx_k_find_node_by_coords), 0, 0, 1, 1},
   {&__pyx_n_s_form_array_of_skeleton_make_span, __pyx_k_form_array_of_skeleton_make_span, sizeof(__pyx_k_form_array_of_skeleton_make_span), 0, 0, 1, 1},
   {&__pyx_n_s_genexpr, __pyx_k_genexpr, sizeof(__pyx_k_genexpr), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
@@ -9600,11 +10354,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ip_t2_t3, __pyx_k_ip_t2_t3, sizeof(__pyx_k_ip_t2_t3), 0, 0, 1, 1},
   {&__pyx_n_s_ip_t2_t3_temp, __pyx_k_ip_t2_t3_temp, sizeof(__pyx_k_ip_t2_t3_temp), 0, 0, 1, 1},
   {&__pyx_n_s_is_branching_node, __pyx_k_is_branching_node, sizeof(__pyx_k_is_branching_node), 0, 0, 1, 1},
-  {&__pyx_n_s_is_cycle, __pyx_k_is_cycle, sizeof(__pyx_k_is_cycle), 0, 0, 1, 1},
-  {&__pyx_n_s_is_cycle_check_branching_node, __pyx_k_is_cycle_check_branching_node, sizeof(__pyx_k_is_cycle_check_branching_node), 0, 0, 1, 1},
+  {&__pyx_n_s_is_cycle_length_above_threshold, __pyx_k_is_cycle_length_above_threshold, sizeof(__pyx_k_is_cycle_length_above_threshold), 0, 0, 1, 1},
   {&__pyx_n_s_is_line_end_point, __pyx_k_is_line_end_point, sizeof(__pyx_k_is_line_end_point), 0, 0, 1, 1},
   {&__pyx_n_s_last_node_coords, __pyx_k_last_node_coords, sizeof(__pyx_k_last_node_coords), 0, 0, 1, 1},
   {&__pyx_n_s_level, __pyx_k_level, sizeof(__pyx_k_level), 0, 0, 1, 1},
+  {&__pyx_n_s_level_of_end_cycle, __pyx_k_level_of_end_cycle, sizeof(__pyx_k_level_of_end_cycle), 0, 0, 1, 1},
   {&__pyx_n_s_lv, __pyx_k_lv, sizeof(__pyx_k_lv), 0, 0, 1, 1},
   {&__pyx_n_s_lv_feature, __pyx_k_lv_feature, sizeof(__pyx_k_lv_feature), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
@@ -9616,7 +10370,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_nb_feature, __pyx_k_nb_feature, sizeof(__pyx_k_nb_feature), 0, 0, 1, 1},
   {&__pyx_n_s_nc, __pyx_k_nc, sizeof(__pyx_k_nc), 0, 0, 1, 1},
   {&__pyx_n_s_nc_feature, __pyx_k_nc_feature, sizeof(__pyx_k_nc_feature), 0, 0, 1, 1},
+  {&__pyx_n_s_nc_t, __pyx_k_nc_t, sizeof(__pyx_k_nc_t), 0, 0, 1, 1},
+  {&__pyx_n_s_nc_t_feature, __pyx_k_nc_t_feature, sizeof(__pyx_k_nc_t_feature), 0, 0, 1, 1},
   {&__pyx_n_s_neighbour_coords, __pyx_k_neighbour_coords, sizeof(__pyx_k_neighbour_coords), 0, 0, 1, 1},
+  {&__pyx_n_s_node, __pyx_k_node, sizeof(__pyx_k_node), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_kp_s_numpy_core_multiarray_failed_to, __pyx_k_numpy_core_multiarray_failed_to, sizeof(__pyx_k_numpy_core_multiarray_failed_to), 0, 0, 1, 0},
   {&__pyx_kp_s_numpy_core_umath_failed_to_impor, __pyx_k_numpy_core_umath_failed_to_impor, sizeof(__pyx_k_numpy_core_umath_failed_to_impor), 0, 0, 1, 0},
@@ -9628,6 +10385,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pop, __pyx_k_pop, sizeof(__pyx_k_pop), 0, 0, 1, 1},
   {&__pyx_n_s_post_proces, __pyx_k_post_proces, sizeof(__pyx_k_post_proces), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
+  {&__pyx_n_s_prev, __pyx_k_prev, sizeof(__pyx_k_prev), 0, 0, 1, 1},
   {&__pyx_n_s_prev_visited_neighbors, __pyx_k_prev_visited_neighbors, sizeof(__pyx_k_prev_visited_neighbors), 0, 0, 1, 1},
   {&__pyx_n_s_prev_visited_neighbors_coords, __pyx_k_prev_visited_neighbors_coords, sizeof(__pyx_k_prev_visited_neighbors_coords), 0, 0, 1, 1},
   {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
@@ -9671,14 +10429,15 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_unvisited_neighbors_coords, __pyx_k_unvisited_neighbors_coords, sizeof(__pyx_k_unvisited_neighbors_coords), 0, 0, 1, 1},
   {&__pyx_n_s_where, __pyx_k_where, sizeof(__pyx_k_where), 0, 0, 1, 1},
   {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
+  {&__pyx_n_s_y, __pyx_k_y, sizeof(__pyx_k_y), 0, 0, 1, 1},
   {&__pyx_n_s_zip, __pyx_k_zip, sizeof(__pyx_k_zip), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_round = __Pyx_GetBuiltinName(__pyx_n_s_round); if (!__pyx_builtin_round) __PYX_ERR(0, 35, __pyx_L1_error)
-  __pyx_builtin_sum = __Pyx_GetBuiltinName(__pyx_n_s_sum); if (!__pyx_builtin_sum) __PYX_ERR(0, 87, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 87, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_builtin_sum = __Pyx_GetBuiltinName(__pyx_n_s_sum); if (!__pyx_builtin_sum) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 231, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 945, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -9689,16 +10448,27 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":144
+  /* "cython_scripts/tree_from_skeleton_image.pyx":136
+ * 
+ *         # delete unwanted prev in cycle check process
+ *         for coords in prev_visited_neighbors_coords[:]:             # <<<<<<<<<<<<<<
+ *             node = find_node_by_coords(root, coords)
+ *             if node.level < curr.level:
+ */
+  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__2);
+  __Pyx_GIVEREF(__pyx_slice__2);
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":163
  * 
  *     if feature["pc"] < 5:
  *         return None, None             # <<<<<<<<<<<<<<
- *     return root, feature
  * 
+ *     soam(root, feature)
  */
-  __pyx_tuple__2 = PyTuple_Pack(2, Py_None, Py_None); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__2);
-  __Pyx_GIVEREF(__pyx_tuple__2);
+  __pyx_tuple__3 = PyTuple_Pack(2, Py_None, Py_None); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
 
   /* "../../../../AppData/Local/Programs/Python/Python310/lib/site-packages/numpy/__init__.pxd":945
  *         __pyx_import_array()
@@ -9707,9 +10477,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_umath() except -1:
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(1, 945, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_multiarray_failed_to); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 945, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "../../../../AppData/Local/Programs/Python/Python310/lib/site-packages/numpy/__init__.pxd":951
  *         _import_umath()
@@ -9718,9 +10488,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * cdef inline int import_ufunc() except -1:
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(1, 951, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(1, 951, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":11
  * 
@@ -9729,13 +10499,13 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.parent = parent
  *         self.children = []
  */
-  __pyx_tuple__5 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_coords, __pyx_n_s_level, __pyx_n_s_parent); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_init, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __pyx_tuple__7 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__6 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_coords, __pyx_n_s_level, __pyx_n_s_parent); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_init, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, ((PyObject *)Py_None)); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":20
  * 
@@ -9744,106 +10514,118 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     que = [root.children[0]] # start from child of root
  *     while que:
  */
-  __pyx_tuple__8 = PyTuple_Pack(21, __pyx_n_s_root, __pyx_n_s_feature, __pyx_n_s_que, __pyx_n_s_curr, __pyx_n_s_t1, __pyx_n_s_t1_magnitude, __pyx_n_s_child, __pyx_n_s_t2, __pyx_n_s_t2_magnitude, __pyx_n_s_child_child, __pyx_n_s_t3, __pyx_n_s_t3_magnitude, __pyx_n_s_ip_t1_t2_temp, __pyx_n_s_ip_t1_t2, __pyx_n_s_ip_t2_t3_temp, __pyx_n_s_ip_t2_t3, __pyx_n_s_t1_t2_cross_magnitude, __pyx_n_s_t2_t3_cross_magnitude, __pyx_n_s_tp, __pyx_n_s_tp_temp, __pyx_n_s_cp); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 20, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(2, 0, 21, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_soam, 20, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(21, __pyx_n_s_root, __pyx_n_s_feature, __pyx_n_s_que, __pyx_n_s_curr, __pyx_n_s_t1, __pyx_n_s_t1_magnitude, __pyx_n_s_child, __pyx_n_s_t2, __pyx_n_s_t2_magnitude, __pyx_n_s_child_child, __pyx_n_s_t3, __pyx_n_s_t3_magnitude, __pyx_n_s_ip_t1_t2_temp, __pyx_n_s_ip_t1_t2, __pyx_n_s_ip_t2_t3_temp, __pyx_n_s_ip_t2_t3, __pyx_n_s_t1_t2_cross_magnitude, __pyx_n_s_t2_t3_cross_magnitude, __pyx_n_s_tp, __pyx_n_s_tp_temp, __pyx_n_s_cp); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 21, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_soam, 20, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 20, __pyx_L1_error)
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":51
  * 
  * 
- * def is_cycle(curr):             # <<<<<<<<<<<<<<
- *     end_of_cycle = curr
- *     x = curr.parent
+ * def is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *     x = curr
+ *     y = prev
  */
-  __pyx_tuple__10 = PyTuple_Pack(3, __pyx_n_s_curr, __pyx_n_s_end_of_cycle, __pyx_n_s_x); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 51, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_is_cycle, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(5, __pyx_n_s_curr, __pyx_n_s_prev, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_level_of_end_cycle); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_is_cycle_length_above_threshold, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 51, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":66
+  /* "cython_scripts/tree_from_skeleton_image.pyx":68
  * 
  * 
  * def print_tree_bfs(root):             # <<<<<<<<<<<<<<
  *     que = [root]
  *     while que:
  */
-  __pyx_tuple__12 = PyTuple_Pack(4, __pyx_n_s_root, __pyx_n_s_que, __pyx_n_s_parent, __pyx_n_s_child); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 66, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_print_tree_bfs, 66, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(4, __pyx_n_s_root, __pyx_n_s_que, __pyx_n_s_parent, __pyx_n_s_child); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_print_tree_bfs, 68, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 68, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":77
- *         print("-----------------------------------")
+  /* "cython_scripts/tree_from_skeleton_image.pyx":80
+ * 
  * 
  * def post_proces(root, feature):             # <<<<<<<<<<<<<<
  *     que = [root]
  *     while que:
  */
-  __pyx_tuple__14 = PyTuple_Pack(6, __pyx_n_s_root, __pyx_n_s_feature, __pyx_n_s_que, __pyx_n_s_parent, __pyx_n_s_child, __pyx_n_s_i); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_post_proces, 77, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(6, __pyx_n_s_root, __pyx_n_s_feature, __pyx_n_s_que, __pyx_n_s_parent, __pyx_n_s_child, __pyx_n_s_i); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(2, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_post_proces, 80, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 80, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":97
+  /* "cython_scripts/tree_from_skeleton_image.pyx":99
+ * 
+ * 
+ * def find_node_by_coords(root, coords_to_find):             # <<<<<<<<<<<<<<
+ *     que = [root]
+ *     while que:
+ */
+  __pyx_tuple__17 = PyTuple_Pack(5, __pyx_n_s_root, __pyx_n_s_coords_to_find, __pyx_n_s_que, __pyx_n_s_curr, __pyx_n_s_child); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_find_node_by_coords, 99, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 99, __pyx_L1_error)
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
  *     root = Node(coords=coords, level=0)
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
  */
-  __pyx_tuple__16 = PyTuple_Pack(16, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_root, __pyx_n_s_que, __pyx_n_s_feature, __pyx_n_s_curr, __pyx_n_s_unvisited_neighbors_coords, __pyx_n_s_prev_visited_neighbors_coords, __pyx_n_s_neighbour_coords, __pyx_n_s_child, __pyx_n_s_curr_child_vector, __pyx_n_s_euclidean_distance, __pyx_n_s_last_node_coords, __pyx_n_s_root_last_vector, __pyx_n_s_genexpr, __pyx_n_s_genexpr); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 97, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(2, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_build_spanning_tree_bfs_and_extr_2, 97, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(18, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_root, __pyx_n_s_que, __pyx_n_s_feature, __pyx_n_s_curr, __pyx_n_s_unvisited_neighbors_coords, __pyx_n_s_prev_visited_neighbors_coords, __pyx_n_s_node, __pyx_n_s_prev, __pyx_n_s_neighbour_coords, __pyx_n_s_child, __pyx_n_s_curr_child_vector, __pyx_n_s_euclidean_distance, __pyx_n_s_last_node_coords, __pyx_n_s_root_last_vector, __pyx_n_s_genexpr, __pyx_n_s_genexpr); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_build_spanning_tree_bfs_and_extr_2, 110, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 110, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":148
+  /* "cython_scripts/tree_from_skeleton_image.pyx":173
  * 
  * 
  * def range_of_neighbours(coords, image):             # <<<<<<<<<<<<<<
  *     if coords[0] == 0:
  *         panel_start = coords[0]
  */
-  __pyx_tuple__18 = PyTuple_Pack(8, __pyx_n_s_coords, __pyx_n_s_image, __pyx_n_s_panel_start, __pyx_n_s_panel_end, __pyx_n_s_row_start, __pyx_n_s_row_end, __pyx_n_s_col_start, __pyx_n_s_col_end); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 148, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_range_of_neighbours, 148, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(8, __pyx_n_s_coords, __pyx_n_s_image, __pyx_n_s_panel_start, __pyx_n_s_panel_end, __pyx_n_s_row_start, __pyx_n_s_row_end, __pyx_n_s_col_start, __pyx_n_s_col_end); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_range_of_neighbours, 173, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 173, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":179
+  /* "cython_scripts/tree_from_skeleton_image.pyx":204
  * 
  * 
  * def coords_of_neighbors_of_pixel(image, coords):             # <<<<<<<<<<<<<<
  *     unvisited_neighbors = []
  *     prev_visited_neighbors = []
  */
-  __pyx_tuple__20 = PyTuple_Pack(8, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_unvisited_neighbors, __pyx_n_s_prev_visited_neighbors, __pyx_n_s_range_of_neighbors, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 179, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_coords_of_neighbors_of_pixel, 179, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(8, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_unvisited_neighbors, __pyx_n_s_prev_visited_neighbors, __pyx_n_s_range_of_neighbors, __pyx_n_s_panel, __pyx_n_s_row, __pyx_n_s_col); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_coords_of_neighbors_of_pixel, 204, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 204, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":195
+  /* "cython_scripts/tree_from_skeleton_image.pyx":220
  * 
  * 
  * def is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],
  */
-  __pyx_tuple__22 = PyTuple_Pack(4, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_range_neighbour, __pyx_n_s_array_to_sum); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 195, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__22);
-  __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_is_line_end_point, 195, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(4, __pyx_n_s_image, __pyx_n_s_coords, __pyx_n_s_range_neighbour, __pyx_n_s_array_to_sum); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_is_line_end_point, 220, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 220, __pyx_L1_error)
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":204
+  /* "cython_scripts/tree_from_skeleton_image.pyx":229
  * 
  * 
  * def form_array_of_skeleton_make_spanning_trees(image):             # <<<<<<<<<<<<<<
  *     trees = []
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
  */
-  __pyx_tuple__24 = PyTuple_Pack(11, __pyx_n_s_image, __pyx_n_s_trees, __pyx_n_s_coords_of_possible_line_end_poin, __pyx_n_s_lv_feature, __pyx_n_s_nb_feature, __pyx_n_s_nc_feature, __pyx_n_s_dm_feature, __pyx_n_s_cp_feature, __pyx_n_s_coords, __pyx_n_s_tree, __pyx_n_s_feature); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 204, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__24);
-  __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(1, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_form_array_of_skeleton_make_span, 204, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_tuple__27 = PyTuple_Pack(12, __pyx_n_s_image, __pyx_n_s_trees, __pyx_n_s_coords_of_possible_line_end_poin, __pyx_n_s_lv_feature, __pyx_n_s_nb_feature, __pyx_n_s_nc_t_feature, __pyx_n_s_nc_feature, __pyx_n_s_dm_feature, __pyx_n_s_cp_feature, __pyx_n_s_coords, __pyx_n_s_tree, __pyx_n_s_feature); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 229, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_scripts_tree_from_skeleto_2, __pyx_n_s_form_array_of_skeleton_make_span, 229, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -9903,7 +10685,7 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features) < 0) __PYX_ERR(0, 97, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features.tp_print = 0;
   #endif
@@ -9911,7 +10693,7 @@ static int __Pyx_modinit_type_init_code(void) {
     __pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   __pyx_ptype_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features = &__pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct__build_spanning_tree_bfs_and_extract_features;
-  if (PyType_Ready(&__pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_1_genexpr) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_14cython_scripts_24tree_from_skeleton_image___pyx_scope_struct_1_genexpr.tp_print = 0;
   #endif
@@ -10311,9 +11093,9 @@ if (!__Pyx_RefNanny) {
  *         self.parent = parent
  *         self.children = []
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_4Node_1__init__, 0, __pyx_n_s_Node___init, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_4Node_1__init__, 0, __pyx_n_s_Node___init, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_1, __pyx_tuple__7);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_1, __pyx_tuple__8);
   if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
@@ -10345,97 +11127,109 @@ if (!__Pyx_RefNanny) {
   /* "cython_scripts/tree_from_skeleton_image.pyx":51
  * 
  * 
- * def is_cycle(curr):             # <<<<<<<<<<<<<<
- *     end_of_cycle = curr
- *     x = curr.parent
+ * def is_cycle_length_above_threshold(curr, prev):             # <<<<<<<<<<<<<<
+ *     x = curr
+ *     y = prev
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_3is_cycle, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_3is_cycle_length_above_threshold, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_cycle, __pyx_t_2) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_cycle_length_above_threshold, __pyx_t_2) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":66
+  /* "cython_scripts/tree_from_skeleton_image.pyx":68
  * 
  * 
  * def print_tree_bfs(root):             # <<<<<<<<<<<<<<
  *     que = [root]
  *     while que:
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_5print_tree_bfs, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_5print_tree_bfs, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_print_tree_bfs, __pyx_t_2) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_print_tree_bfs, __pyx_t_2) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":77
- *         print("-----------------------------------")
+  /* "cython_scripts/tree_from_skeleton_image.pyx":80
+ * 
  * 
  * def post_proces(root, feature):             # <<<<<<<<<<<<<<
  *     que = [root]
  *     while que:
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_7post_proces, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_7post_proces, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_post_proces, __pyx_t_2) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_post_proces, __pyx_t_2) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":97
+  /* "cython_scripts/tree_from_skeleton_image.pyx":99
+ * 
+ * 
+ * def find_node_by_coords(root, coords_to_find):             # <<<<<<<<<<<<<<
+ *     que = [root]
+ *     while que:
+ */
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_9find_node_by_coords, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_find_node_by_coords, __pyx_t_2) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cython_scripts/tree_from_skeleton_image.pyx":110
  * 
  * 
  * def build_spanning_tree_bfs_and_extract_features(image, coords):             # <<<<<<<<<<<<<<
  *     root = Node(coords=coords, level=0)
  *     image[root.coords[0], root.coords[1], root.coords[2]] = VISITED  # in order to mark point which was added to tree
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_9build_spanning_tree_bfs_and_extract_features, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_11build_spanning_tree_bfs_and_extract_features, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_spanning_tree_bfs_and_extr_2, __pyx_t_2) < 0) __PYX_ERR(0, 97, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_spanning_tree_bfs_and_extr_2, __pyx_t_2) < 0) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":148
+  /* "cython_scripts/tree_from_skeleton_image.pyx":173
  * 
  * 
  * def range_of_neighbours(coords, image):             # <<<<<<<<<<<<<<
  *     if coords[0] == 0:
  *         panel_start = coords[0]
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_11range_of_neighbours, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_13range_of_neighbours, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_range_of_neighbours, __pyx_t_2) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_range_of_neighbours, __pyx_t_2) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":179
+  /* "cython_scripts/tree_from_skeleton_image.pyx":204
  * 
  * 
  * def coords_of_neighbors_of_pixel(image, coords):             # <<<<<<<<<<<<<<
  *     unvisited_neighbors = []
  *     prev_visited_neighbors = []
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_13coords_of_neighbors_of_pixel, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_15coords_of_neighbors_of_pixel, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_coords_of_neighbors_of_pixel, __pyx_t_2) < 0) __PYX_ERR(0, 179, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_coords_of_neighbors_of_pixel, __pyx_t_2) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":195
+  /* "cython_scripts/tree_from_skeleton_image.pyx":220
  * 
  * 
  * def is_line_end_point(image, coords):             # <<<<<<<<<<<<<<
  *     range_neighbour = range_of_neighbours(coords, image)
  *     array_to_sum = image[range_neighbour[0][0]:range_neighbour[0][1],
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_15is_line_end_point, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_17is_line_end_point, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_line_end_point, __pyx_t_2) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_is_line_end_point, __pyx_t_2) < 0) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cython_scripts/tree_from_skeleton_image.pyx":204
+  /* "cython_scripts/tree_from_skeleton_image.pyx":229
  * 
  * 
  * def form_array_of_skeleton_make_spanning_trees(image):             # <<<<<<<<<<<<<<
  *     trees = []
  *     coords_of_possible_line_end_points = list(zip(*numpy.where(image == 1)))
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_17form_array_of_skeleton_make_spanning_trees, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_14cython_scripts_24tree_from_skeleton_image_19form_array_of_skeleton_make_spanning_trees, NULL, __pyx_n_s_cython_scripts_tree_from_skeleto); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_form_array_of_skeleton_make_span, __pyx_t_2) < 0) __PYX_ERR(0, 204, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_form_array_of_skeleton_make_span, __pyx_t_2) < 0) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cython_scripts/tree_from_skeleton_image.pyx":1
@@ -11647,6 +12441,103 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
     return (inplace ? PyNumber_InPlaceAdd : PyNumber_Add)(op1, op2);
 }
 #endif
+
+/* SliceObject */
+  static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
+        Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
+        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
+#if CYTHON_USE_TYPE_SLOTS
+    PyMappingMethods* mp;
+#if PY_MAJOR_VERSION < 3
+    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
+    if (likely(ms && ms->sq_slice)) {
+        if (!has_cstart) {
+            if (_py_start && (*_py_start != Py_None)) {
+                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
+                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstart = 0;
+        }
+        if (!has_cstop) {
+            if (_py_stop && (*_py_stop != Py_None)) {
+                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
+                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstop = PY_SSIZE_T_MAX;
+        }
+        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
+            Py_ssize_t l = ms->sq_length(obj);
+            if (likely(l >= 0)) {
+                if (cstop < 0) {
+                    cstop += l;
+                    if (cstop < 0) cstop = 0;
+                }
+                if (cstart < 0) {
+                    cstart += l;
+                    if (cstart < 0) cstart = 0;
+                }
+            } else {
+                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                    goto bad;
+                PyErr_Clear();
+            }
+        }
+        return ms->sq_slice(obj, cstart, cstop);
+    }
+#endif
+    mp = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(mp && mp->mp_subscript))
+#endif
+    {
+        PyObject* result;
+        PyObject *py_slice, *py_start, *py_stop;
+        if (_py_slice) {
+            py_slice = *_py_slice;
+        } else {
+            PyObject* owned_start = NULL;
+            PyObject* owned_stop = NULL;
+            if (_py_start) {
+                py_start = *_py_start;
+            } else {
+                if (has_cstart) {
+                    owned_start = py_start = PyInt_FromSsize_t(cstart);
+                    if (unlikely(!py_start)) goto bad;
+                } else
+                    py_start = Py_None;
+            }
+            if (_py_stop) {
+                py_stop = *_py_stop;
+            } else {
+                if (has_cstop) {
+                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
+                    if (unlikely(!py_stop)) {
+                        Py_XDECREF(owned_start);
+                        goto bad;
+                    }
+                } else
+                    py_stop = Py_None;
+            }
+            py_slice = PySlice_New(py_start, py_stop, Py_None);
+            Py_XDECREF(owned_start);
+            Py_XDECREF(owned_stop);
+            if (unlikely(!py_slice)) goto bad;
+        }
+#if CYTHON_USE_TYPE_SLOTS
+        result = mp->mp_subscript(obj, py_slice);
+#else
+        result = PyObject_GetItem(obj, py_slice);
+#endif
+        if (!_py_slice) {
+            Py_DECREF(py_slice);
+        }
+        return result;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
+bad:
+    return NULL;
+}
 
 /* append */
   static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {

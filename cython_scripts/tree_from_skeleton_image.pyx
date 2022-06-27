@@ -4,8 +4,10 @@ cimport cython
 from math import sqrt
 from math import acos
 from math import sin
+
 VISITED = 5
 T_C = 5
+T_N = 5
 
 class Node:
     def __init__(self, coords, level, parent=None):
@@ -13,7 +15,6 @@ class Node:
         self.children = []
         self.coords = coords
         self.is_branching_node = False
-        #self.is_cycle_check_branching_node = False
         self.level = level
 
 
@@ -159,7 +160,7 @@ def build_spanning_tree_bfs_and_extract_features(image, coords):
 
     post_proces(root, feature)
 
-    if feature["pc"] < 5:
+    if feature["pc"] < T_N:
         return None, None
 
     soam(root, feature)
