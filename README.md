@@ -1,7 +1,7 @@
 # 3D-Vessel-Analyzer
 
 ## Overview  
-This project focuses on analyzing three-dimensional distributions of blood vessels in neoplastic tumors using the 3D Power Doppler ultrasound technique. This imaging method enables detailed visualization of tumor vascularization and facilitates monitoring the effects of anticancer therapies on vessel morphology and quantity.  
+This project focuses on analyzing three-dimensional morfology of blood vessels in neoplastic tumors using the 3D Power Doppler ultrasound technique. This imaging method enables detailed visualization of tumor vascularization and facilitates monitoring the effects of anticancer therapies on vessel morphology and quantity.  
 
 The primary objective of this project is to develop an algorithm capable of analyzing morphological features of vessels based on Doppler ultrasound images.  
 
