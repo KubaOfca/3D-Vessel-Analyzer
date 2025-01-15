@@ -27,11 +27,15 @@ The algorithm provides information on the following features:
 ## Application  
 The developed algorithm has been applied to study the normalization process of neoplastic vessels influenced by **metformin therapy** and **oxygen microbubbles**. These tools provide insights into how treatments impact vascularization, aiding the development of more effective cancer therapies.  
 
-## Input images type
+## Supported Input Formats  
+The program supports the analysis of both `DICOM` and `TIFF` image formats. Additionally, it can process metadata associated with these images from accompanying `XML` or `CSV` files.  
 
+Below is an example of an input image:  
+![Example Input Image](https://mindray.scene7.com/is/image/mindray/doppler-shades-color-fig4-pc?$630-423$)  
 
+## User Interface  
+The tool features a dedicated **Tkinter-based GUI** that simplifies the analysis process, making it more user-friendly and accessible.
 
+Screenshot of the user interface:  
+![Example UI](https://github.com/user-attachments/assets/c51ceb6e-f344-48a9-b43a-322ae3e3a6d1)  
 
-# UI
-
-![image](https://github.com/user-attachments/assets/c51ceb6e-f344-48a9-b43a-322ae3e3a6d1)
