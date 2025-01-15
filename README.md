@@ -37,5 +37,9 @@ Below is an example of an input image:
 The tool features a dedicated **Tkinter-based GUI** that simplifies the analysis process, making it more user-friendly and accessible.
 
 Screenshot of the user interface:  
-![Example UI](https://github.com/user-attachments/assets/c51ceb6e-f344-48a9-b43a-322ae3e3a6d1)  
+![Example UI](https://github.com/user-attachments/assets/c51ceb6e-f344-48a9-b43a-322ae3e3a6d1)
+
+## Publication
+
+https://www.mdpi.com/1422-0067/24/15/12156
 
