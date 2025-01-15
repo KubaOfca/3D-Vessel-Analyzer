@@ -16,13 +16,13 @@ The algorithm comprises several processing steps:
 
 ## Extracted Parameters  
 The algorithm provides information on the following features:  
-- **Vessel-Volume Ratio**: Proportion of vessel volume to total image volume.  
+- **Vessel-Volume Ratio**: Proportion of vessel volume to total tumor volume.  
 - **Number of Vascular Trees**: Count of distinct vascular structures.  
 - **Vessel Length**: Total length of all vessels in the image.  
 - **Number of Branches**: Total branch points in the vascular network.  
 - **Number of Cycles**: Count of closed loops in the vascular structure.  
-- **Cycle Size**: Number of loops exceeding a defined size threshold.  
-- **Tortuosity Measurements**: Two metrics to quantify vessel curvature and irregularity.  
+- **Cycle Size**: Size of closed loops in the vascular structured.  
+- **Tortuosity Measurements**: Metrics to quantify vessel curvature and irregularity.  
 
 ## Application  
 The developed algorithm has been applied to study the normalization process of neoplastic vessels influenced by **metformin therapy** and **oxygen microbubbles**. These tools provide insights into how treatments impact vascularization, aiding the development of more effective cancer therapies.  
@@ -41,5 +41,6 @@ Screenshot of the user interface:
 
 ## Publication
 
+Here is a research article that uses this program
 https://www.mdpi.com/1422-0067/24/15/12156
 
