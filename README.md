@@ -10,7 +10,7 @@ The algorithm comprises several processing steps:
 1. **Binarization** – Conversion of grayscale images into binary representations.  
 2. **Thresholding** – Selection of vessel structures based on intensity values.  
 3. **Skeletonization** – Reduction of vessels to their central lines for morphological analysis.  
-4. **Tree Building** – Construction of vascular trees for better structure representation.  
+4. **Tree Building** – Construction of vessels structure representation.  
 5. **Post-Processing** – Refinement of the vascular model by eliminating noise and artifacts.  
 6. **Feature Extraction** – Calculation of morphological parameters.  
 
